@@ -16,11 +16,11 @@ const penilaianRoutes = [
 	element: <RequireAuth permissionNeeded="ReadPenilaian" ><DaftarPenilaianPage/></RequireAuth>
 }	
 ,
-{ 
-	path: "/penilaian/tambah",
-	element: <RequireAuth permissionNeeded="CreatePenilaian" ><TambahPenilaianPage/></RequireAuth>
-}	
-,
+// { 
+// 	path: "/penilaian/tambah",
+// 	element: <RequireAuth permissionNeeded="CreatePenilaian" ><TambahPenilaianPage/></RequireAuth>
+// }	
+// ,
 { 
 	path: "/penilaian/tambah-komponen",
 	element: <RequireAuth permissionNeeded="CreateKomponenPenilaian" ><TambahKomponenPenilaianPage/></RequireAuth>

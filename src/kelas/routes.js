@@ -11,6 +11,7 @@ import UbahKelasPage from './containers/UbahKelasPage'
 import DetailKelasPage from './containers/DetailKelasPage'
 import DetailKelasMahasiswaPage from './containers/DetailKelasMahasiswaPage'
 import DetailNilaiMahasiswaPage from './containers/DetailNilaiMahasiswaPage'
+import TambahNilaiMahasiswa from './containers/TambahNilaiMahasiswa'
 
 const kelasRoutes = [
 { 
@@ -26,6 +27,11 @@ const kelasRoutes = [
 { 
 	path: "/kelas/ubah",
 	element: <RequireAuth permissionNeeded="UpdateKelas" ><UbahKelasPage/></RequireAuth>
+}	
+,
+{ 
+	path: "/penilaian/tambah",
+	element: <TambahNilaiMahasiswa />,
 }	
 ,
 { 
