@@ -63,9 +63,9 @@ const FormTambahNilai = ({ komponenPenilaian, idMahasiswa, idKelas }) => {
           control={control}
           render={({ field, fieldState }) => (
             <InputField
-              label="Simple Field"
+              label="Nilai"
               type="number"
-              placeholder="Masukkan simple field"
+              placeholder="Masukkan nilai"
               defaultValue={0}
               fieldState={fieldState}
               {...field}

@@ -22,6 +22,9 @@ import getKomponenPenilaianDataList from "../services/getKomponenPenilaianDataLi
 import PenilaianTable from "../components/PenilaianTable";
 
 import getPenilaianMahasiswaDataList from "../services/getPenilaianMahasiswaDataList";
+import DetailTable from "../components/DetailTable";
+
+import getNilaiAkhirMahasiswaDataList from "../services/getNilaiAkhirMahasiswaDataList";
 const DetailKelasPage = (props) => {
   const { checkPermission } = useAuth();
 
@@ -30,6 +33,7 @@ const DetailKelasPage = (props) => {
     tableDosen: false,
     tableKomponenPenilaian: false,
     tablePenilaianMahasiswa: false,
+    reportNilaiAkhirMahasiswa: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
@@ -92,6 +96,26 @@ const DetailKelasPage = (props) => {
         setPenilaianMahasiswaDataList(penilaianMahasiswaDataList.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tablePenilaianMahasiswa: false }));
+      }
+    };
+    checkPermission("ReadPenilaianMe") && fetchData();
+  }, []);
+
+  const [
+    nilaiAkhirMahasiswaDataList,
+    setNilaiAkhirMahasiswaDataList,
+  ] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading((prev) => ({ ...prev, reportNilaiAkhirMahasiswa: true }));
+        const {
+          data: nilaiAkhirMahasiswaDataList,
+        } = await getNilaiAkhirMahasiswaDataList({ kelasId: id });
+        setNilaiAkhirMahasiswaDataList(nilaiAkhirMahasiswaDataList.data);
+      } finally {
+        setIsLoading((prev) => ({ ...prev, reportNilaiAkhirMahasiswa: false }));
       }
     };
     checkPermission("ReadPenilaianMe") && fetchData();
@@ -164,6 +188,18 @@ const DetailKelasPage = (props) => {
         >
           <PenilaianTable
             penilaianMahasiswaDataList={penilaianMahasiswaDataList}
+          />
+        </Layouts.ListContainerTableLayout>
+      )}
+      {checkPermission("ReadPenilaianMe") && (
+        <Layouts.ListContainerTableLayout
+          title={"Report Detail Nilai Akhir Mahasiswa"}
+          singularName={"Detail"}
+          items={[nilaiAkhirMahasiswaDataList]}
+          isLoading={isLoading.reportDetailNilaiAkhirMahasiswa}
+        >
+          <DetailTable
+            detailNilaiAkhirMahasiswaDataList={nilaiAkhirMahasiswaDataList}
           />
         </Layouts.ListContainerTableLayout>
       )}

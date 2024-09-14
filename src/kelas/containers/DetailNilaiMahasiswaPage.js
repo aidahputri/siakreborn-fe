@@ -14,6 +14,10 @@ import { useAuth } from "commons/auth";
 import NilaiTable from "../components/NilaiTable";
 
 import getNilaiMahasiswaDataList from "../services/getNilaiMahasiswaDataList";
+import DetailTable from "../components/DetailTable";
+
+import getDetailNilaiAkhirMahasiswaDataList from "../services/getDetailNilaiAkhirMahasiswaDataList";
+
 const DetailNilaiMahasiswaPage = (props) => {
   const { checkPermission } = useAuth();
 
@@ -34,6 +38,34 @@ const DetailNilaiMahasiswaPage = (props) => {
         setNilaiMahasiswaDataList(nilaiMahasiswaDataList.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableNilaiMahasiswa: false }));
+      }
+    };
+    fetchData();
+  }, []);
+
+  const [
+    detailNilaiAkhirMahasiswaDataList,
+    setDetailNilaiAkhirMahasiswaDataList,
+  ] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading((prev) => ({
+          ...prev,
+          reportDetailNilaiAkhirMahasiswa: true,
+        }));
+        const {
+          data: detailNilaiAkhirMahasiswaDataList,
+        } = await getDetailNilaiAkhirMahasiswaDataList({ kelasId: id, mahasiswaId });
+        setDetailNilaiAkhirMahasiswaDataList(
+          detailNilaiAkhirMahasiswaDataList.data
+        );
+      } finally {
+        setIsLoading((prev) => ({
+          ...prev,
+          reportDetailNilaiAkhirMahasiswa: false,
+        }));
       }
     };
     fetchData();
@@ -76,7 +108,17 @@ const DetailNilaiMahasiswaPage = (props) => {
       >
         <NilaiTable nilaiMahasiswaDataList={nilaiMahasiswaDataList} />
       </Layouts.ListContainerTableLayout>
+      <Layouts.ListContainerTableLayout
+        title={"Report Detail Nilai Akhir Mahasiswa"}
+        singularName={"Detail"}
+        items={[detailNilaiAkhirMahasiswaDataList]}
+        isLoading={isLoading.reportDetailNilaiAkhirMahasiswa}
+      >
+        <DetailTable
+          detailNilaiAkhirMahasiswaDataList={detailNilaiAkhirMahasiswaDataList}
+        />
+      </Layouts.ListContainerTableLayout>
     </Layouts.ViewContainerLayout>
   );
 };
-export default DetailNilaiMahasiswaPage
+export default DetailNilaiMahasiswaPage;
