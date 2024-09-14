@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import { INPUT_CLASSNAMES } from "./variants";
 import useAppearance from "commons/appearance/useAppearance";
-import { useSelection } from "laporanCPMK/context/SelectionField";
+import { useSelectionContext } from "laporanCPMK/context/SelectionField";
 
 const SelectionField = forwardRef((props, ref) => {
   const {
@@ -17,7 +17,7 @@ const SelectionField = forwardRef((props, ref) => {
   const inputStyle = (kit ?? interfaceKit).input;
   const inputVariant = INPUT_CLASSNAMES[inputStyle];
 
-  const { setSelectedValue } = useSelection();
+  const { setSelectedValue } = useSelectionContext();
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);

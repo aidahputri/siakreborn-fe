@@ -6,14 +6,14 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Button, SelectionField, Spinner } from "commons/components";
 import * as Layouts from "commons/layouts";
-import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "commons/components";
-import isSelectedFeature from "commons/utils/isSelectedFeature";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "commons/auth";
 import LaporanTable from "../components/LaporanTable";
 import getMataKuliahDataList from "laporanCPMK/services/getMataKuliahDataList";
 import getKelasSelectionField from "laporanCPMK/services/getKelasSelectionField";
+import {
+  useSelectionContext,
+} from "laporanCPMK/context/SelectionField";
 
 // import getLaporanCPMKDataList from '../services/getLaporanCPMKDataList'
 const LaporanCPMKPage = (props) => {
@@ -23,9 +23,10 @@ const LaporanCPMKPage = (props) => {
     tableLaporanCPMK: false,
   });
   const { setTitle } = useContext(HeaderContext);
+  const { selectedValue } = useSelectionContext();
 
   const [laporanCPMKDataList, setLaporanCPMKDataList] = useState();
-  const [kelasSelectionField, setKelasSelectionField] = useState()
+  const [kelasSelectionField, setKelasSelectionField] = useState();
   const [listMataKuliah, setListMataKuliah] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -33,10 +34,10 @@ const LaporanCPMKPage = (props) => {
         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
         //   const { data: laporanCPMKDataList } = await getLaporanCPMKDataList();
         const { data: mataKuliahDataList } = await getMataKuliahDataList();
-		const { data: kelasSelectionField } = await getKelasSelectionField()
+        const { data: kelasSelectionField } = await getKelasSelectionField();
         // setLaporanCPMKDataList(laporanCPMKDataList.data);
         setListMataKuliah(mataKuliahDataList.data);
-		setKelasSelectionField(kelasSelectionField.data)
+        setKelasSelectionField(kelasSelectionField.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
       }
