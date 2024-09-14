@@ -1,22 +1,32 @@
 import React from "react";
 import { AuthProvider } from "./commons/auth";
 import { CookiesProvider } from "react-cookie";
-import {GlobalRoutes, MobileRoutes} from "./routes";
+import { GlobalRoutes, MobileRoutes } from "./routes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "commons/styles/global.css";
 import AppLayout from "commons/components/AppLayout";
+import { SelectionProvider } from "laporanCPMK/context/SelectionField";
 
 const App = () => {
   return (
     <CookiesProvider>
       <AuthProvider>
-        <Router>
-          <Routes>
-            <Route path="/*" element={<AppLayout><GlobalRoutes /></AppLayout>} />
-            <Route path="/mobile/*" element={<MobileRoutes />} />
-          </Routes>
-        </Router>
+        <SelectionProvider>
+          <Router>
+            <Routes>
+              <Route
+                path="/*"
+                element={
+                  <AppLayout>
+                    <GlobalRoutes />
+                  </AppLayout>
+                }
+              />
+              <Route path="/mobile/*" element={<MobileRoutes />} />
+            </Routes>
+          </Router>
+        </SelectionProvider>
       </AuthProvider>
     </CookiesProvider>
   );
