@@ -12,14 +12,22 @@ import isSelectedFeature from 'commons/utils/isSelectedFeature';
 
 import * as Layouts from "commons/layouts";
 
-const LaporanTable = ({ laporanCPMKDataList
+const LaporanTable = ({ laporanCPMKDataList, kelasSelectionField
 	}) => {
   const { checkPermission } = useAuth();
   
   
   return (
     <Layouts.ListComponentTableLayout
-  	  items={[laporanCPMKDataList]}
+  	  items={[laporanCPMKDataList, kelasSelectionField]}
+  	  isSearchable
+  	  filterFields={[
+  	    {
+  	      label: "Kelas",
+  	      featureName: "kelasName",
+  	      options: kelasSelectionField,
+  	    }
+  	  ]}
   	  itemsAttrs={[
   		{
             id: "nPM",
@@ -41,6 +49,7 @@ const LaporanTable = ({ laporanCPMKDataList
             label: "Kelas",
             featureName: "kelasNama",
   		}
+  ,
   	  ]}
   	/>
   )

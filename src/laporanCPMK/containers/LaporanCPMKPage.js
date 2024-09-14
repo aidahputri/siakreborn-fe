@@ -4,7 +4,7 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext } from "react";
-import { Button, Spinner } from "commons/components";
+import { Button, SelectionField, Spinner } from "commons/components";
 import * as Layouts from "commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "commons/components";
@@ -12,6 +12,8 @@ import isSelectedFeature from "commons/utils/isSelectedFeature";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "commons/auth";
 import LaporanTable from "../components/LaporanTable";
+import getMataKuliahDataList from "laporanCPMK/services/getMataKuliahDataList";
+import getKelasSelectionField from "laporanCPMK/services/getKelasSelectionField";
 
 // import getLaporanCPMKDataList from '../services/getLaporanCPMKDataList'
 const LaporanCPMKPage = (props) => {
@@ -23,18 +25,24 @@ const LaporanCPMKPage = (props) => {
   const { setTitle } = useContext(HeaderContext);
 
   const [laporanCPMKDataList, setLaporanCPMKDataList] = useState();
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
-//         const { data: laporanCPMKDataList } = await getLaporanCPMKDataList();
-//         setLaporanCPMKDataList(laporanCPMKDataList.data);
-//       } finally {
-//         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
-//       }
-//     };
-//     fetchData();
-//   }, []);
+  const [kelasSelectionField, setKelasSelectionField] = useState()
+  const [listMataKuliah, setListMataKuliah] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
+        //   const { data: laporanCPMKDataList } = await getLaporanCPMKDataList();
+        const { data: mataKuliahDataList } = await getMataKuliahDataList();
+		const { data: kelasSelectionField } = await getKelasSelectionField()
+        // setLaporanCPMKDataList(laporanCPMKDataList.data);
+        setListMataKuliah(mataKuliahDataList.data);
+		setKelasSelectionField(kelasSelectionField.data)
+      } finally {
+        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
+      }
+    };
+    checkPermission("ReadLaporanCPMK") && fetchData();
+  }, []);
 
   useEffect(() => {
     setTitle("Laporan CPMK Page");
@@ -47,13 +55,24 @@ const LaporanCPMKPage = (props) => {
         </>
       }
     >
+      <div className="flex w-fit place-self-end">
+        <SelectionField
+          label="Pilihan Mata Kuliah"
+          options={listMataKuliah}
+          placeholder="Masukkan pilihan mata kuliah"
+          isRequired={false}
+        />
+      </div>
       <Layouts.ListContainerTableLayout
         title={"Table Laporan CPMK"}
         singularName={"Laporan"}
-        items={[laporanCPMKDataList]}
+        items={[laporanCPMKDataList, kelasSelectionField]}
         isLoading={isLoading.tableLaporanCPMK}
       >
-        <LaporanTable laporanCPMKDataList={laporanCPMKDataList} />
+        <LaporanTable
+          laporanCPMKDataList={laporanCPMKDataList}
+          kelasSelectionField={kelasSelectionField}
+        />
       </Layouts.ListContainerTableLayout>
     </Layouts.ViewContainerLayout>
   );
