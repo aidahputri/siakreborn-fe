@@ -13,7 +13,8 @@ import subCPLRoutes from 'subCPL/routes'
 import nilaiCPLRoutes from 'nilaiCPL/routes' 
 import cPMKRoutes from 'cPMK/routes' 
 import subCPMKRoutes from 'subCPMK/routes' 
-import nilaiCPMKRoutes from 'nilaiCPMK/routes' 
+import nilaiCPMKRoutes from 'nilaiCPMK/routes'
+import laporanCPMKRoutes from 'laporanCPMK/routes'  
 import penilaianRoutes from 'penilaian/routes' 
 import semesterRoutes from 'semester/routes' 
 import kelasRoutes from 'kelas/routes' 
@@ -30,7 +31,8 @@ const GlobalRoutes = () => {
 	...kurikulumRoutes, 
 	...cPLRoutes, 
 	...subCPLRoutes, 
-	...nilaiCPLRoutes, 
+	...nilaiCPLRoutes,
+	...laporanCPMKRoutes, 
 	...cPMKRoutes, 
 	...subCPMKRoutes, 
 	...nilaiCPMKRoutes, 

@@ -103,6 +103,12 @@ addSubMenu('CPMK', {
 	
 })
 
+addSubMenu('CPMK', {
+	route: '/cpmk/laporan',
+	label: 'Laporan CPMK',
+	
+})
+
 addMenu({
 	route: '/penilaian',
     label: 'Penilaian',
