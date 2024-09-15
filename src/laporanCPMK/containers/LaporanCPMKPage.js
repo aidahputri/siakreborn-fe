@@ -16,11 +16,16 @@ import { useSelectionContext } from "laporanCPMK/context/SelectionField";
 import getLaporanCPMKDataList from "../services/getLaporanCPMKDataList";
 import getAverageCPMKDataList from "laporanCPMK/services/getAverageCPMKDataList";
 import { BarChart } from "commons/Chart/BarChart";
+
 const LaporanCPMKPage = (props) => {
   const { checkPermission } = useAuth();
 
   const [isLoading, setIsLoading] = useState({
     tableLaporanCPMK: false,
+    mataKuliah: false,
+  });
+  const [isLoadingChart, setIsLoadingChart] = useState({
+    barChart: false,
   });
   const { setTitle } = useContext(HeaderContext);
   const { selectedValue } = useSelectionContext();
@@ -32,13 +37,14 @@ const LaporanCPMKPage = (props) => {
   useEffect(() => {
     const fetchDataMataKuliah = async () => {
       try {
-        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
+        setIsLoading((prev) => ({ ...prev, mataKuliah: true }));
         const { data: mataKuliahDataList } = await getMataKuliahDataList();
         setListMataKuliah(mataKuliahDataList.data);
       } finally {
-        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
+        setIsLoading((prev) => ({ ...prev, mataKuliah: false }));
       }
     };
+
     const fetchDataKelas = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
@@ -75,13 +81,13 @@ const LaporanCPMKPage = (props) => {
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
+        setIsLoadingChart((prev) => ({ ...prev, barChart: true }));
         const { data: chartData } = await getAverageCPMKDataList({
           mataKuliahId: selectedValue,
         });
         setChartData(chartData.data);
       } finally {
-        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
+        setIsLoadingChart((prev) => ({ ...prev, barChart: false }));
       }
     };
     checkPermission("ReadLaporanCPMK") && selectedValue && fetchChartData();
@@ -110,25 +116,48 @@ const LaporanCPMKPage = (props) => {
           isRequired={false}
         />
       </div>
-      <BarChart
-        title={"Laporan CPMK"}
-        xLabel={"CPMK"}
-        yLabel={"Rata-rata Nilai CPMK"}
-        data={chartData?.data ?? []}
-        labels={chartData?.labels ?? []}
-      />
-      <Layouts.ListContainerTableLayout
-        title={"Table Laporan CPMK"}
-        singularName={"Laporan"}
-        items={[laporanCPMKDataList?.mahasiswaList ?? [], kelasSelectionField]}
-        isLoading={isLoading.tableLaporanCPMK}
-      >
-        <LaporanTable
-          laporanCPMKDataList={laporanCPMKDataList?.mahasiswaList ?? []}
-          kelasSelectionField={kelasSelectionField}
-          cpmkList={laporanCPMKDataList?.cpmkList ?? []}
-        />
-      </Layouts.ListContainerTableLayout>
+      {isLoadingChart.barChart ? (
+        <div className="flex justify-center items-center h-full">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          {chartData && (
+            <BarChart
+              title={"Laporan CPMK"}
+              xLabel={"CPMK"}
+              yLabel={"Rata-rata Nilai CPMK"}
+              data={chartData?.data ?? []}
+              labels={chartData?.labels ?? []}
+            />
+          )}
+        </>
+      )}
+      {isLoading.tableLaporanCPMK ? (
+        <div className="flex justify-center items-center h-full">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          {laporanCPMKDataList && (
+            <Layouts.ListContainerTableLayout
+              title={"Table Laporan CPMK"}
+              singularName={"Laporan"}
+              items={[
+                laporanCPMKDataList?.mahasiswaList ?? [],
+                kelasSelectionField,
+              ]}
+              isLoading={isLoading.tableLaporanCPMK}
+            >
+              <LaporanTable
+                laporanCPMKDataList={laporanCPMKDataList?.mahasiswaList ?? []}
+                kelasSelectionField={kelasSelectionField}
+                cpmkList={laporanCPMKDataList?.cpmkList ?? []}
+              />
+            </Layouts.ListContainerTableLayout>
+          )}
+        </>
+      )}
     </Layouts.ViewContainerLayout>
   );
 };
