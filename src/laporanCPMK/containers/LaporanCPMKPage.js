@@ -14,6 +14,8 @@ import getKelasSelectionField from "laporanCPMK/services/getKelasSelectionField"
 import { useSelectionContext } from "laporanCPMK/context/SelectionField";
 
 import getLaporanCPMKDataList from "../services/getLaporanCPMKDataList";
+import getAverageCPMKDataList from "laporanCPMK/services/getAverageCPMKDataList";
+import { BarChart } from "commons/Chart/BarChart";
 const LaporanCPMKPage = (props) => {
   const { checkPermission } = useAuth();
 
@@ -26,6 +28,7 @@ const LaporanCPMKPage = (props) => {
   const [laporanCPMKDataList, setLaporanCPMKDataList] = useState();
   const [kelasSelectionField, setKelasSelectionField] = useState();
   const [listMataKuliah, setListMataKuliah] = useState([]);
+  const [chartData, setChartData] = useState();
   useEffect(() => {
     const fetchDataMataKuliah = async () => {
       try {
@@ -64,12 +67,29 @@ const LaporanCPMKPage = (props) => {
         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
       }
     };
-    checkPermission("ReadLaporanCPMK") && fetchDataLaporanCPMK();
+    checkPermission("ReadLaporanCPMK") &&
+      selectedValue &&
+      fetchDataLaporanCPMK();
   }, [selectedValue]);
 
   useEffect(() => {
-    console.log(laporanCPMKDataList);
-  }, [laporanCPMKDataList]);
+    const fetchChartData = async () => {
+      try {
+        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
+        const { data: chartData } = await getAverageCPMKDataList({
+          mataKuliahId: selectedValue,
+        });
+        setChartData(chartData.data);
+      } finally {
+        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
+      }
+    };
+    checkPermission("ReadLaporanCPMK") && selectedValue && fetchChartData();
+  }, [selectedValue]);
+
+  // useEffect(() => {
+  //   console.log(chartData);
+  // }, [chartData]);
 
   useEffect(() => {
     setTitle("Laporan CPMK Page");
@@ -90,6 +110,13 @@ const LaporanCPMKPage = (props) => {
           isRequired={false}
         />
       </div>
+      <BarChart
+        title={"Laporan CPMK"}
+        xLabel={"CPMK"}
+        yLabel={"Rata-rata Nilai CPMK"}
+        data={chartData?.data ?? []}
+        labels={chartData?.labels ?? []}
+      />
       <Layouts.ListContainerTableLayout
         title={"Table Laporan CPMK"}
         singularName={"Laporan"}
