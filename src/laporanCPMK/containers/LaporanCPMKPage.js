@@ -23,6 +23,7 @@ const LaporanCPMKPage = (props) => {
   const [isLoading, setIsLoading] = useState({
     tableLaporanCPMK: false,
     mataKuliah: false,
+    kelas: false
   });
   const [isLoadingChart, setIsLoadingChart] = useState({
     barChart: false,
@@ -34,6 +35,7 @@ const LaporanCPMKPage = (props) => {
   const [kelasSelectionField, setKelasSelectionField] = useState();
   const [listMataKuliah, setListMataKuliah] = useState([]);
   const [chartData, setChartData] = useState();
+
   useEffect(() => {
     const fetchDataMataKuliah = async () => {
       try {
@@ -51,14 +53,13 @@ const LaporanCPMKPage = (props) => {
   useEffect(() => {
     const fetchDataKelas = async () => {
       try {
-        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
+        setIsLoading((prev) => ({ ...prev, kelas: true }));
         const { data: kelasSelectionField } = await getKelasSelectionField({
           mataKuliahId: selectedValue,
         });
-        console.log(kelasSelectionField)
         setKelasSelectionField(kelasSelectionField.data);
       } finally {
-        setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
+        setIsLoading((prev) => ({ ...prev, kelas: false }));
       }
     };
     checkPermission("ReadLaporanCPMK") && selectedValue && fetchDataKelas();
@@ -116,7 +117,7 @@ const LaporanCPMKPage = (props) => {
           label="Pilihan Mata Kuliah"
           options={listMataKuliah}
           placeholder="Masukkan pilihan mata kuliah"
-          isRequired={false}
+          isRequired={true}
         />
       </div>
       {isLoadingChart.barChart ? (
@@ -136,7 +137,7 @@ const LaporanCPMKPage = (props) => {
           )}
         </>
       )}
-      {isLoading.tableLaporanCPMK ? (
+      {isLoading.tableLaporanCPMK || isLoading.kelas ? (
         <div className="flex justify-center items-center h-full">
           <Spinner />
         </div>

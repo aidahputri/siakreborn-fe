@@ -48,7 +48,7 @@ const SelectionField = forwardRef((props, ref) => {
         </option>
         {options &&
           options.map((option) => (
-            <option value={option.id}>{option.name}</option>
+            <option key={option.id} value={option.id}>{option.name}</option>
           ))}
       </select>
       {fieldState?.error && (
