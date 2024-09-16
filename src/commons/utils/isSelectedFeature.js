@@ -33,6 +33,8 @@ var selectedFeatures = Array.from(
 
     "LaporanCPMK",
 
+    "LaporanCPL",
+
     "Home",
   ])
 );
