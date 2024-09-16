@@ -12,21 +12,19 @@ const App = () => {
   return (
     <CookiesProvider>
       <AuthProvider>
-        <SelectionProvider>
-          <Router>
-            <Routes>
-              <Route
-                path="/*"
-                element={
-                  <AppLayout>
-                    <GlobalRoutes />
-                  </AppLayout>
-                }
-              />
-              <Route path="/mobile/*" element={<MobileRoutes />} />
-            </Routes>
-          </Router>
-        </SelectionProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/*"
+              element={
+                <AppLayout>
+                  <GlobalRoutes />
+                </AppLayout>
+              }
+            />
+            <Route path="/mobile/*" element={<MobileRoutes />} />
+          </Routes>
+        </Router>
       </AuthProvider>
     </CookiesProvider>
   );

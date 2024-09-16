@@ -45,21 +45,24 @@ const LaporanCPMKPage = (props) => {
       }
     };
 
+    checkPermission("ReadLaporanCPMK") && fetchDataMataKuliah();
+  }, []);
+
+  useEffect(() => {
     const fetchDataKelas = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: true }));
-        const { data: kelasSelectionField } = await getKelasSelectionField();
+        const { data: kelasSelectionField } = await getKelasSelectionField({
+          mataKuliahId: selectedValue,
+        });
+        console.log(kelasSelectionField)
         setKelasSelectionField(kelasSelectionField.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableLaporanCPMK: false }));
       }
     };
-
-    if (checkPermission("ReadLaporanCPMK")) {
-      fetchDataMataKuliah();
-      fetchDataKelas();
-    }
-  }, []);
+    checkPermission("ReadLaporanCPMK") && selectedValue && fetchDataKelas();
+  }, [selectedValue]);
 
   useEffect(() => {
     const fetchDataLaporanCPMK = async () => {
