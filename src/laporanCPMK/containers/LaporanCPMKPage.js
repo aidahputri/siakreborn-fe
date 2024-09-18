@@ -16,6 +16,7 @@ import { useSelectionContext } from "laporanCPMK/context/SelectionField";
 import getLaporanCPMKDataList from "../services/getLaporanCPMKDataList";
 import getAverageCPMKDataList from "laporanCPMK/services/getAverageCPMKDataList";
 import { BarChart } from "commons/Chart/BarChart";
+import SelectionFieldReport from "commons/components/Form/SelectionFieldReport";
 
 const LaporanCPMKPage = (props) => {
   const { checkPermission } = useAuth();
@@ -97,10 +98,6 @@ const LaporanCPMKPage = (props) => {
     checkPermission("ReadLaporanCPMK") && selectedValue && fetchChartData();
   }, [selectedValue]);
 
-  // useEffect(() => {
-  //   console.log(chartData);
-  // }, [chartData]);
-
   useEffect(() => {
     setTitle("Laporan CPMK Page");
   }, []);
@@ -113,7 +110,7 @@ const LaporanCPMKPage = (props) => {
       }
     >
       <div className="flex w-fit place-self-end">
-        <SelectionField
+        <SelectionFieldReport
           label="Pilihan Mata Kuliah"
           options={listMataKuliah}
           placeholder="Masukkan pilihan mata kuliah"

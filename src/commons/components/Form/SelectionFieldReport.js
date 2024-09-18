@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import { INPUT_CLASSNAMES } from "./variants";
 import useAppearance from "commons/appearance/useAppearance";
+import { useSelectionContext } from "laporanCPMK/context/SelectionField";
 
 const SelectionField = forwardRef((props, ref) => {
   const {
@@ -15,6 +16,12 @@ const SelectionField = forwardRef((props, ref) => {
   const interfaceKit = useAppearance();
   const inputStyle = (kit ?? interfaceKit).input;
   const inputVariant = INPUT_CLASSNAMES[inputStyle];
+
+  const { setSelectedValue } = useSelectionContext();
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   return (
     <div className="form-control" {...variant}>
@@ -32,6 +39,7 @@ const SelectionField = forwardRef((props, ref) => {
         className={`select ${inputVariant} w-full whitespace-normal ${fieldState?.error &&
           "select-error"} ${className}`}
         ref={ref}
+        onChange={handleChange}
         {...props}
         {...variant}
       >
@@ -40,7 +48,9 @@ const SelectionField = forwardRef((props, ref) => {
         </option>
         {options &&
           options.map((option) => (
-            <option value={option.id}>{option.name}</option>
+            <option key={option.id} value={option.id}>
+              {option.name}
+            </option>
           ))}
       </select>
       {fieldState?.error && (

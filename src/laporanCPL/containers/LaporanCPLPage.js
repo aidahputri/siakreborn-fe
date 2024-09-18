@@ -4,12 +4,9 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext } from "react";
-import { Button, Spinner, SelectionField } from "commons/components";
+import { Spinner } from "commons/components";
 import * as Layouts from "commons/layouts";
-import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "commons/components";
-import isSelectedFeature from "commons/utils/isSelectedFeature";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "commons/auth";
 import LaporanCPLTable from "../components/LaporanTable";
 import { BarChart } from "commons/Chart/BarChart";
@@ -18,6 +15,7 @@ import getLaporanCPLDataList from "../services/getLaporanCPLDataList";
 import { useSelectionContext } from "laporanCPMK/context/SelectionField";
 import getKurikulumDataList from "laporanCPL/services/getKurikulumDataList";
 import getAverageCPLDataList from "laporanCPL/services/getAverageCPLDataList";
+import SelectionFieldReport from "commons/components/Form/SelectionFieldReport";
 
 const LaporanCPLPage = (props) => {
   const { checkPermission } = useAuth();
@@ -79,10 +77,6 @@ const LaporanCPLPage = (props) => {
   }, [selectedValue]);
 
   useEffect(() => {
-    console.log(laporanCPLDataList);
-  }, [laporanCPLDataList]);
-
-  useEffect(() => {
     setTitle("Laporan CPL Page");
   }, []);
   return (
@@ -94,7 +88,7 @@ const LaporanCPLPage = (props) => {
       }
     >
       <div className="flex w-fit place-self-end">
-        <SelectionField
+        <SelectionFieldReport
           label="Pilihan Kurikulum"
           options={kurikulumDataList}
           placeholder="Masukkan pilihan kurikulum"

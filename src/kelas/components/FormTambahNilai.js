@@ -36,7 +36,6 @@ const FormTambahNilai = ({ komponenPenilaian, idMahasiswa, idKelas }) => {
 
   const simpan = (data) => {
     const cleanData = cleanFormData(data);
-    console.log(data);
     // console.log(cleanData)
     // console.log(komponenPenilaian)
     tambahNilai({

@@ -36,10 +36,6 @@ const DaftarKelasPage = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(dataBinding);
-  }, [dataBinding]);
-
-  useEffect(() => {
     setTitle("Daftar Kelas Page");
   }, []);
 
@@ -80,14 +76,6 @@ const DaftarKelasPage = (props) => {
           ))}
         </>
       )}
-      {/* <Layouts.ListContainerTableLayout
-        title={"Table Kelas"}
-        singularName={"Kelas"}
-        items={[dataBinding]}
-        isLoading={isLoading.tableKelas}
-      >
-        <KelasTable dataBinding={dataBinding} />
-      </Layouts.ListContainerTableLayout> */}
     </Layouts.ViewContainerLayout>
   );
 };
