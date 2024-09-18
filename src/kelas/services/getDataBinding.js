@@ -8,7 +8,7 @@ const getDataBinding = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/kelas/list`, {
+	return axios.get(`${environment.rootApi}/call/kelas-grouped-by-mata-kuliah/list`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,
