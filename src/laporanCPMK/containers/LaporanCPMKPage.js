@@ -123,7 +123,7 @@ const LaporanCPMKPage = (props) => {
         </div>
       ) : (
         <>
-          {chartData && (
+          {chartData && chartData.data.length > 0 && (
             <BarChart
               title={"Laporan CPMK"}
               xLabel={"CPMK"}
@@ -140,7 +140,7 @@ const LaporanCPMKPage = (props) => {
         </div>
       ) : (
         <>
-          {laporanCPMKDataList && (
+          {laporanCPMKDataList && laporanCPMKDataList.mahasiswaList.length > 1 && (
             <Layouts.ListContainerTableLayout
               title={"Table Laporan CPMK"}
               singularName={"Laporan"}

@@ -16,7 +16,7 @@ export const BarChart = ({ title, labels, data, yLabel, xLabel }) => {
     datasets: [
       {
         data,
-        backgroundColor: "#FFB80088"
+        backgroundColor: "#FFB80088",
       },
     ],
   };
@@ -34,6 +34,8 @@ export const BarChart = ({ title, labels, data, yLabel, xLabel }) => {
           display: true,
           text: yLabel,
         },
+        suggestedMin: 0,
+        suggestedMax: 100,
       },
     },
     plugins: {

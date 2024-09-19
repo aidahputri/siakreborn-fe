@@ -101,7 +101,7 @@ const LaporanCPLPage = (props) => {
         </div>
       ) : (
         <>
-          {chartData && (
+          {chartData && chartData.data.length > 0 && (
             <BarChart
               title={"Laporan CPL"}
               xLabel={"CPL"}
@@ -118,7 +118,7 @@ const LaporanCPLPage = (props) => {
         </div>
       ) : (
         <>
-          {laporanCPLDataList && (
+          {laporanCPLDataList && laporanCPLDataList.mataKuliahList.length > 0 && (
             <Layouts.ListContainerTableLayout
               title={"Table Laporan CPL"}
               singularName={"Laporan"}
