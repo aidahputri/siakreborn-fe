@@ -35,14 +35,14 @@ const PenilaianTable = ({ penilaianMahasiswaDataList
             id: "komponen",
             condition: "isHeading",
             label: "Komponen",
-            featureName: "nama",
+            featureName: "komponenPenilaianNama",
   		}
   ,
   		{
             id: "bobot",
             condition: "isHeading",
             label: "Bobot",
-            featureName: "bobot",
+            featureName: "komponenPenilaianBobot",
   		}
   ,
   		{

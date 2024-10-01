@@ -25,8 +25,11 @@ const ListComponentLayout = ({
 
   useEffect(() => {
     var newItems = items;
+    console.log(newItems)
     newItems = searchItems(newItems, searchText, itemsAttrs);
+    console.log(newItems, filterTextList)
     newItems = filterItems(newItems, filterTextList);
+    console.log(newItems)
 
     setViewItems(newItems);
   }, [searchText, filterTextList, items]);
