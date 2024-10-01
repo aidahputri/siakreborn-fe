@@ -8,7 +8,7 @@ const getDosenDataList = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/kelasdosen-filtered-by-kelas-param/dosen/list`, {
+	return axios.get(`${environment.rootApi}/call/kelasdosen/filter?by=kelas&target=dosen`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

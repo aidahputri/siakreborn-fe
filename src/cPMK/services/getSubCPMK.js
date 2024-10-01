@@ -9,7 +9,7 @@ const getSubCPMKbyCPMKDataList = (params = {}) => {
   const token = getToken();
   let paramsGet = Object.assign(params, { token });
   return axios
-    .get(`${environment.rootApi}/call/subcpmk-filtered-by-cpmk-param/list`, {
+    .get(`${environment.rootApi}/call/subcpmk/filter?by=cpmk`, {
       params: paramsGet,
       headers: {
         Authorization: token,

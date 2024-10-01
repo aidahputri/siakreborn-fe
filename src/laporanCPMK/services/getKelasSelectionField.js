@@ -8,7 +8,7 @@ const getKelasSelectionField = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/kelas-filtered-by-mata-kuliah-param/list`, {
+	return axios.get(`${environment.rootApi}/call/kelas/filter?by=mataKuliah`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

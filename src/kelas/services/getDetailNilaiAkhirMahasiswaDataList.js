@@ -8,7 +8,7 @@ const getDetailNilaiAkhirMahasiswaDataList = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/penilaian-akhir-mahasiswa/list`, {
+	return axios.get(`${environment.rootApi}/call/penilaian/nilai-akhir`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

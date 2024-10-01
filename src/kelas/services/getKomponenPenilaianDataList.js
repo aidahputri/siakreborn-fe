@@ -8,7 +8,7 @@ const getKomponenPenilaianDataList = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/komponenpenilaian-filtered-by-kelas-param/list`, {
+	return axios.get(`${environment.rootApi}/call/komponenpenilaian/filter?by=kelas`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

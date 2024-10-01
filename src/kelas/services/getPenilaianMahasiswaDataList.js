@@ -8,7 +8,7 @@ const getPenilaianMahasiswaDataList = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/penilaian-filtered-by-kelas-param/me/list`, {
+	return axios.get(`${environment.rootApi}/call/penilaian/me/filter?by=kelas`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

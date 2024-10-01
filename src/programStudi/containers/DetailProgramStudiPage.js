@@ -46,7 +46,7 @@ useEffect(() => {
 		const fetchData = async () => {
 			try {
 				setIsLoading(prev => ({...prev, tableKurikulum: true}))
-				const { data: kurikulumDataList } = await getKurikulumDataList({id})
+				const { data: kurikulumDataList } = await getKurikulumDataList({programStudiId:id})
 				setKurikulumDataList(kurikulumDataList.data)
 			} finally {
 				setIsLoading(prev => ({...prev, tableKurikulum: false}))
