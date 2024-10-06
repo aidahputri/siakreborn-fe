@@ -78,18 +78,6 @@ addSubMenu("CPL", {
 });
 
 addSubMenu("CPL", {
-  route: "/subcpl",
-  label: "Sub-CPL",
-  permission: "ReadSubCPL",
-});
-
-addSubMenu("CPL", {
-  route: "/nilaicpl",
-  label: "Nilai CPL",
-  permission: "ReadPenilaianCPL",
-});
-
-addSubMenu("CPL", {
   route: "/cpl/laporan",
   label: "Laporan CPL",
   permission: "ReadLaporanCPL",
@@ -115,22 +103,9 @@ addSubMenu("CPMK", {
 });
 
 addSubMenu("CPMK", {
-  route: "/nilaicpmk",
-  label: "Nilai CPMK",
-  permission: "ReadPenilaianCPMK",
-});
-
-addSubMenu("CPMK", {
   route: "/cpmk/laporan",
   label: "Laporan CPMK",
   permission: "ReadLaporanCPMK",
-});
-
-addMenu({
-  route: "/penilaian",
-  label: "Penilaian",
-  permission: "ReadPenilaian",
-  subMenus: [],
 });
 
 addMenu({
