@@ -3,11 +3,11 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import RequireAuth from 'commons/auth/RequireAuth'
+import RequireAuth from '@/commons/auth/RequireAuth'
 
 import DaftarCPMKPage from './containers/DaftarCPMKPage'
-import TambahCPMKPage from './containers/TambahCPMKPage'
 import DetailCPMKPage from './containers/DetailCPMKPage'
+import TambahCPMKPage from './containers/TambahCPMKPage'
 import UbahCPMKPage from './containers/UbahCPMKPage'
 
 const cPMKRoutes = [

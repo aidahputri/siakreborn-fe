@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Table } from "commons/components";
+import { Table } from "@/commons/components";
 import ReportRow from "./ReportRow";
 
 const ListComponentReportLayout = ({ items, itemsAttrs }) => {

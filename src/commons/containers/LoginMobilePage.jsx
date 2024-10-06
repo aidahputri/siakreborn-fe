@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom'
-import { Button, InputField } from 'commons/components'
-import { useAuth } from 'commons/auth'
+import { Button, InputField } from '@/commons/components'
+import { useAuth } from '@/commons/auth'
 import { Controller, useForm } from 'react-hook-form'
-import useAppearanceStore from 'commons/appearance/store'
+import useAppearanceStore from '@/commons/appearance/store'
 import { MdArrowBack } from 'react-icons/md'
 
 const LoginMobilePage = () => {

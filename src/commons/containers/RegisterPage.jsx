@@ -1,9 +1,9 @@
-import { useAuth } from 'commons/auth'
-import { Button, InputField } from 'commons/components'
+import { useAuth } from '@/commons/auth'
+import { Button, InputField } from '@/commons/components'
 import React, { useContext, useEffect } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom'
-import HeaderContext from 'commons/components/Header/HeaderContext'
+import HeaderContext from '@/commons/components/Header/HeaderContext'
 
 const RegisterPage = () => {
   const { loginGoogle, isAuth, registerPassword } = useAuth()

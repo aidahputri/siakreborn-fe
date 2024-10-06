@@ -4,13 +4,13 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
-import FormUbahCPL from '../components/FormUbahCPL'
+import ModifiedFormUbahCPL from '../components/ModifiedFormUbahCPL'
 
 import getCPLUbah from '../services/getCPLUbah'
 import getKurikulum from '../services/getKurikulum'
@@ -25,11 +25,12 @@ const [searchParams] = useSearchParams()
 const id = searchParams.get('id')
 const [cPLUbah, setCPLUbah] = useState()
 const [kurikulum, setKurikulum] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, ubahCPL: true}))
-	    const { data: cPLUbahResponse } = await getCPLUbah({ id })
-	    const { data: kurikulumResponse } = await getKurikulum({ id })
+		const { data: cPLUbahResponse } = await getCPLUbah({ id  })
+		const { data: kurikulumResponse } = await getKurikulum({ id  })
 
 	    setCPLUbah(cPLUbahResponse.data)
 	    setKurikulum(kurikulumResponse.data)
@@ -65,11 +66,11 @@ return (
 	>
 		{cPLUbah && kurikulum ? 
 		(<>
-		 <FormUbahCPL
+		 <ModifiedFormUbahCPL
 			{...{ 
 				cPLUbah
 , 				kurikulum
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

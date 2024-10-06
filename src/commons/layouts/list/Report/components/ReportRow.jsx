@@ -5,7 +5,7 @@ import {
   TableHead,
   TableRow,
   TableCell,
-} from "commons/components";
+} from "@/commons/components";
 
 const ReportRow = ({ items, itemsAttrs }) => {
   const DISTINCT_ROW = [

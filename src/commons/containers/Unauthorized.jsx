@@ -1,8 +1,8 @@
 import React, { useEffect,useContext } from 'react'
-import { ReactComponent as Illustration } from 'commons/static/images/unauthorized.svg'
-import { Button } from 'commons/components'
+import Illustration from "@/commons/static/images/unauthorized.svg"
+import { Button } from '@/commons/components'
 import { Link } from 'react-router-dom'
-import HeaderContext from 'commons/components/Header/HeaderContext'
+import HeaderContext from '@/commons/components/Header/HeaderContext'
 
 
 

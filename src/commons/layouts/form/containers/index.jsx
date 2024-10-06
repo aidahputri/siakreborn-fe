@@ -1,5 +1,5 @@
 import React from "react";
-import { Spinner } from "commons/components";
+import { Spinner } from "@/commons/components";
 
 const FormContainerLayout = ({ isLoading = false, singularName, children }) => {
   return (

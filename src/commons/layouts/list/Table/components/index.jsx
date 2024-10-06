@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import TableHeaderLayout from "./TableHeaderLayout";
 import TableRowLayout from "./TableRowLayout";
 import DataTable from "react-data-table-component";
-import searchItems from "commons/utils/Table/SearchItems";
-import filterItems from "commons/utils/Table/FilterItems";
-import SearchField from "commons/components/Table/SearchField";
-import FilterField from "commons/components/Table/FilterField";
+import searchItems from "@/commons/utils/Table/SearchItems";
+import filterItems from "@/commons/utils/Table/FilterItems";
+import SearchField from "@/commons/components/Table/SearchField";
+import FilterField from "@/commons/components/Table/FilterField";
 
 const ListComponentLayout = ({
   items,
@@ -25,11 +25,8 @@ const ListComponentLayout = ({
 
   useEffect(() => {
     var newItems = items;
-    console.log(newItems)
     newItems = searchItems(newItems, searchText, itemsAttrs);
-    console.log(newItems, filterTextList)
     newItems = filterItems(newItems, filterTextList);
-    console.log(newItems)
 
     setViewItems(newItems);
   }, [searchText, filterTextList, items]);

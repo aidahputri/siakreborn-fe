@@ -1,11 +1,11 @@
-import { COLOR_THEMES, INTERFACE_KITS } from 'commons/constants/interface'
+import { COLOR_THEMES, INTERFACE_KITS } from '@/commons/constants/interface'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Button } from 'commons/components'
-import useAppearanceStore from 'commons/appearance/store'
+import { Button } from '@/commons/components'
+import useAppearanceStore from '@/commons/appearance/store'
 import Accordion from './Accordion'
 import Preview from './Preview'
-import environment from 'commons/utils/environment'
+import environment from '@/commons/utils/environment'
 import axios from 'axios'
 
 const AppearanceSettings = () => {

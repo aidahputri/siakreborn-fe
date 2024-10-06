@@ -1,8 +1,8 @@
 import React, { useEffect, useState,createContext } from 'react'
 
 import axios from 'axios'
-import useAppearanceStore from 'commons/appearance/store'
-import environment from 'commons/utils/environment'
+import useAppearanceStore from '@/commons/appearance/store'
+import environment from '@/commons/utils/environment'
 
 import { Toaster } from 'react-hot-toast'
 import { FiLogOut } from 'react-icons/fi'
@@ -12,8 +12,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Brand from './Brand'
 import SidebarMenu from './Navigation/Sidebar'
 
-import menus, { settingsMenu } from 'menus'
-import { INTERFACE_KITS } from 'commons/constants/interface'
+import menus, { settingsMenu } from '@/menus'
+import { INTERFACE_KITS } from '@/commons/constants/interface'
 import useTypography from './Typography'
 
 import { useAuth } from '../auth'

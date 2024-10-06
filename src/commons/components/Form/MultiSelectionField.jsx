@@ -1,6 +1,6 @@
 import React, { forwardRef, useEffect, useState } from "react";
 import CheckBoxField from "./CheckBoxField";
-import { capitalize } from "commons/utils/capitalize";
+import { capitalize } from "@/commons/utils/capitalize";
 
 const MultiSelectionField = forwardRef((props, ref) => {
   const { label, variant, options, defaultValue } = props;

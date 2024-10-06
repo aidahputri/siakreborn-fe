@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { BUTTON_CLASSNAMES } from './variants'
-import useAppearance from 'commons/appearance/useAppearance'
+import useAppearance from '@/commons/appearance/useAppearance'
 
 // variant: primary, secondary, tertiary
 const Button = ({

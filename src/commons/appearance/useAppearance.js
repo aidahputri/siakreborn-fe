@@ -1,4 +1,4 @@
-import { INTERFACE_KITS } from 'commons/constants/interface'
+import { INTERFACE_KITS } from '@/commons/constants/interface'
 import useAppearanceStore from './store'
 
 const useAppearance = () => {

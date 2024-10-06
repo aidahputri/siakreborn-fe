@@ -1,5 +1,5 @@
 import React from "react";
-import { Form } from "commons/components";
+import { Form } from "@/commons/components";
 
 const FormComponentLayout = ({
   title,

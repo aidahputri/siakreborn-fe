@@ -1,4 +1,4 @@
-import useAppearance from "commons/appearance/useAppearance";
+import useAppearance from "@/commons/appearance/useAppearance";
 import React, { forwardRef } from "react";
 import { INPUT_CLASSNAMES } from "./variants";
 import Select from 'react-select'

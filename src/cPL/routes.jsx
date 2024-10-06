@@ -3,11 +3,11 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import RequireAuth from 'commons/auth/RequireAuth'
+import RequireAuth from '@/commons/auth/RequireAuth'
 
-import TambahCPLPage from './containers/TambahCPLPage'
 import DaftarCPLPage from './containers/DaftarCPLPage'
 import DetailCPLPage from './containers/DetailCPLPage'
+import TambahCPLPage from './containers/TambahCPLPage'
 import UbahCPLPage from './containers/UbahCPLPage'
 
 const cPLRoutes = [

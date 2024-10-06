@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ListItem, VisualizationAttr } from "commons/components";
+import { ListItem, VisualizationAttr } from "@/commons/components";
 
 const CardRow = ({ item, itemsAttrs, itemsEvents }) => {
   return (

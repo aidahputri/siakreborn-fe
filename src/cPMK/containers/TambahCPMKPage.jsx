@@ -4,13 +4,13 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
-import FormTambahCPMK from '../components/FormTambahCPMK'
+import ModifiedFormTambahCPMK from '../components/ModifiedFormTambahCPMK'
 
 import getCPL from '../services/getCPL'
 import getMataKuliah from '../services/getMataKuliah'
@@ -23,11 +23,12 @@ const [isLoading, setIsLoading] = useState({
 
 const [cPL, setCPL] = useState()
 const [mataKuliah, setMataKuliah] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, tambahCPMK: true}))
-	    const { data: cPLResponse } = await getCPL()
-	    const { data: mataKuliahResponse } = await getMataKuliah()
+		const { data: cPLResponse } = await getCPL({  })
+		const { data: mataKuliahResponse } = await getMataKuliah({  })
 
 	    setCPL(cPLResponse.data)
 	    setMataKuliah(mataKuliahResponse.data)
@@ -63,11 +64,11 @@ return (
 	>
 		{cPL && mataKuliah ? 
 		(<>
-		 <FormTambahCPMK
+		 <ModifiedFormTambahCPMK
 			{...{ 
 				cPL
 , 				mataKuliah
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

@@ -1,5 +1,5 @@
 import React from "react";
-import { VisualizationAttr } from "commons/components";
+import { VisualizationAttr } from "@/commons/components";
 
 const DetailComponentLayout = ({
   item,
@@ -29,7 +29,7 @@ const DetailComponentLayout = ({
           )}
         </div>
       </div>
-      <div class="card-actions justify-end">
+      <div className="card-actions justify-end">
         {/* View Element Event [singularName /] Element*/}
         {itemsEvents?.map(event => event)}
       </div>

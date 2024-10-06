@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { List } from "commons/components";
+import { List } from "@/commons/components";
 import CardRow from "./CardRow";
-import searchItems from "commons/utils/Table/SearchItems";
-import SearchField from "commons/components/Table/SearchField";
+import searchItems from "@/commons/utils/Table/SearchItems";
+import SearchField from "@/commons/components/Table/SearchField";
 
 const ListComponentCardLayout = ({
   items,

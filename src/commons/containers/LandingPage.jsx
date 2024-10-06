@@ -1,6 +1,6 @@
-import { Hero } from 'commons/components'
+import { Hero } from '@/commons/components'
 import React, { useEffect,useContext } from 'react'
-import HeaderContext from 'commons/components/Header/HeaderContext';
+import HeaderContext from '@/commons/components/Header/HeaderContext';
 
 const LandingPage = () => {
   const { setTitle } = useContext(HeaderContext);

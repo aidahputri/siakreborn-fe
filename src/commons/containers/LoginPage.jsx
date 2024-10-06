@@ -1,9 +1,9 @@
 import React, { useEffect,useContext } from 'react'
 import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom'
-import { Button, InputField } from 'commons/components'
-import { useAuth } from 'commons/auth'
+import { Button, InputField } from '@/commons/components'
+import { useAuth } from '@/commons/auth'
 import { Controller, useForm } from 'react-hook-form'
-import HeaderContext from 'commons/components/Header/HeaderContext'
+import HeaderContext from '@/commons/components/Header/HeaderContext'
 
 const LoginPage = () => {
   const { setTitle } = useContext(HeaderContext)

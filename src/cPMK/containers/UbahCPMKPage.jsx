@@ -4,13 +4,13 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
-import FormUbahCPMK from '../components/FormUbahCPMK'
+import ModifiedFormUbahCPMK from '../components/ModifiedFormUbahCPMK'
 
 import getCPMKUbah from '../services/getCPMKUbah'
 import getCPL from '../services/getCPL'
@@ -27,12 +27,13 @@ const id = searchParams.get('id')
 const [cPMKUbah, setCPMKUbah] = useState()
 const [cPL, setCPL] = useState()
 const [mataKuliah, setMataKuliah] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, ubahCPMK: true}))
-	    const { data: cPMKUbahResponse } = await getCPMKUbah({ id })
-	    const { data: cPLResponse } = await getCPL({ id })
-	    const { data: mataKuliahResponse } = await getMataKuliah({ id })
+		const { data: cPMKUbahResponse } = await getCPMKUbah({ id  })
+		const { data: cPLResponse } = await getCPL({ id  })
+		const { data: mataKuliahResponse } = await getMataKuliah({ id  })
 
 	    setCPMKUbah(cPMKUbahResponse.data)
 	    setCPL(cPLResponse.data)
@@ -69,12 +70,12 @@ return (
 	>
 		{cPMKUbah && cPL && mataKuliah ? 
 		(<>
-		 <FormUbahCPMK
+		 <ModifiedFormUbahCPMK
 			{...{ 
 				cPMKUbah
 , 				cPL
 , 				mataKuliah
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

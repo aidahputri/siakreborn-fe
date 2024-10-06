@@ -1,12 +1,12 @@
-import { Button, InputField } from 'commons/components'
-import AuthForgotPasswordService from 'commons/services/AuthForgotPasswordService'
-import AuthForgotPasswordTokenService from 'commons/services/AuthForgotPasswordTokenService'
+import { Button, InputField } from '@/commons/components'
+import AuthForgotPasswordService from '@/commons/services/AuthForgotPasswordService'
+import AuthForgotPasswordTokenService from '@/commons/services/AuthForgotPasswordTokenService'
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import useAppearanceStore from 'commons/appearance/store'
+import useAppearanceStore from '@/commons/appearance/store'
 
 const ForgotPasswordMobilePage = () => {
   const { control: emailControl, handleSubmit: handleSubmitEmail } = useForm()

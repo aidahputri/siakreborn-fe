@@ -1,4 +1,4 @@
-import useAppearance from "commons/appearance/useAppearance";
+import useAppearance from "@/commons/appearance/useAppearance";
 import { FONT_CLASSNAMES } from "./variants";
 
 const useTypography = () => {

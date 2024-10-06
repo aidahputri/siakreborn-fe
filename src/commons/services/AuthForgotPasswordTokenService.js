@@ -1,6 +1,6 @@
 import axios from "axios";
-import tokenManager from "commons/utils/token";
-import environment from "commons/utils/environment";
+import tokenManager from "@/commons/utils/token";
+import environment from "@/commons/utils/environment";
 
 class AuthForgotPasswordTokenService {
   static call = async (params = {}) => {

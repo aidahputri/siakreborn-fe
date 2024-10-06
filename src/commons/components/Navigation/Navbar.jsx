@@ -7,9 +7,9 @@ import Brand from "../Brand";
 import MenuLink from "../MenuLink";
 import MenuItem from "../MenuItem";
 import MenuChildren from "../MenuChildren";
-import { settingsMenu } from "menus";
+import { settingsMenu } from "@/menus";
 
-import {useAuth} from 'commons/auth';
+import {useAuth} from '@/commons/auth';
 
 const Menu = ({ menu, isFirstLevel }) => {
   return (

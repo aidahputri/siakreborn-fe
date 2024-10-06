@@ -7,6 +7,7 @@ const TableHeaderLayout = ({ itemsAttrs, itemsEvents, itemsModals }) => {
       selector: (row) => row[itemsAttr.featureName],
       sortable: true,
     }))
+
   if (itemsEvents && itemsEvents.length) {
     column = column.concat({
       cell: (row) => (

@@ -1,10 +1,10 @@
-import { Button, InputField } from 'commons/components'
-import AuthForgotPasswordService from 'commons/services/AuthForgotPasswordService'
-import AuthForgotPasswordTokenService from 'commons/services/AuthForgotPasswordTokenService'
+import { Button, InputField } from '@/commons/components'
+import AuthForgotPasswordService from '@/commons/services/AuthForgotPasswordService'
+import AuthForgotPasswordTokenService from '@/commons/services/AuthForgotPasswordTokenService'
 import React, { useState,useEffect,useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
-import HeaderContext from 'commons/components/Header/HeaderContext'
+import HeaderContext from '@/commons/components/Header/HeaderContext'
 
 const ForgotPasswordPage = () => {
   const { setTitle } = useContext(HeaderContext)

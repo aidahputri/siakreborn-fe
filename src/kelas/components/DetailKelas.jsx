@@ -6,12 +6,12 @@
 import React, { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { useAuth } from 'commons/auth';
-import { Button, Detail, VisualizationAttr, Modal, Spinner } from 'commons/components';
+import { useAuth } from '@/commons/auth';
+import { Button, Detail, VisualizationAttr, Modal, Spinner } from '@/commons/components';
 
-import deleteKelas from '../services/deleteKelas.js';
+import deleteKelas from '../services/deleteKelas';
 
-import * as Layouts from "commons/layouts";
+import * as Layouts from "@/commons/layouts";
 
 
 const DetailKelas = ({ data }) => {

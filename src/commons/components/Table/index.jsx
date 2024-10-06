@@ -1,4 +1,4 @@
-import useAppearance from 'commons/appearance/useAppearance'
+import useAppearance from '@/commons/appearance/useAppearance'
 import React from 'react'
 import { TABLE_CLASSNAMES } from './variants'
 

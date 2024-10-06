@@ -3,114 +3,100 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import React, { useEffect, useState, useContext } from "react";
-import { Button, Spinner } from "commons/components";
-import * as Layouts from "commons/layouts";
-import { Link, useParams } from "react-router-dom";
-import { HeaderContext } from "commons/components";
-import isSelectedFeature from "commons/utils/isSelectedFeature";
+import React, { useEffect, useState, useContext} from 'react'
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
+import { Link, useParams } from 'react-router-dom'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/commons/auth';
+import DetailCPMK from '../components/DetailCPMK'
+import getCPMKDataDetail from '../services/getCPMKDataDetail'
+import DataTable from '../components/DataTable'
 
-import DetailCPMK from "../components/DetailCPMK";
-import getCPMKDataDetail from "../services/getCPMKDataDetail";
-import getSubCPMKbyCPMKDataList from "cPMK/services/getSubCPMK";
-import SubCPMKTable from "cPMK/components/SubCPMKTable";
-const DetailCPMKPage = (props) => {
-  const [isLoading, setIsLoading] = useState({
-    detailCPMK: false,
-    subCPMK: false,
-  });
-  const { setTitle } = useContext(HeaderContext);
+import getDataSubCPMK from '../services/getDataSubCPMK'
+const DetailCPMKPage = props => {
+const { checkPermission } = useAuth()
 
-  const [cPMKDataDetail, setCPMKDataDetail] = useState();
-  const [subCPMK, setSubCPMK] = useState();
+	const [isLoading, setIsLoading] = useState({
+	detailCPMK: false,
+	tableDataSubCPMK: false,
 
-  const { id } = useParams();
+	});
+	const { setTitle } = useContext(HeaderContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading((prev) => ({ ...prev, detailCPMK: true }));
-        const { data: cPMKDataDetail } = await getCPMKDataDetail({ id });
-        setCPMKDataDetail(cPMKDataDetail.data);
-      } finally {
-        setIsLoading((prev) => ({ ...prev, detailCPMK: false }));
-      }
-    };
-    fetchData();
-  }, []);
+const [cPMKDataDetail, setCPMKDataDetail] = useState()
+const { id } = useParams()
+useEffect(() => {
+	const fetchData = async () => {
+		try {
+			setIsLoading(prev => ({...prev, detailCPMK: true}))
+			const { data: cPMKDataDetail } = await getCPMKDataDetail({ id })
+			setCPMKDataDetail(cPMKDataDetail.data)
+		} finally {
+			setIsLoading(prev => ({...prev, detailCPMK: false}))
+		}
+	}
+	 fetchData()
+}, [])
+const [dataSubCPMK, setDataSubCPMK] = useState()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading((prev) => ({ ...prev, subCPMK: true }));
-        const { data: subCPMK } = await getSubCPMKbyCPMKDataList({
-          cpmkId: id,
-        });
-        setSubCPMK(subCPMK.data);
-      } finally {
-        setIsLoading((prev) => ({ ...prev, subCPMK: false }));
-      }
-    };
-    fetchData();
-  }, []);
+useEffect(() => {
+		const fetchData = async () => {
+			try {
+				setIsLoading(prev => ({...prev, tableDataSubCPMK: true}))
+				const { data: dataSubCPMK } = await getDataSubCPMK()
+				setDataSubCPMK(dataSubCPMK.data)
+			} finally {
+				setIsLoading(prev => ({...prev, tableDataSubCPMK: false}))
+			}
+		}
+		fetchData()	
+  	}, [])
 
-  useEffect(() => {
-    setTitle("Detail CPMK Page");
-  }, []);
-  return (
-    <Layouts.ViewContainerLayout
-      buttons={
-        <>
-          <Layouts.ViewContainerBackButtonLayout>
-            <Link to={`/cpmk`}>
-              {" "}
-              <Button className="p-4 w-full" variant="secondary">
-                Kembali
-              </Button>
-            </Link>
-          </Layouts.ViewContainerBackButtonLayout>
-        </>
-      }
-    >
-      {isLoading.detailCPMK ? (
-        <div className="flex justify-center items-center h-full">
-          <Spinner />
-        </div>
-      ) : (
-        <>
-          {cPMKDataDetail && (
-            <Layouts.DetailContainerLayout
-              title={"Detail CPMK"}
-              singularName={"CPMK"}
-              items={{ ...cPMKDataDetail }}
-              isLoading={isLoading.detailCPMK}
-              isCorrelatedWithAnotherComponent={false}
-            >
-              <DetailCPMK {...{ data: { ...cPMKDataDetail } }} />
-            </Layouts.DetailContainerLayout>
-          )}
-        </>
-      )}
+	
+	useEffect(() => {
+		setTitle("Detail CPMK Page")
+	}, []);
+return (
+	<Layouts.ViewContainerLayout
+		buttons={
+			<>
+			<Layouts.ViewContainerBackButtonLayout>
+			  	<Link to={`/cpmk`}>	<Button className="p-4 w-full" variant="secondary">
+			  		  Kembali
+			  		</Button>
+			  	</Link>
+			  	
+			  	
+			  </Layouts.ViewContainerBackButtonLayout>
+			</>
+		}
+	>
+<Layouts.DetailContainerLayout
+	title={"Detail CPMK"}
+	singularName={"CPMK"}
+	items={{...cPMKDataDetail}}
+	isLoading={isLoading.detailCPMK}
+	isCorrelatedWithAnotherComponent={false}
+>
+	<DetailCPMK {...{ data : { ...cPMKDataDetail }}} />
+</Layouts.DetailContainerLayout>
+<Layouts.ListContainerTableLayout
+	title={"Table Data Sub CPMK"}
+	singularName={"Data"}
+	items={[dataSubCPMK]}
+	isLoading={isLoading.tableDataSubCPMK}
+>
+	<DataTable
+		dataSubCPMK={dataSubCPMK}
+		
+	/>
+</Layouts.ListContainerTableLayout>
 
-      {isLoading.subCPMK ? (
-        <div className="flex justify-center items-center h-full">
-          <Spinner />
-        </div>
-      ) : (
-        <>
-          {subCPMK && (
-            <Layouts.ListContainerTableLayout
-              title={"Sub CPMK Table"}
-              singularName={"Sub"}
-              items={[subCPMK ?? []]}
-              isLoading={isLoading.subCPMK}
-            >
-              <SubCPMKTable subCPMKDataList={subCPMK ?? []} />
-            </Layouts.ListContainerTableLayout>
-          )}
-        </>
-      )}
-    </Layouts.ViewContainerLayout>
-  );
-};
-export default DetailCPMKPage;
+	</Layouts.ViewContainerLayout>
+  )
+}
+export default DetailCPMKPage
+

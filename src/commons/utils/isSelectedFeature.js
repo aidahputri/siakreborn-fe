@@ -5,49 +5,7 @@ export default isSelectedFeature
 var selectedFeatures = Array.from(new Set ([
 
 
-"ProgramStudi",
-
-
-
-
-"LaporanCapaian",
-"LaporanCPL",
-
-
-
-
-"Semester",
-
-
-
-
-"Kurikulum",
-
-
-
-
-"Penilaian",
-
-
-
-
-"MataKuliah",
-
-
-
-
-"Kelas",
-
-
-
-
 "RiwayatAkademis",
-
-
-
-
-"Capaian",
-"CPMK",
 
 
 
@@ -58,17 +16,55 @@ var selectedFeatures = Array.from(new Set ([
 
 
 
-"LaporanCapaian",
-"LaporanCPMK",
-
-
-
-
 "Capaian",
 "SubCPMK",
 
 
 
 
+"ProgramStudi",
+
+
+
+
+"LaporanCapaian",
+"LaporanCPMK",
+
+
+
+
+"Kurikulum",
+
+
+
+
+"Semester",
+
+
+
+
+"Kelas",
+
+
+
+
+"MataKuliah",
+
+
+
+
+"LaporanCapaian",
+"LaporanCPL",
+
+
+
+
+"Capaian",
+"CPMK",
+
+
+
+
 "Home",
 ]))
+

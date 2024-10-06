@@ -1,7 +1,7 @@
-import AppearanceSettings from 'commons/appearance/AppearanceSettings'
+import AppearanceSettings from '@/commons/appearance/AppearanceSettings'
 import React, {useEffect} from 'react'
 import { useContext } from 'react'
-import HeaderContext from 'commons/components/Header/HeaderContext'
+import HeaderContext from '@/commons/components/Header/HeaderContext'
 
 const AdminPage = () => {
   const { setTitle } = useContext(HeaderContext);

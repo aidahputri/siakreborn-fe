@@ -6,12 +6,12 @@
 import React, { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { useAuth } from 'commons/auth';
-import { Button, Detail, VisualizationAttr, Modal, Spinner } from 'commons/components';
+import { useAuth } from '@/commons/auth';
+import { Button, Detail, VisualizationAttr, Modal, Spinner } from '@/commons/components';
 
-import deleteCPL from '../services/deleteCPL.js';
+import deleteCPL from '../services/deleteCPL';
 
-import * as Layouts from "commons/layouts";
+import * as Layouts from "@/commons/layouts";
 
 
 const DetailCPL = ({ data }) => {
@@ -19,13 +19,14 @@ const DetailCPL = ({ data }) => {
     const navigate = useNavigate();
     const [showModalKonfirmasiHapusCPL, setShowModalKonfirmasiHapusCPL] = React.useState(false); 
     
-    const ubah = async () => {
+    const ubahCPL = async () => {
       navigate(
         '/cpl/ubah?'
         + `id=${data.id}`
         
       );
     };
+    
     
   
     const hapus = async () => {
@@ -67,7 +68,7 @@ const DetailCPL = ({ data }) => {
             checkPermission("UpdateCPL") &&  (
               <Button
                 variant="secondary"
-                onClick={() => ubah()}
+                onClick={() => ubahCPL()}
               >
                 Ubah
               </Button>

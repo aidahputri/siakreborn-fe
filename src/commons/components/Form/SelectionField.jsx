@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 import { INPUT_CLASSNAMES } from "./variants";
-import useAppearance from "commons/appearance/useAppearance";
+import useAppearance from "@/commons/appearance/useAppearance";
 
 const SelectionField = forwardRef((props, ref) => {
   const {

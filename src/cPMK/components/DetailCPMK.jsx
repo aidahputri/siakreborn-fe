@@ -6,12 +6,12 @@
 import React, { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { useAuth } from 'commons/auth';
-import { Button, Detail, VisualizationAttr, Modal, Spinner } from 'commons/components';
+import { useAuth } from '@/commons/auth';
+import { Button, Detail, VisualizationAttr, Modal, Spinner } from '@/commons/components';
 
-import deleteCPMK from '../services/deleteCPMK.js';
+import deleteCPMK from '../services/deleteCPMK';
 
-import * as Layouts from "commons/layouts";
+import * as Layouts from "@/commons/layouts";
 
 
 const DetailCPMK = ({ data }) => {
@@ -19,13 +19,14 @@ const DetailCPMK = ({ data }) => {
     const navigate = useNavigate();
     const [showModalKonfirmasiHapusCPMK, setShowModalKonfirmasiHapusCPMK] = React.useState(false); 
     
-    const ubah = async () => {
+    const ubahCPMK = async () => {
       navigate(
         '/cpmk/ubah?'
         + `id=${data.id}`
         
       );
     };
+    
     
   
     const hapus = async () => {
@@ -74,7 +75,7 @@ const DetailCPMK = ({ data }) => {
             checkPermission("UpdateCPMK") &&  (
               <Button
                 variant="secondary"
-                onClick={() => ubah()}
+                onClick={() => ubahCPMK()}
               >
                 Ubah
               </Button>

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import tokenManager from 'commons/utils/token'
-import environment from 'commons/utils/environment'
+import tokenManager from '@/commons/utils/token'
+import environment from '@/commons/utils/environment'
 
 
 const updateCPMK = (data = {}) => {
@@ -9,7 +9,7 @@ const updateCPMK = (data = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	
-	return axios.post(`${environment.rootApi}/call/cpmk/update`, body,
+	return axios.put(`${environment.rootApi}/call/cpmk/update`, body,
 	{
 		params: { token },
 		

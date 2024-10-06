@@ -1,4 +1,4 @@
-import { INTERFACE_KITS } from 'commons/constants/interface'
+import { INTERFACE_KITS } from '@/commons/constants/interface'
 import React from 'react'
 import { useWatch } from 'react-hook-form'
 import {
@@ -11,8 +11,8 @@ import {
   TableHead,
   TableRow,
   VisualizationAttr,
-} from 'commons/components'
-import { FONT_CLASSNAMES } from 'commons/components/Typography/variants'
+} from '@/commons/components'
+import { FONT_CLASSNAMES } from '@/commons/components/Typography/variants'
 
 const Preview = ({ control }) => {
   const { colorTheme: themeName, interfaceKit: kitName } = useWatch({ control })

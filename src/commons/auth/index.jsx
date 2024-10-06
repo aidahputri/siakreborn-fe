@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import tokenManager from "commons/utils/token";
-import UseTokenKeepLogin from "commons/utils/tokenKeepLoginFunc";
-import AuthLoginSocialService from "commons/services/AuthLoginSocialService";
-import AuthLoginPwdService from "commons/services/AuthLoginPwdService";
-import AuthRegisterPwdService from "commons/services/AuthRegisterPwdService";
+import tokenManager from "@/commons/utils/token";
+import UseTokenKeepLogin from "@/commons/utils/tokenKeepLoginFunc";
+import AuthLoginSocialService from "@/commons/services/AuthLoginSocialService";
+import AuthLoginPwdService from "@/commons/services/AuthLoginPwdService";
+import AuthRegisterPwdService from "@/commons/services/AuthRegisterPwdService";
 
 const AuthContext = React.createContext(null);
 
@@ -102,7 +102,7 @@ export const AuthProvider = ({ children }) => {
 
   const initializeGoogle = () => {
     return window.gapi.auth2.init({
-      client_id: process.env.REACT_APP_GOOGLE_CLIENTID,
+      client_id: import.meta.env.VITE_GOOGLE_CLIENTID,
     });
   };
 

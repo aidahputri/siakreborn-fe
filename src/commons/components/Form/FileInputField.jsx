@@ -1,5 +1,5 @@
-import useAppearance from 'commons/appearance/useAppearance'
-import React, { forwardRef } from 'react'
+import useAppearance from '@/commons/appearance/useAppearance'
+import React, { forwardRef, useState } from 'react'
 import { INPUT_CLASSNAMES } from './variants'
 
 const FileInputField = forwardRef(function FileInputField(props, ref) {
@@ -7,6 +7,7 @@ const FileInputField = forwardRef(function FileInputField(props, ref) {
   const interfaceKit = useAppearance()
   const inputStyle = (kit ?? interfaceKit).input
   const inputVariant = INPUT_CLASSNAMES[inputStyle]
+  const [selectedImage, setSelectedImage] = useState(null)
 
   const getImage = image => {
     if (image instanceof File) {
@@ -35,10 +36,21 @@ const FileInputField = forwardRef(function FileInputField(props, ref) {
     delete rest.value
   }
 
+  const handleFileChange = e => {
+    props.onChange(e.target.files[0])
+    setSelectedImage(e.target.files[0])
+  }
+
   return (
     <div className="form-control">
       {label && <label className="label label-text justify-start">{label} {props.isRequired && <font className='ml-1' color='red'>*</font>}</label>}
-      {defaultValue && checkIsImage(defaultValue) && 
+      {selectedImage && checkIsImage(selectedImage) ?
+        <img
+        src={getImage(selectedImage)}
+        alt={label}
+        className="aspect-[4/3] w-full max-h-96 object-cover rounded-btn overflow-hidden"
+      />
+      : defaultValue && checkIsImage(defaultValue) && 
         <img
         src={getImage(defaultValue)}
         alt={label}
@@ -50,7 +62,7 @@ const FileInputField = forwardRef(function FileInputField(props, ref) {
         ref={ref}
         type="file"
         {...rest}
-        onChange={(e) => props.onChange(e.target.files[0])}
+        onChange={(e) => handleFileChange(e)}
       />
       {fieldState?.error && (
         <label className="label label-text text-error">{fieldState.error.message}</label>
