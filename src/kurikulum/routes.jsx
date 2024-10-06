@@ -3,7 +3,7 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import RequireAuth from 'commons/auth/RequireAuth'
+import RequireAuth from '@/commons/auth/RequireAuth'
 
 import DaftarKurikulumPage from './containers/DaftarKurikulumPage'
 import TambahKurikulum from './containers/TambahKurikulum'
