@@ -4,11 +4,11 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
 import FormTambahKelas from '../components/FormTambahKelas'
 
@@ -23,11 +23,12 @@ const [isLoading, setIsLoading] = useState({
 
 const [mataKuliah, setMataKuliah] = useState()
 const [semester, setSemester] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, tambahKelas: true}))
-	    const { data: mataKuliahResponse } = await getMataKuliah()
-	    const { data: semesterResponse } = await getSemester()
+		const { data: mataKuliahResponse } = await getMataKuliah({  })
+		const { data: semesterResponse } = await getSemester({  })
 
 	    setMataKuliah(mataKuliahResponse.data)
 	    setSemester(semesterResponse.data)
@@ -67,7 +68,7 @@ return (
 			{...{ 
 				mataKuliah
 , 				semester
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

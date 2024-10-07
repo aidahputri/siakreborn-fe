@@ -4,13 +4,13 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from 'commons/auth';
+import { useAuth } from '@/commons/auth';
 import DetailKurikulum from '../components/DetailKurikulum'
 import getKurikulumDataDetail from '../services/getKurikulumDataDetail'
 import CPLTable from '../components/CPLTable'
@@ -46,7 +46,7 @@ useEffect(() => {
 		const fetchData = async () => {
 			try {
 				setIsLoading(prev => ({...prev, tableCPL: true}))
-				const { data: cPLDataList } = await getCPLDataList()
+				const { data: cPLDataList } = await getCPLDataList({  })
 				setCPLDataList(cPLDataList.data)
 			} finally {
 				setIsLoading(prev => ({...prev, tableCPL: false}))
