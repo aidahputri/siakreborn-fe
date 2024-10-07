@@ -1,8 +1,7 @@
-import axios from 'axios'
-import tokenManager from 'commons/utils/token'
-import environment from 'commons/utils/environment'
-import toast from 'react-hot-toast'
-import { ToasterError } from "commons/components";
+import axios from "axios";
+import tokenManager from "@/commons/utils/token";
+import environment from "@/commons/utils/environment";
+import { notifyError } from "@/commons/utils/toaster";
 
 const getKurikulumUbah = (params = {}) => {
 	const { getToken } = tokenManager();
@@ -15,7 +14,7 @@ const getKurikulumUbah = (params = {}) => {
 		}
 	}).catch((error) => {
 		console.error(error);
-		toast.error((t) => <ToasterError error={error} t={t} />);
+		notifyError(error);
 	})
 } 
 

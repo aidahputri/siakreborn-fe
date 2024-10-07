@@ -4,13 +4,13 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from 'commons/auth';
+import { useAuth } from '@/commons/auth';
 import ProgramTable from '../components/ProgramTable'
 
 import getProgramStudiDataList from '../services/getProgramStudiDataList'
@@ -29,7 +29,7 @@ useEffect(() => {
 		const fetchData = async () => {
 			try {
 				setIsLoading(prev => ({...prev, tableProgramStudi: true}))
-				const { data: programStudiDataList } = await getProgramStudiDataList()
+				const { data: programStudiDataList } = await getProgramStudiDataList({  })
 				setProgramStudiDataList(programStudiDataList.data)
 			} finally {
 				setIsLoading(prev => ({...prev, tableProgramStudi: false}))

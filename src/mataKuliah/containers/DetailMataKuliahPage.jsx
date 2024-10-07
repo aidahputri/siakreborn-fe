@@ -4,13 +4,13 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from 'commons/auth';
+import { useAuth } from '@/commons/auth';
 import DetailMataKuliah from '../components/DetailMataKuliah'
 import getMataKuliahDataDetail from '../services/getMataKuliahDataDetail'
 import CPMKTable from '../components/CPMKTable'

@@ -18,14 +18,14 @@ import {
   VisualizationAttr,
   Spinner,
   
-} from 'commons/components'
-import { ALLOWED_PERMISSIONS, findAllowedPermission } from 'commons/constants/allowedPermission'
-import cleanFormData from 'commons/utils/cleanFormData'
+} from '@/commons/components'
+import { ALLOWED_PERMISSIONS, findAllowedPermission } from '@/commons/constants/allowedPermission'
+import cleanFormData from '@/commons/utils/cleanFormData'
 
 import updateSemester from '../services/updateSemester'
 
-import { ToasterError } from "commons/components";
-import * as Layouts from "commons/layouts";
+import { notifyError } from "@/commons/utils/toaster";
+import * as Layouts from "@/commons/layouts";
 
 const FormUbahSemester = ({ 
 	semesterUbah
@@ -52,7 +52,7 @@ const FormUbahSemester = ({
     })
     .catch((error) => {
       console.error(error);
-      toast.error((t) => <ToasterError error={error} t={t} />);
+      notifyError(error);
     });
   }
   

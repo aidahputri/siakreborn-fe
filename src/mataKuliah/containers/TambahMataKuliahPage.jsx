@@ -4,11 +4,11 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
 import FormTambahMataKuliah from '../components/FormTambahMataKuliah'
 
@@ -21,10 +21,11 @@ const [isLoading, setIsLoading] = useState({
 	const { setTitle } = useContext(HeaderContext);
 
 const [kurikulum, setKurikulum] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, tambahMataKuliah: true}))
-	    const { data: kurikulumResponse } = await getKurikulum()
+		const { data: kurikulumResponse } = await getKurikulum({  })
 
 	    setKurikulum(kurikulumResponse.data)
 
@@ -62,7 +63,7 @@ return (
 		 <FormTambahMataKuliah
 			{...{ 
 				kurikulum
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

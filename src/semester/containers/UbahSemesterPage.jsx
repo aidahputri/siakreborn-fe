@@ -4,11 +4,11 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
 import FormUbahSemester from '../components/FormUbahSemester'
 
@@ -25,11 +25,12 @@ const [searchParams] = useSearchParams()
 const id = searchParams.get('id')
 const [semesterUbah, setSemesterUbah] = useState()
 const [kurikulum, setKurikulum] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, ubahSemester: true}))
-	    const { data: semesterUbahResponse } = await getSemesterUbah({ id })
-	    const { data: kurikulumResponse } = await getKurikulum({ id })
+		const { data: semesterUbahResponse } = await getSemesterUbah({ id  })
+		const { data: kurikulumResponse } = await getKurikulum({ id  })
 
 	    setSemesterUbah(semesterUbahResponse.data)
 	    setKurikulum(kurikulumResponse.data)
@@ -69,7 +70,7 @@ return (
 			{...{ 
 				semesterUbah
 , 				kurikulum
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

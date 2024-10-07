@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { useAuth } from 'commons/auth';
-import { Button, Detail, VisualizationAttr, Modal } from 'commons/components';
+import { useAuth } from '@/commons/auth';
+import { Button, Detail, VisualizationAttr, Modal } from '@/commons/components';
 
 import deleteRole from '../services/deleteRole.js';
 
@@ -44,7 +44,7 @@ const DetailRole = ({ role }) => {
 			
         />
 	  </div>
-      <div class="card-actions justify-end">
+      <div className="card-actions justify-end">
         {/* View Element Event Role Element*/}
           {checkPermission("administrator") && (
             <Button

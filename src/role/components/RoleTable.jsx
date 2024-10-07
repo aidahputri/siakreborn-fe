@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAuth } from 'commons/auth';
-import { Button, TableRow, TableCell, Modal } from 'commons/components';
-import { isMobile } from 'commons/utils/responsive';
+import { useAuth } from '@/commons/auth';
+import { Button, TableRow, TableCell, Modal } from '@/commons/components';
+import { isMobile } from '@/commons/utils/responsive';
 
 
 
@@ -27,7 +27,7 @@ const RoleTable = ({ roleItem }) => {
 		
 		 isHiddenMobile>{roleItem?.allowedPermissions}</TableCell>
       <TableCell isHiddenMobile>
-        <div class="btn-group gap-2">
+        <div className="btn-group gap-2">
           {/* View Element Event Role Table Element*/}
           <Link to={`/settings/role/${roleItem.id}`}>
             <Button 

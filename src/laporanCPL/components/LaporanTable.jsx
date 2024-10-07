@@ -3,14 +3,14 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { useAuth } from "commons/auth";
-import { Button, Modal } from "commons/components";
-import isSelectedFeature from "commons/utils/isSelectedFeature";
+import { useAuth } from '@/commons/auth';
+import { Button, Modal } from '@/commons/components';
+import isSelectedFeature from '@/commons/utils/isSelectedFeature';
 
-import * as Layouts from "commons/layouts";
+import * as Layouts from "@/commons/layouts";
 
 const LaporanCPLTable = ({ laporanCPLDataList, cplList = [] }) => {
   const { checkPermission } = useAuth();
