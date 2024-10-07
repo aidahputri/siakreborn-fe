@@ -1,4 +1,4 @@
-import RequireAuth from 'commons/auth/RequireAuth'
+import RequireAuth from '@/commons/auth/RequireAuth'
 
 import DaftarUserPage from './containers/DaftarUserPage'
 import TambahUserPage from './containers/TambahUserPage'

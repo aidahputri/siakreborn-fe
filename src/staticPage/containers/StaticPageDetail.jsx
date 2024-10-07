@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import ReactHTMLParser from "html-react-parser";
 import { useNavigate, useParams } from "react-router-dom";
 
-import environment from "commons/utils/environment";
-import { Button } from "commons/components";
+import environment from "@/commons/utils/environment";
+import { Button } from "@/commons/components";
 import { FiEdit } from "react-icons/fi";
-import { useAuth } from "commons/auth";
+import { useAuth } from "@/commons/auth";
 
 const StaticPageDetail = ({ slug = "" }) => {
   const { staticPageId } = useParams();

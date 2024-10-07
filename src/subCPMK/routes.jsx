@@ -3,12 +3,12 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import RequireAuth from 'commons/auth/RequireAuth'
+import RequireAuth from '@/commons/auth/RequireAuth'
 
-import TambahSubCPMKPage from './containers/TambahSubCPMKPage'
 import DaftarSubCPMKPage from './containers/DaftarSubCPMKPage'
+import DetailSubCPMKPage from './containers/DetailSubCPMKPage'
+import TambahSubCPMKPage from './containers/TambahSubCPMKPage'
 import UbahSubCPMKPage from './containers/UbahSubCPMKPage'
-import DetailCPMKPage from './containers/DetailCPMKPage'
 
 const subCPMKRoutes = [
 	{ 
@@ -24,8 +24,8 @@ const subCPMKRoutes = [
 		element: <RequireAuth permissionNeeded="UpdateSubCPMK" ><UbahSubCPMKPage/></RequireAuth>
 	},
 	{ 
-		path: "",
-		element: <DetailCPMKPage />,
+		path: "/subcpmk/:id",
+		element: <RequireAuth permissionNeeded="ReadSubCPMK" ><DetailSubCPMKPage /></RequireAuth>
 	}
 ]
 

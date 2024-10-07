@@ -1,4 +1,4 @@
-import RequireAuth from 'commons/auth/RequireAuth'
+import RequireAuth from '@/commons/auth/RequireAuth'
 
 import StaticPageDetail from './containers/StaticPageDetail'
 import StaticPageEdit from './containers/StaticPageEdit'

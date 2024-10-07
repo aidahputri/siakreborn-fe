@@ -4,11 +4,11 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
 import ModifiedFormUbahSubCPMK from '../components/ModifiedFormUbahSubCPMK'
 
@@ -25,11 +25,12 @@ const [searchParams] = useSearchParams()
 const id = searchParams.get('id')
 const [subCPMKUbah, setSubCPMKUbah] = useState()
 const [cPMK, setCPMK] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, ubahSubCPMK: true}))
-	    const { data: subCPMKUbahResponse } = await getSubCPMKUbah({ id })
-	    const { data: cPMKResponse } = await getCPMK({ id })
+		const { data: subCPMKUbahResponse } = await getSubCPMKUbah({ id  })
+		const { data: cPMKResponse } = await getCPMK({ id  })
 
 	    setSubCPMKUbah(subCPMKUbahResponse.data)
 	    setCPMK(cPMKResponse.data)
@@ -49,7 +50,7 @@ return (
 		buttons={
 			<>
 			<Layouts.ViewContainerBackButtonLayout>
-			  	<Link to={`/subcpmk`}>	<Button className="p-4" variant="secondary">
+			  	<Link to={`/subcpmk/${id}`}>	<Button className="p-4" variant="secondary">
 			  		  Kembali
 			  		</Button>
 			  	</Link>
@@ -60,7 +61,7 @@ return (
 		}
 	>
 <Layouts.FormContainerLayout
-		singularName={"Sub"}
+		singularName={"SubCPMK"}
 		isLoading={isLoading.ubahSubCPMK}
 	>
 		{subCPMKUbah && cPMK ? 
@@ -69,7 +70,7 @@ return (
 			{...{ 
 				subCPMKUbah
 , 				cPMK
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

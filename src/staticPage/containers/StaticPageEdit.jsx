@@ -2,9 +2,9 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import environment from 'commons/utils/environment'
+import environment from '@/commons/utils/environment'
 
-import StaticPageBuilder from 'staticPage/components/StaticPageBuilder'
+import StaticPageBuilder from '@/staticPage/components/StaticPageBuilder'
 
 const StaticPageEdit = () => {
   const { staticPageId } = useParams()

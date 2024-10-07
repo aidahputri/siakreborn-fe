@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { useAuth } from 'commons/auth';
-import { Button, Detail, VisualizationAttr, Modal } from 'commons/components';
+import { useAuth } from '@/commons/auth';
+import { Button, Detail, VisualizationAttr, Modal } from '@/commons/components';
 
 import deleteUser from '../services/deleteUser.js';
 
@@ -58,7 +58,7 @@ const DetailUser = ({ user }) => {
 			
         />
 	  </div>
-      <div class="card-actions justify-end">
+      <div className="card-actions justify-end">
         {/* View Element Event User Element*/}
           {checkPermission("administrator") && (
             <Button

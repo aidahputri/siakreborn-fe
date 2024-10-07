@@ -9,8 +9,8 @@ import grapesjsPresetWebpagePlugin from "grapesjs-preset-webpage";
 import "grapesjs/dist/css/grapes.min.css";
 import "grapesjs/dist/grapes.min.js";
 
-import { Button } from "commons/components";
-import environment from "commons/utils/environment";
+import { Button } from "@/commons/components";
+import environment from "@/commons/utils/environment";
 import StaticPageSaveForm from "./StaticPageSaveForm";
 
 const StaticPageBuilder = ({

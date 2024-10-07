@@ -4,11 +4,11 @@
 	version 3.4.0
 */
 import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "commons/components"
-import * as Layouts from 'commons/layouts';
+import { Button, Spinner } from "@/commons/components"
+import * as Layouts from '@/commons/layouts';
 import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "commons/components"
-import isSelectedFeature from 'commons/utils/isSelectedFeature'
+import { HeaderContext } from "@/commons/components"
+import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useSearchParams } from 'react-router-dom';
 import ModifiedFormTambahSubCPMK from '../components/ModifiedFormTambahSubCPMK'
 
@@ -21,10 +21,11 @@ const [isLoading, setIsLoading] = useState({
 	const { setTitle } = useContext(HeaderContext);
 
 const [cPMK, setCPMK] = useState()
+
 useEffect(() => {
     const fetch = async () => {
 	  setIsLoading(prev => ({...prev, tambahSubCPMK: true}))
-	    const { data: cPMKResponse } = await getCPMK()
+		const { data: cPMKResponse } = await getCPMK({  })
 
 	    setCPMK(cPMKResponse.data)
 
@@ -36,7 +37,7 @@ useEffect(() => {
 
 	
 	useEffect(() => {
-		setTitle("Tambah Sub CPMK Page")
+		setTitle("Tambah SubCPMK Page")
 	}, []);
 return (
 	<Layouts.ViewContainerLayout
@@ -54,7 +55,7 @@ return (
 		}
 	>
 <Layouts.FormContainerLayout
-		singularName={"Sub"}
+		singularName={"SubCPMK"}
 		isLoading={isLoading.tambahSubCPMK}
 	>
 		{cPMK ? 
@@ -62,7 +63,7 @@ return (
 		 <ModifiedFormTambahSubCPMK
 			{...{ 
 				cPMK
- }}
+				}}
 		 /> 
 		</>)  : (<></>)}
 	</Layouts.FormContainerLayout>

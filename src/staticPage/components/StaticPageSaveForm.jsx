@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, InputField } from 'commons/components'
+import { Button, Form, InputField } from '@/commons/components'
 
 const StaticPageSaveForm = ({ onSubmit, onCancel }) => {
   let inputTitle = ''

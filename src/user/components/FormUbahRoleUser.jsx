@@ -12,9 +12,9 @@ import {
   TextAreaField,
   VisualizationAttr,
   
-} from 'commons/components'
-import { ALLOWED_PERMISSIONS, findAllowedPermission } from 'commons/constants/allowedPermission'
-import cleanFormData from 'commons/utils/cleanFormData'
+} from '@/commons/components'
+import { ALLOWED_PERMISSIONS, findAllowedPermission } from '@/commons/constants/allowedPermission'
+import cleanFormData from '@/commons/utils/cleanFormData'
 
 import changeroleUser from '../services/changeroleUser'
 
@@ -59,7 +59,7 @@ const FormUbahRoleUser = ({ user, roles }) => {
 	        )}
 	      />
 	  <Controller
-        name="roleIds"
+        name= "@/roleIds"
         control={control}
         render={({ field, fieldState }) => (
 		<MultiSelectionField

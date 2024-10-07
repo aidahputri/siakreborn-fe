@@ -1,4 +1,4 @@
-import { Button } from 'commons/components'
+import { Button } from '@/commons/components'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import DetailUser from '../components/DetailUser'
