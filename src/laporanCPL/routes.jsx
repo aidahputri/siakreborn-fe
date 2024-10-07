@@ -6,7 +6,7 @@
 import RequireAuth from '@/commons/auth/RequireAuth'
 
 import LaporanCPLPage from "./containers/LaporanCPLPage";
-import { SelectionProvider } from "laporanCPMK/context/SelectionField";
+import { SelectionProvider } from '@/laporanCPMK/context/SelectionField';
 
 const laporanCPLRoutes = [
   {

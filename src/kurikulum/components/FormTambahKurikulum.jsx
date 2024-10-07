@@ -128,7 +128,7 @@ const FormTambahKurikulum = ({
 	
 		  
 		  <Controller
-	        name="idProgramStudi"
+	        name="programStudiId"
 	        control={control}
 	        render={({ field, fieldState }) => (
 					<SelectionField

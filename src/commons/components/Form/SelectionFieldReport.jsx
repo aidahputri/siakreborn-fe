@@ -1,9 +1,9 @@
 import React, { forwardRef } from "react";
 import { INPUT_CLASSNAMES } from "./variants";
-import useAppearance from "commons/appearance/useAppearance";
-import { useSelectionContext } from "laporanCPMK/context/SelectionField";
+import useAppearance from "@/commons/appearance/useAppearance";
+import { useSelectionContext } from "@/laporanCPMK/context/SelectionField";
 
-const SelectionField = forwardRef((props, ref) => {
+const SelectionFieldReport = forwardRef((props, ref) => {
   const {
     label,
     variant,
@@ -62,4 +62,4 @@ const SelectionField = forwardRef((props, ref) => {
   );
 });
 
-export default SelectionField;
+export default SelectionFieldReport;

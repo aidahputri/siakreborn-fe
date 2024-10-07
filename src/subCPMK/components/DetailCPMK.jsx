@@ -6,11 +6,11 @@
 import React, { useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { useAuth } from 'commons/auth';
-import { Button, Detail, VisualizationAttr, Modal, Spinner } from 'commons/components';
+import { useAuth } from '@/commons/auth';
+import { Button, Detail, VisualizationAttr, Modal, Spinner } from '@/commons/components';
 
 
-import * as Layouts from "commons/layouts";
+import * as Layouts from "@/commons/layouts";
 
 
 const DetailCPMK = ({ data }) => {

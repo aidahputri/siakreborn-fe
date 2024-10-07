@@ -1,14 +1,14 @@
 import axios from 'axios'
-import tokenManager from 'commons/utils/token'
-import environment from 'commons/utils/environment'
+import tokenManager from '@/commons/utils/token'
+import environment from '@/commons/utils/environment'
 import toast from 'react-hot-toast'
-import { ToasterError } from "commons/components";
+import { ToasterError } from "@/commons/components";
 
-const getAverageCPLDataList = (params = {}) => {
+const getCPMKDataDetail = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/cpl/laporan-chart/list`, {
+	return axios.get(`${environment.rootApi}/call/cpmk/detail`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,
@@ -19,4 +19,4 @@ const getAverageCPLDataList = (params = {}) => {
 	})
 } 
 
-export default getAverageCPLDataList
+export default getCPMKDataDetail

@@ -1,8 +1,8 @@
 import axios from "axios";
-import tokenManager from "commons/utils/token";
-import environment from "commons/utils/environment";
+import tokenManager from "@/commons/utils/token";
+import environment from "@/commons/utils/environment";
 import toast from "react-hot-toast";
-import { ToasterError } from "commons/components";
+import { ToasterError } from "@/commons/components";
 
 const getSubCPMKbyCPMKDataList = (params = {}) => {
   const { getToken } = tokenManager();

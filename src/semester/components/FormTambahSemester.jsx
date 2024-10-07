@@ -143,7 +143,7 @@ const FormTambahSemester = ({
 	
 		  
 		  <Controller
-	        name="idKurikulum"
+	        name="kurikulumId"
 	        control={control}
 	        render={({ field, fieldState }) => (
 					<SelectionField

@@ -48,7 +48,7 @@ const SubCPMKTable = ({ subCPMKDataList }) => {
           id: "mataKuliah",
           condition: "isHeading",
           label: "Mata Kuliah",
-          featureName: "mataKuliahName",
+          featureName: "parentCPMKMataKuliahNama",
         },
         {
           id: "bobot",

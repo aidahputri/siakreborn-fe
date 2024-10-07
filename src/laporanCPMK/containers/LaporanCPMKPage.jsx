@@ -12,14 +12,14 @@ import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/commons/auth';
 import LaporanTable from "../components/LaporanTable";
-import getMataKuliahDataList from "laporanCPMK/services/getMataKuliahDataList";
-import getKelasSelectionField from "laporanCPMK/services/getKelasSelectionField";
-import { useSelectionContext } from "laporanCPMK/context/SelectionField";
+import getMataKuliahDataList from '../services/getMataKuliahDataList';
+import getKelasSelectionField from "../services/getKelasSelectionField";
+import { useSelectionContext } from '../context/SelectionField';
 
 import getLaporanCPMKDataList from "../services/getLaporanCPMKDataList";
-import getAverageCPMKDataList from "laporanCPMK/services/getAverageCPMKDataList";
-import { BarChart } from "commons/Chart/BarChart";
-import SelectionFieldReport from "commons/components/Form/SelectionFieldReport";
+import getAverageCPMKDataList from "../services/getAverageCPMKDataList";
+import { BarChart } from '@/commons/Chart/BarChart';
+import SelectionFieldReport from '@/commons/components/Form/SelectionFieldReport';
 
 const LaporanCPMKPage = (props) => {
   const { checkPermission } = useAuth();

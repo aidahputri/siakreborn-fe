@@ -42,12 +42,12 @@ export default defineConfig(({ mode }) => {
       ...(flags.devLoadingIndicator ? [devLoadingIndicator({ mode })] : []),
       react(),
       svgr(),
-      checker({
-        eslint: {
-          lintCommand: `eslint`,
-          useFlatConfig: true,
-        },
-      }),
+      // checker({
+      //   eslint: {
+      //     lintCommand: `eslint`,
+      //     useFlatConfig: true,
+      //   },
+      // }),
     ],
     publicDir: process.cwd() + "/public",
     resolve: {

@@ -12,7 +12,8 @@ import isSelectedFeature from '@/commons/utils/isSelectedFeature'
 
 import DetailSubCPMK from '../components/DetailSubCPMK'
 import DetailCapaian from '../components/DetailCapaian'
-import getCapaianDataDetail from '../services/getCapaianDataDetail'
+import getSubCPMKDataDetail from '../services/getSubCPMKDataDetail';
+
 const DetailSubCPMKPage = props => {
 const [isLoading, setIsLoading] = useState({
 	detailSubCPMK: false,
@@ -23,12 +24,12 @@ const [isLoading, setIsLoading] = useState({
 
 const {  } = useParams()
 const [capaianDataDetail, setCapaianDataDetail] = useState()
-const {  } = useParams()
+const { id } = useParams()
 useEffect(() => {
 	const fetchData = async () => {
 		try {
 			setIsLoading(prev => ({...prev, detailCapaian: true}))
-			const { data: capaianDataDetail } = await getCapaianDataDetail({ invalid })
+			const { data: capaianDataDetail } = await getSubCPMKDataDetail({ id })
 			setCapaianDataDetail(capaianDataDetail.data)
 		} finally {
 			setIsLoading(prev => ({...prev, detailCapaian: false}))

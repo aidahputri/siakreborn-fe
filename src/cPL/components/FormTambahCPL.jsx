@@ -18,14 +18,14 @@ import {
   VisualizationAttr,
   Spinner,
   
-} from 'commons/components'
-import { ALLOWED_PERMISSIONS, findAllowedPermission } from 'commons/constants/allowedPermission'
-import cleanFormData from 'commons/utils/cleanFormData'
+} from '@/commons/components'
+import { ALLOWED_PERMISSIONS, findAllowedPermission } from '@/commons/constants/allowedPermission'
+import cleanFormData from '@/commons/utils/cleanFormData'
 
 import saveCPL from '../services/saveCPL'
 
-import { ToasterError } from "commons/components";
-import * as Layouts from "commons/layouts";
+import { ToasterError } from "@/commons/components";
+import * as Layouts from "@/commons/layouts";
 
 const FormTambahCPL = ({ 
 	kurikulum

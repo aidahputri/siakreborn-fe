@@ -1,4 +1,4 @@
-import useAuth from "commons/auth";
+import useAuth from "@/commons/auth";
 import MenuItem from "../MenuItem";
 import MenuLink from "../MenuLink";
 

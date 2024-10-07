@@ -3,10 +3,10 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import React from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import toast from 'react-hot-toast'
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -17,15 +17,18 @@ import {
   TextAreaField,
   VisualizationAttr,
   Spinner,
-  
-} from '@/commons/components'
-import { ALLOWED_PERMISSIONS, findAllowedPermission } from '@/commons/constants/allowedPermission'
-import cleanFormData from '@/commons/utils/cleanFormData'
+} from "@/commons/components";
+import {
+  ALLOWED_PERMISSIONS,
+  findAllowedPermission,
+} from "@/commons/constants/allowedPermission";
+import cleanFormData from "@/commons/utils/cleanFormData";
 
-import tambahNilai from '../services/tambahNilai'
+import tambahNilai from "../services/tambahNilai";
 
 import { notifyError } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
+import { ToasterError } from "@/commons/components";
 
 const FormTambahNilai = ({ komponenPenilaian, idMahasiswa, idKelas }) => {
   const { control, handleSubmit } = useForm();
@@ -41,7 +44,7 @@ const FormTambahNilai = ({ komponenPenilaian, idMahasiswa, idKelas }) => {
       idMahasiswa,
     })
       .then(({ data: { data } }) => {
-         navigate(`/kelas/${idKelas}/mahasiswa/${idMahasiswa}/nilai`)
+        navigate(`/kelas/${idKelas}/mahasiswa/${idMahasiswa}/nilai`);
       })
       .catch((error) => {
         console.error(error);
