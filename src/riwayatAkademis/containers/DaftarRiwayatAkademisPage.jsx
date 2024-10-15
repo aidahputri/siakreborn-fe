@@ -75,12 +75,9 @@ const DaftarRiwayatAkademisPage = (props) => {
   }, []);
 
   useEffect(() => {
-    setTitle("Daftar Riwayat Akademis Page");
+    setTitle("Daftar Riwayat Akademis");
   }, []);
 
-  // useEffect(() => {
-  //   console.log(mKRiwayatAkademisDataList);
-  // }, [mKRiwayatAkademisDataList]);
   return (
     <Layouts.ViewContainerLayout
       buttons={

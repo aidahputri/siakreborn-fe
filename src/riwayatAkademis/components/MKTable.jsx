@@ -14,8 +14,7 @@ import * as Layouts from "@/commons/layouts";
 
 const MKTable = ({ mKRiwayatAkademisDataList }) => {
   const { checkPermission } = useAuth();
-
-  console.log(mKRiwayatAkademisDataList)
+  
   return (
     <Layouts.ListComponentTableLayout
       items={[mKRiwayatAkademisDataList]}
