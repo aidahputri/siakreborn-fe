@@ -3,60 +3,163 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "@/commons/components"
-import * as Layouts from '@/commons/layouts';
-import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "@/commons/components"
-import isSelectedFeature from '@/commons/utils/isSelectedFeature'
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/commons/auth';
-import DaftarTable from '../components/DaftarTable'
-const DaftarRiwayatAkademisPage = props => {
-const { checkPermission } = useAuth()
+import React, { useEffect, useState, useContext } from "react";
+import { Button, Spinner } from "@/commons/components";
+import * as Layouts from "@/commons/layouts";
+import { Link, useParams } from "react-router-dom";
+import { HeaderContext } from "@/commons/components";
+import isSelectedFeature from "@/commons/utils/isSelectedFeature";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/commons/auth";
+import TermTable from "../components/TermTable";
 
-	const [isLoading, setIsLoading] = useState({
-	tableDaftarRiwayat: false,
+import getTermRiwayatAkademisDataList from "../services/getTermRiwayatAkademisDataList";
+import MKTable from "../components/MKTable";
 
-	});
-	const { setTitle } = useContext(HeaderContext);
+import getMKRiwayatAkademisDataList from "../services/getMKRiwayatAkademisDataList";
+import { useSelectionContext } from "@/laporanCPMK/context/SelectionField";
+import SelectionFieldReport from "@/commons/components/Form/SelectionFieldReport";
 
-useEffect(() => {
-		const fetchData = async () => {
-			try {
-				setIsLoading(prev => ({...prev, tableDaftarRiwayat: true}))
-			} finally {
-				setIsLoading(prev => ({...prev, tableDaftarRiwayat: false}))
-			}
-		}
-		fetchData()	
-  	}, [])
+const DaftarRiwayatAkademisPage = (props) => {
+  const { checkPermission } = useAuth();
 
-	
-	useEffect(() => {
-		setTitle("Daftar Riwayat Akademis Page")
-	}, []);
-return (
-	<Layouts.ViewContainerLayout
-		buttons={
-			<>
-			<></>
-			</>
-		}
-	>
-<Layouts.ListContainerTableLayout
-	title={"Table Daftar Riwayat"}
-	singularName={"Daftar"}
-	items={[]}
-	isLoading={isLoading.tableDaftarRiwayat}
->
-	<DaftarTable
-		
-	/>
-</Layouts.ListContainerTableLayout>
+  const [isLoading, setIsLoading] = useState({
+    tableTermRiwayatAkademis: false,
+    tableMKRiwayatAkademis: false,
+  });
 
-	</Layouts.ViewContainerLayout>
-  )
-}
-export default DaftarRiwayatAkademisPage
+  const { setTitle } = useContext(HeaderContext);
+  const { selectedValue } = useSelectionContext();
 
+  const riwayatOptions = [
+    { id: "term", name: "Berdasarkan Term" },
+    { id: "mataKuliah", name: "Berdasarkan Mata Kuliah" },
+  ];
+
+  function formatAcademicYear(code) {
+    const [academicYear, term] = code.split(" - ");
+    return `Tahun Ajaran ${academicYear} Term ${term}`;
+  }
+
+  const [termRiwayatAkademisDataList, setTermRiwayatAkademisDataList] =
+    useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading((prev) => ({ ...prev, tableTermRiwayatAkademis: true }));
+        const { data: termRiwayatAkademisDataList } =
+          await getTermRiwayatAkademisDataList({});
+        setTermRiwayatAkademisDataList(termRiwayatAkademisDataList.data);
+      } finally {
+        setIsLoading((prev) => ({ ...prev, tableTermRiwayatAkademis: false }));
+      }
+    };
+    checkPermission("ReadKelasMahasiswaMe") && fetchData();
+  }, []);
+
+  const [mKRiwayatAkademisDataList, setMKRiwayatAkademisDataList] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading((prev) => ({ ...prev, tableMKRiwayatAkademis: true }));
+        const { data: mKRiwayatAkademisDataList } =
+          await getMKRiwayatAkademisDataList({});
+        setMKRiwayatAkademisDataList(mKRiwayatAkademisDataList.data);
+      } finally {
+        setIsLoading((prev) => ({ ...prev, tableMKRiwayatAkademis: false }));
+      }
+    };
+    checkPermission("ReadKelasMahasiswaMe") && fetchData();
+  }, []);
+
+  useEffect(() => {
+    setTitle("Daftar Riwayat Akademis Page");
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(mKRiwayatAkademisDataList);
+  // }, [mKRiwayatAkademisDataList]);
+  return (
+    <Layouts.ViewContainerLayout
+      buttons={
+        <>
+          <></>
+        </>
+      }
+    >
+      <div className="flex w-fit place-self-end">
+        <SelectionFieldReport
+          label="Pilihan Riwayat Akademis"
+          options={riwayatOptions}
+          placeholder="Masukkan pilihan tampilan riwayat akademis"
+          isRequired={true}
+        />
+      </div>
+
+      {selectedValue && selectedValue === "term" && (
+        <>
+          {isLoading.tableTermRiwayatAkademis ? (
+            <div className="flex justify-center items-center h-full">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              {termRiwayatAkademisDataList?.map((term, idx) => {
+                return (
+                  <div key={idx} className="flex flex-col gap-4">
+                    <h2>
+                      {term.kode
+                        ? formatAcademicYear(term.kode)
+                        : "Undefined term"}
+                    </h2>
+
+                    <Layouts.ListContainerTableLayout
+                      title={""}
+                      singularName={"Term"}
+                      items={[term.kelas]}
+                      isLoading={isLoading.tableTermRiwayatAkademis}
+                    >
+                      <TermTable termRiwayatAkademisDataList={term.kelas} />
+                    </Layouts.ListContainerTableLayout>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </>
+      )}
+
+      {selectedValue && selectedValue === "mataKuliah" && (
+        <>
+          {isLoading.tableMKRiwayatAkademis ? (
+            <div className="flex justify-center items-center h-full">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              {mKRiwayatAkademisDataList?.map((mk, idx) => {
+                return (
+                  <div key={idx} className="flex flex-col gap-4">
+                    <h2>{mk.mataKuliahNama}</h2>
+
+                    <Layouts.ListContainerTableLayout
+                      title={""}
+                      singularName={"MK"}
+                      items={[[mk]]}
+                      isLoading={isLoading.tableMKRiwayatAkademis}
+                    >
+                      <MKTable mKRiwayatAkademisDataList={[mk]} />
+                    </Layouts.ListContainerTableLayout>
+                  </div>
+                );
+              })}
+            </>
+          )}
+        </>
+      )}
+    </Layouts.ViewContainerLayout>
+  );
+};
+export default DaftarRiwayatAkademisPage;

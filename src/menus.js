@@ -44,13 +44,6 @@ export default menus;
 
 // Add menus with permission attributes
 addMenu({
-  route: "/matakuliah",
-  label: "Mata Kuliah",
-  permission: "ReadMataKuliah",
-  subMenus: [],
-});
-
-addMenu({
   route: "/programstudi",
   label: "Program Studi",
   permission: "ReadProgramStudi",
@@ -61,6 +54,27 @@ addMenu({
   route: "/kurikulum",
   label: "Kurikulum",
   permission: "ReadKurikulum",
+  subMenus: [],
+});
+
+addMenu({
+  route: "/semester",
+  label: "Semester",
+  permission: "ReadSemester",
+  subMenus: [],
+});
+
+addMenu({
+  route: "/matakuliah",
+  label: "Mata Kuliah",
+  permission: "ReadMataKuliah",
+  subMenus: [],
+});
+
+addMenu({
+  route: "/kelas",
+  label: "Kelas",
+  permission: "ReadKelas",
   subMenus: [],
 });
 
@@ -109,15 +123,14 @@ addSubMenu("CPMK", {
 });
 
 addMenu({
-  route: "/semester",
-  label: "Semester",
-  permission: "ReadSemester",
+  route: "#",
+  label: "Akademis",
+  permission: "ReadKelasMahasiswaMe",
   subMenus: [],
 });
 
-addMenu({
-  route: "/kelas",
-  label: "Kelas",
-  permission: "ReadKelas",
-  subMenus: [],
+addSubMenu("Akademis", {
+  route: "/daftar-akademis",
+  label: "Riwayat",
+  permission: "ReadKelasMahasiswaMe",
 });
