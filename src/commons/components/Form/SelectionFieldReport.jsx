@@ -17,7 +17,7 @@ const SelectionFieldReport = forwardRef((props, ref) => {
   const inputStyle = (kit ?? interfaceKit).input;
   const inputVariant = INPUT_CLASSNAMES[inputStyle];
 
-  const { setSelectedValue } = useSelectionContext();
+  const { selectedValue, setSelectedValue } = useSelectionContext();
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -44,7 +44,7 @@ const SelectionFieldReport = forwardRef((props, ref) => {
         {...variant}
       >
         <option disabled selected hidden>
-          {placeholder}
+          {selectedValue?? placeholder}
         </option>
         {options &&
           options.map((option) => (

@@ -130,7 +130,7 @@ addMenu({
 });
 
 addSubMenu("Akademis", {
-  route: "/daftar-akademis",
+  route: "/riwayat-akademis",
   label: "Riwayat",
   permission: "ReadKelasMahasiswaMe",
 });

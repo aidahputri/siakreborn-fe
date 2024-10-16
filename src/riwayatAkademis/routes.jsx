@@ -6,11 +6,12 @@
 import RequireAuth from "@/commons/auth/RequireAuth";
 
 import DaftarRiwayatAkademisPage from "./containers/DaftarRiwayatAkademisPage";
+import DetailPenilaianMahasiswaPage from "./containers/DetailPenilaianMahasiswaPage";
 import { SelectionProvider } from "@/laporanCPMK/context/SelectionField";
 
 const riwayatAkademisRoutes = [
   {
-    path: "/daftar-akademis",
+    path: "/riwayat-akademis",
     element: (
       <RequireAuth permissionNeeded="ReadKelasMahasiswaMe">
         <SelectionProvider>
@@ -18,6 +19,10 @@ const riwayatAkademisRoutes = [
         </SelectionProvider>
       </RequireAuth>
     ),
+  },
+  {
+    path: "/riwayat-akademis/:id",
+    element: <DetailPenilaianMahasiswaPage />,
   },
 ];
 

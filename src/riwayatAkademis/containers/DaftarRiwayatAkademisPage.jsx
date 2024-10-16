@@ -29,11 +29,11 @@ const DaftarRiwayatAkademisPage = (props) => {
   });
 
   const { setTitle } = useContext(HeaderContext);
-  const { selectedValue } = useSelectionContext();
+  const { selectedValue, setSelectedValue } = useSelectionContext();
 
   const riwayatOptions = [
-    { id: "term", name: "Berdasarkan Term" },
-    { id: "mataKuliah", name: "Berdasarkan Mata Kuliah" },
+    { id: "Berdasarkan Term", name: "Berdasarkan Term" },
+    { id: "Berdasarkan Mata Kuliah", name: "Berdasarkan Mata Kuliah" },
   ];
 
   function formatAcademicYear(code) {
@@ -75,6 +75,12 @@ const DaftarRiwayatAkademisPage = (props) => {
   }, []);
 
   useEffect(() => {
+    if (!selectedValue) {
+      setSelectedValue("Berdasarkan Term");
+    }
+  }, [selectedValue]);
+
+  useEffect(() => {
     setTitle("Daftar Riwayat Akademis");
   }, []);
 
@@ -95,7 +101,7 @@ const DaftarRiwayatAkademisPage = (props) => {
         />
       </div>
 
-      {selectedValue && selectedValue === "term" && (
+      {selectedValue && selectedValue === "Berdasarkan Term" && (
         <>
           {isLoading.tableTermRiwayatAkademis ? (
             <div className="flex justify-center items-center h-full">
@@ -114,7 +120,7 @@ const DaftarRiwayatAkademisPage = (props) => {
 
                     <Layouts.ListContainerTableLayout
                       title={""}
-                      singularName={"Term"}
+                      singularName={"Berdasarkan Term"}
                       items={[term.kelas]}
                       isLoading={isLoading.tableTermRiwayatAkademis}
                     >
@@ -128,7 +134,7 @@ const DaftarRiwayatAkademisPage = (props) => {
         </>
       )}
 
-      {selectedValue && selectedValue === "mataKuliah" && (
+      {selectedValue && selectedValue === "Berdasarkan Mata Kuliah" && (
         <>
           {isLoading.tableMKRiwayatAkademis ? (
             <div className="flex justify-center items-center h-full">

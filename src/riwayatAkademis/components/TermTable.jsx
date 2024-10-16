@@ -9,15 +9,21 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "@/commons/auth";
 import { Button, Modal } from "@/commons/components";
 import isSelectedFeature from "@/commons/utils/isSelectedFeature";
+import { isMobile } from "@/commons/utils/responsive";
 
 import * as Layouts from "@/commons/layouts";
 
 const TermTable = ({ termRiwayatAkademisDataList }) => {
   const { checkPermission } = useAuth();
+  const navigate = useNavigate();
+  const detail = async (termItem) => {
+    isMobile() && navigate(`/riwayat-akademis/${termItem.id}`);
+  };
 
   return (
     <Layouts.ListComponentTableLayout
       items={[termRiwayatAkademisDataList]}
+      detail={detail}
       isSearchable
       itemsAttrs={[
         {
@@ -57,6 +63,12 @@ const TermTable = ({ termRiwayatAkademisDataList }) => {
           featureName: "nilaiHuruf",
         },
       ]}
+      itemsEvents={(termItem) => [
+        <Link to={`/riwayat-akademis/${termItem.id}`}>
+          <Button variant="primary">Detail</Button>
+        </Link>,
+      ]}
+      itemsModals={(termItem) => []}
     />
   );
 };

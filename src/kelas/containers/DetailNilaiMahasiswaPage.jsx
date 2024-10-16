@@ -75,6 +75,7 @@ const { checkPermission } = useAuth()
   useEffect(() => {
     setTitle("Detail Nilai Mahasiswa Page");
   }, []);
+  
   return (
     <Layouts.ViewContainerLayout
       buttons={
