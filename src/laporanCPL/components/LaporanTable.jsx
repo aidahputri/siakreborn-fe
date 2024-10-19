@@ -14,7 +14,6 @@ import * as Layouts from "@/commons/layouts";
 
 const LaporanCPLTable = ({ laporanCPLDataList, cplList = [] }) => {
   const { checkPermission } = useAuth();
-  console.log(laporanCPLDataList)
   return (
     <Layouts.ListComponentTableLayout
       items={[laporanCPLDataList]}
