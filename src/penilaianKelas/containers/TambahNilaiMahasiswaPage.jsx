@@ -26,9 +26,14 @@ const TambahNilaiMahasiswaPage = (props) => {
     const fetch = async () => {
       setIsLoading((prev) => ({ ...prev, tambahNilai: true }));
       const { data: komponenPenilaianDataListResponse } =
-        await getKomponenPenilaianDataList({ kelasId: id });
+        await getKomponenPenilaianDataList({ kelasId: id, mahasiswaId });
 
-      setKomponenPenilaianDataList(komponenPenilaianDataListResponse.data);
+      setKomponenPenilaianDataList(
+        komponenPenilaianDataListResponse.data.map((v) => ({
+          ...v,
+          name: v.nama,
+        }))
+      );
 
       setIsLoading((prev) => ({ ...prev, tambahNilai: false }));
     };
@@ -38,12 +43,13 @@ const TambahNilaiMahasiswaPage = (props) => {
   useEffect(() => {
     setTitle("Tambah Nilai Mahasiswa Page");
   }, []);
+  
   return (
     <Layouts.ViewContainerLayout
       buttons={
         <>
           <Layouts.ViewContainerBackButtonLayout>
-            <Link to={`/penilaian-kelas//nilai/:mahasiswaId${mahasiswaId}`}>
+            <Link to={`/penilaian-kelas/${id}/nilai/${mahasiswaId}`}>
               {" "}
               <Button className="p-4" variant="secondary">
                 Kembali

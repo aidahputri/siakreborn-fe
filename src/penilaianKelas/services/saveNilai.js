@@ -9,7 +9,7 @@ const saveNilai = (data = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	
-	return axios.post(`${environment.rootApi}/call/nilai/save`, body,
+	return axios.post(`${environment.rootApi}/call/penilaian/save`, body,
 	{
 		params: { token },
 		
