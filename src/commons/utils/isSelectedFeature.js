@@ -13,7 +13,7 @@ var selectedFeatures = Array.from(new Set ([
 "Capaian",
 "CPL",
 
-
+"PenilaianKelas",
 
 
 "Capaian",

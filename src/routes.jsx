@@ -16,6 +16,7 @@ import laporanCPMKRoutes from '@/laporanCPMK/routes'
 import cPLRoutes from '@/cPL/routes' 
 import laporanCPLRoutes from '@/laporanCPL/routes' 
 import mataKuliahRoutes from '@/mataKuliah/routes' 
+import penilaianKelasRoutes from '@/penilaianKelas/routes' 
 
 const GlobalRoutes = () => {
   const router = useRoutes([
@@ -34,6 +35,7 @@ const GlobalRoutes = () => {
 	...laporanCPMKRoutes, 
 	...cPLRoutes, 
 	...laporanCPLRoutes, 
+	...penilaianKelasRoutes, 
 	...mataKuliahRoutes, 
   ])
   return router
