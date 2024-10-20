@@ -39,6 +39,7 @@ const FormTambahKomponenPenilaian = ({}) => {
     const cleanData = cleanFormData(data);
     saveKomponenPenilaian({
       ...cleanData,
+      kelasId: id,
     })
       .then(({ data: { data } }) => {
         navigate(`/penilaian-kelas/${id}`);
