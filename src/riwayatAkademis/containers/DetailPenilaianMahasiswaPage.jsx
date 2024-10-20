@@ -59,7 +59,7 @@ const DetailPenilaianMahasiswaPage = (props) => {
   }, []);
 
   useEffect(() => {
-    setTitle("Detail Penilaian Mahasiswa");
+    setTitle("Detail Penilaian Mahasiswa Page");
   }, []);
 
   return (

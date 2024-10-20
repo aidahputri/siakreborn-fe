@@ -81,7 +81,7 @@ const DaftarRiwayatAkademisPage = (props) => {
   }, [selectedValue]);
 
   useEffect(() => {
-    setTitle("Daftar Riwayat Akademis");
+    setTitle("Daftar Riwayat Akademis Page");
   }, []);
 
   return (
