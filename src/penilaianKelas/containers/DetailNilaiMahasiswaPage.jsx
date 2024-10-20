@@ -17,12 +17,15 @@ import getNilaiMahasiswaDataList from "../services/getNilaiMahasiswaDataList";
 import DetailTable from "../components/DetailTable";
 
 import getDetailNilaiAkhirMahasiswaDataList from "../services/getDetailNilaiAkhirMahasiswaDataList";
+import DetailNilaiMahasiswa from "../components/DetailNilaiMahasiswa";
+import getPenilaianDataDetail from "../services/getPenilaianDataDetail";
+
 const DetailNilaiMahasiswaPage = (props) => {
   const { checkPermission } = useAuth();
 
   const [isLoading, setIsLoading] = useState({
     tableNilaiMahasiswa: false,
-    reportDetailNilaiAkhirMahasiswa: false,
+    detailNilaiMahasiswa: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
@@ -41,42 +44,31 @@ const DetailNilaiMahasiswaPage = (props) => {
         setIsLoading((prev) => ({ ...prev, tableNilaiMahasiswa: false }));
       }
     };
-    fetchData();
+    checkPermission("ReadKelasDosenMe") && fetchData();
   }, []);
-  const [
-    detailNilaiAkhirMahasiswaDataList,
-    setDetailNilaiAkhirMahasiswaDataList,
-  ] = useState();
-  const { kelasId } = useParams();
+
+  const [penilaianDataDetail, setPenilaianDataDetail] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading((prev) => ({
-          ...prev,
-          reportDetailNilaiAkhirMahasiswa: true,
-        }));
-        const { data: detailNilaiAkhirMahasiswaDataList } =
-          await getDetailNilaiAkhirMahasiswaDataList({
-            kelasId: id,
-            mahasiswaId,
-          });
-        setDetailNilaiAkhirMahasiswaDataList(
-          detailNilaiAkhirMahasiswaDataList.data
-        );
+        setIsLoading((prev) => ({ ...prev, detailNilaiMahasiswa: true }));
+        const { data: penilaianDataDetail } = await getPenilaianDataDetail({
+          kelasId: id,
+          mahasiswaId,
+        });
+        setPenilaianDataDetail(penilaianDataDetail.data);
       } finally {
-        setIsLoading((prev) => ({
-          ...prev,
-          reportDetailNilaiAkhirMahasiswa: false,
-        }));
+        setIsLoading((prev) => ({ ...prev, detailNilaiMahasiswa: false }));
       }
     };
-    fetchData();
+    checkPermission("ReadKelasDosenMe") && fetchData();
   }, []);
 
   useEffect(() => {
     setTitle("Detail Nilai Mahasiswa Page");
   }, []);
+
   return (
     <Layouts.ViewContainerLayout
       buttons={
@@ -94,30 +86,30 @@ const DetailNilaiMahasiswaPage = (props) => {
             <Link to={`/penilaian-kelas/${id}/nilai/${mahasiswaId}/tambah`}>
               {" "}
               <Button className="p-2" variant="primary">
-                Tambah Nilai
+                Tambah/Edit Nilai
               </Button>
             </Link>
           </Layouts.ViewContainerButtonLayout>
         </>
       }
     >
+      <Layouts.DetailContainerLayout
+        title={`${penilaianDataDetail?.mahasiswaNpm} - ${penilaianDataDetail?.mahasiswaNama}`}
+        singularName={"Nilai"}
+        items={{ ...penilaianDataDetail }}
+        isLoading={isLoading.detailNilaiMahasiswa}
+        isCorrelatedWithAnotherComponent={false}
+      >
+        <DetailNilaiMahasiswa {...{ data: { ...penilaianDataDetail } }} />
+      </Layouts.DetailContainerLayout>
+
       <Layouts.ListContainerTableLayout
-        title={"Table Nilai Mahasiswa"}
+        title={"Detail Nilai Mahasiswa"}
         singularName={"Nilai"}
         items={[nilaiMahasiswaDataList]}
         isLoading={isLoading.tableNilaiMahasiswa}
       >
         <NilaiTable nilaiMahasiswaDataList={nilaiMahasiswaDataList} />
-      </Layouts.ListContainerTableLayout>
-      <Layouts.ListContainerTableLayout
-        title={"Report Detail Nilai Akhir Mahasiswa"}
-        singularName={"Detail"}
-        items={[detailNilaiAkhirMahasiswaDataList]}
-        isLoading={isLoading.reportDetailNilaiAkhirMahasiswa}
-      >
-        <DetailTable
-          detailNilaiAkhirMahasiswaDataList={detailNilaiAkhirMahasiswaDataList}
-        />
       </Layouts.ListContainerTableLayout>
     </Layouts.ViewContainerLayout>
   );

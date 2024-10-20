@@ -78,9 +78,8 @@ const DetailPenilaianMahasiswaPage = (props) => {
       }
     >
       <div className="flex flex-col">
-        <h2>{`${penilaianDataDetail?.mahasiswaNpm} - ${penilaianDataDetail?.mahasiswaNama}`}</h2>
         <Layouts.DetailContainerLayout
-          title={""}
+          title={`${penilaianDataDetail?.mahasiswaNpm} - ${penilaianDataDetail?.mahasiswaNama}`}
           singularName={"Penilaian"}
           items={{ ...penilaianDataDetail }}
           isLoading={isLoading.detailPenilaianMahasiswa}

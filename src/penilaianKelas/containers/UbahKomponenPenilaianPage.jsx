@@ -19,16 +19,14 @@ const UbahKomponenPenilaianPage = (props) => {
   });
   const { setTitle } = useContext(HeaderContext);
 
-  const [searchParams] = useSearchParams();
-  const kelasId = searchParams.get("kelasId");
-  const id = searchParams.get("id");
+  const { id, komponenId } = useParams();
   const [komponenPenilaianUbah, setKomponenPenilaianUbah] = useState();
 
   useEffect(() => {
     const fetch = async () => {
       setIsLoading((prev) => ({ ...prev, ubahKomponenPenilaian: true }));
       const { data: komponenPenilaianUbahResponse } =
-        await getKomponenPenilaianUbah({ id });
+        await getKomponenPenilaianUbah({ id: komponenId });
 
       setKomponenPenilaianUbah(komponenPenilaianUbahResponse.data);
 
@@ -40,10 +38,6 @@ const UbahKomponenPenilaianPage = (props) => {
   useEffect(() => {
     setTitle("Ubah Komponen Penilaian Page");
   }, []);
-
-  useEffect(() => {
-    console.log(komponenPenilaianUbah);
-  }, [komponenPenilaianUbah]);
 
   return (
     <Layouts.ViewContainerLayout

@@ -1,22 +1,24 @@
-import axios from 'axios'
-import tokenManager from '@/commons/utils/token'
-import environment from '@/commons/utils/environment'
-
+import axios from "axios";
+import tokenManager from "@/commons/utils/token";
+import environment from "@/commons/utils/environment";
 
 const ubahKomponenPenilaian = (data = {}) => {
-	let body = data;
+  let body = data;
 
-	const { getToken } = tokenManager();
-	const token = getToken();
-	
-	return axios.put(`${environment.rootApi}/call/komponenpenilaian/ubah`, body,
-	{
-		params: { token },
-		
-		headers: {
-			'Authorization': token,
-			
-		}
-	})} 
+  const { getToken } = tokenManager();
+  const token = getToken();
 
-export default ubahKomponenPenilaian
+  return axios.put(
+    `${environment.rootApi}/call/komponenpenilaian/update`,
+    body,
+    {
+      params: { token },
+
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+};
+
+export default ubahKomponenPenilaian;
