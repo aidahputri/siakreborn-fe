@@ -77,7 +77,7 @@ const DetailPenilaianKelasPage = (props) => {
           </Layouts.ViewContainerBackButtonLayout>
 
           <Layouts.ViewContainerButtonLayout>
-            <Link to={`/penilaian-kelas/${id}/tambah`}>
+            <Link to={`/penilaian-kelas/${id}/komponen/tambah`}>
               {" "}
               <Button className="p-2" variant="primary">
                 Tambah Komponen Penilaian
