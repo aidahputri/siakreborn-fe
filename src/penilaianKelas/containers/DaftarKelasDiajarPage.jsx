@@ -56,12 +56,10 @@ const DaftarKelasDiajarPage = (props) => {
       {penilaianKelasDataList?.map((term, idx) => {
         return (
           <div key={idx} className="flex flex-col gap-4">
-            <h2>
-              {term.kode ? formatAcademicYear(term.kode) : "Undefined term"}
-            </h2>
-
             <Layouts.ListContainerTableLayout
-              title={"Table Kelas Diajar"}
+              title={
+                term.kode ? formatAcademicYear(term.kode) : "Undefined term"
+              }
               singularName={"Kelas"}
               items={[term.kelas]}
               isLoading={isLoading.tableKelasDiajar}

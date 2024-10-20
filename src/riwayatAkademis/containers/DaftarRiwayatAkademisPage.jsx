@@ -112,14 +112,12 @@ const DaftarRiwayatAkademisPage = (props) => {
               {termRiwayatAkademisDataList?.map((term, idx) => {
                 return (
                   <div key={idx} className="flex flex-col gap-4">
-                    <h2>
-                      {term.kode
-                        ? formatAcademicYear(term.kode)
-                        : "Undefined term"}
-                    </h2>
-
                     <Layouts.ListContainerTableLayout
-                      title={""}
+                      title={
+                        term.kode
+                          ? formatAcademicYear(term.kode)
+                          : "Undefined term"
+                      }
                       singularName={"Berdasarkan Term"}
                       items={[term.kelas]}
                       isLoading={isLoading.tableTermRiwayatAkademis}
@@ -145,10 +143,8 @@ const DaftarRiwayatAkademisPage = (props) => {
               {mKRiwayatAkademisDataList?.map((mk, idx) => {
                 return (
                   <div key={idx} className="flex flex-col gap-4">
-                    <h2>{mk.mataKuliahNama}</h2>
-
                     <Layouts.ListContainerTableLayout
-                      title={""}
+                      title={mk.mataKuliahNama}
                       singularName={"MK"}
                       items={[[mk]]}
                       isLoading={isLoading.tableMKRiwayatAkademis}
