@@ -7,7 +7,7 @@ const getDataSubCPMK = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/subcpmk/filter?by=cpmk`, {
+	return axios.get(`${environment.rootApi}/call/subcpmk/filter?by=parentCPMK`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

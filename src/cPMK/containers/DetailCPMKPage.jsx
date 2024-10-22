@@ -45,7 +45,9 @@ const DetailCPMKPage = (props) => {
     const fetchData = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, tableDataSubCPMK: true }));
-        const { data: dataSubCPMK } = await getDataSubCPMK();
+        const { data: dataSubCPMK } = await getDataSubCPMK({
+          parentCPMKId: id,
+        });
         setDataSubCPMK(dataSubCPMK.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableDataSubCPMK: false }));
