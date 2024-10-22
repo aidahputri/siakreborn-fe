@@ -7,7 +7,7 @@ const getBobot = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/cpmk/filter?by=cpl`, {
+	return axios.get(`${environment.rootApi}/call/cpmk/filter?by=parentCPL`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

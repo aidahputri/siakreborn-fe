@@ -45,7 +45,7 @@ const DetailCPLPage = (props) => {
     const fetchData = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, tableDataCPMK: true }));
-        const { data: bobot } = await getBobot({ cplId: id });
+        const { data: bobot } = await getBobot({ parentCPLId: id });
         setBobot(bobot.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableDataCPMK: false }));
@@ -57,6 +57,7 @@ const DetailCPLPage = (props) => {
   useEffect(() => {
     setTitle("Detail CPL Page");
   }, []);
+
   return (
     <Layouts.ViewContainerLayout
       buttons={
