@@ -29,7 +29,9 @@ const DetailCapaian = ({ data }) => {
   };
 
   const hapus = async () => {
-    await deleteSubCPMK({});
+    await deleteSubCPMK({
+      id: data.id,
+    });
     navigate("/subcpmk");
   };
 
@@ -65,6 +67,12 @@ const DetailCapaian = ({ data }) => {
       itemsEvents={[
         <Button variant="secondary" onClick={() => ubah()}>
           Ubah
+        </Button>,
+        <Button
+          variant="tertiary"
+          onClick={() => setShowModalKonfirmasiHapusSubCPMK(true)}
+        >
+          Hapus
         </Button>,
       ]}
       itemsModals={[
