@@ -136,13 +136,8 @@ addSubMenu("Akademis", {
 });
 
 addMenu({
-  route: "#",
-  label: "Penilaian Kelas",
-  subMenus: [],
-});
-
-addSubMenu("Penilaian Kelas", {
   route: "/penilaian-kelas",
   label: "Penilaian Kelas",
   permission: "ReadKelasDosenMe",
+  subMenus: [],
 });
