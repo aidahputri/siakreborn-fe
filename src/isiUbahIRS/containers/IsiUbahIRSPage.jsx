@@ -24,6 +24,28 @@ const IsiUbahIRSPage = (props) => {
   const { setTitle } = useContext(HeaderContext);
 
   const [kelasRencanaStudiDataList, setKelasRencanaStudiDataList] = useState();
+  const [selectedClasses, setSelectedClasses] = useState([]);
+
+  const handleChange = (item) => {
+    const mkIdx = selectedClasses.findIndex(
+      (i) => i.mataKuliahId === item.mataKuliahId
+    );
+
+    const idx = selectedClasses.findIndex((i) => i.id === item.id);
+	
+    if (idx !== -1) {
+      setSelectedClasses([
+        ...selectedClasses.slice(0, idx),
+        ...selectedClasses.slice(idx + 1),
+      ]);
+    } else if (mkIdx !== -1) {
+      setSelectedClasses([
+        ...selectedClasses.filter((i) => i.mataKuliahId !== item.mataKuliahId),
+        item,
+      ]);
+    } else setSelectedClasses([...selectedClasses, item]);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,8 +65,8 @@ const IsiUbahIRSPage = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(kelasRencanaStudiDataList);
-  }, [kelasRencanaStudiDataList]);
+    console.log(selectedClasses);
+  }, [selectedClasses]);
 
   return (
     <Layouts.ViewContainerLayout
@@ -66,7 +88,11 @@ const IsiUbahIRSPage = (props) => {
               items={[mk.kelas]}
               isLoading={isLoading.tableKelasRencanaStudi}
             >
-              <KelasTable kelasRencanaStudiDataList={mk.kelas} />
+              <KelasTable
+                handleChange={handleChange}
+                kelasRencanaStudiDataList={mk.kelas}
+                selectedClasses={selectedClasses}
+              />
             </Layouts.ListContainerTableLayout>
           </div>
         );

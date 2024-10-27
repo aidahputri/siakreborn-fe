@@ -3,7 +3,7 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.5.5
 */
-import React from "react";
+import { React, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useAuth } from "@/commons/auth";
@@ -12,18 +12,27 @@ import { isMobile } from "@/commons/utils/responsive";
 
 import * as Layouts from "@/commons/layouts";
 
-const KelasTable = ({ kelasRencanaStudiDataList }) => {
+const KelasTable = ({ kelasRencanaStudiDataList, handleChange, selectedClasses }) => {
   const { checkPermission } = useAuth();
   const navigate = useNavigate();
+
   const detail = async (kelasItem) => {
     isMobile() && navigate(`/kelas/${kelasItem.id}`);
   };
 
   return (
-    <Layouts.ListComponentTableLayout
+    <Layouts.FormListComponentTableLayout
       items={[kelasRencanaStudiDataList]}
       detail={detail}
+      selected={selectedClasses}
+      handleChange={handleChange}
       itemsAttrs={[
+        {
+          id: "radio",
+          condition: "isHeading",
+          label: "",
+          featureName: "mataKuliahId",
+        },
         {
           id: "namaKelas",
           condition: "isHeading",
