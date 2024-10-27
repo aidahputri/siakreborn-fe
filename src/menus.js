@@ -136,6 +136,18 @@ addSubMenu("Akademis", {
 });
 
 addMenu({
+  route: "#",
+  label: "IRS",
+  subMenus: [],
+});
+
+addSubMenu("IRS", {
+  route: "/irs/isi",
+  label: "Isi/Ubah IRS",
+  permission: "CreateRencanaStudi",
+});
+
+addMenu({
   route: "/penilaian-kelas",
   label: "Penilaian Kelas",
   permission: "ReadKelasDosenMe",
