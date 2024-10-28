@@ -40,10 +40,12 @@ const FormIsiIRS = ({
   const navigate = useNavigate();
 
   const simpan = (data) => {
-    const cleanData = cleanFormData(data);
-    saveRencanaStudi({
-      ...cleanData,
-    })
+    // const cleanData = cleanFormData(data);
+    const req = {
+      kelasIds: selectedClasses.map((item) => item.id),
+    };
+    // console.log(req)
+    saveRencanaStudi(req)
       .then(({ data: { data } }) => {})
       .catch((error) => {
         console.error(error);
