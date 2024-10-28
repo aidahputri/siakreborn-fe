@@ -2,6 +2,7 @@ export { default as Button } from "./Button";
 export { default as Detail } from "./Detail";
 export { default as Footer } from "./Footer";
 export { default as Form } from "./Form";
+export { default as IRSForm } from "./Form/IRSForm";
 export { default as InputField } from "./Form/InputField";
 export { default as FileInputField } from "./Form/FileInputField";
 export { default as SelectionField } from "./Form/SelectionField";

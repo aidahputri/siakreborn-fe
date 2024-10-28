@@ -14,7 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
-  RichTextField,
+  // RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -27,8 +27,14 @@ import saveRencanaStudi from "../services/saveRencanaStudi";
 
 import { notifyError } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
+import KelasTable from "./KelasTable";
 
-const FormIsiIRS = ({}) => {
+const FormIsiIRS = ({
+  kelasRencanaStudiDataList,
+  selectedClasses,
+  handleChange,
+  isLoading,
+}) => {
   const { control, handleSubmit } = useForm();
 
   const navigate = useNavigate();
@@ -46,11 +52,28 @@ const FormIsiIRS = ({}) => {
   };
 
   return (
-    <Layouts.FormComponentLayout
-      title="Isi IRS"
+    <Layouts.IRSFormComponentLayout
+      title="Isi/Ubah IRS"
       onSubmit={handleSubmit(simpan)}
       vas={[]}
-      formFields={[]}
+      formFields={kelasRencanaStudiDataList?.map((mk, idx) => {
+        return (
+          <div key={idx} className="flex flex-col gap-4">
+            <Layouts.ListContainerTableLayout
+              title={`[${mk.kode ?? "Undefined"}] ${mk.name ?? ""} (${mk.sks ?? "0"} SKS, Term ${mk.term ?? "0"}); Kurikulum ${mk.kurikulumName ?? "Undefined"}`}
+              singularName={"Kelas"}
+              items={[mk.kelas]}
+              isLoading={isLoading}
+            >
+              <KelasTable
+                handleChange={handleChange}
+                kelasRencanaStudiDataList={mk.kelas}
+                selectedClasses={selectedClasses}
+              />
+            </Layouts.ListContainerTableLayout>
+          </div>
+        );
+      })}
       itemsEvents={[
         <Button type="submit" variant="primary">
           Simpan

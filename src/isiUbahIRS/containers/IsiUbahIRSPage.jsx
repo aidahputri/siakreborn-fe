@@ -10,7 +10,7 @@ import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/commons/auth";
-// import FormIsiIRS from "../components/FormIsiIRS";
+import FormIsiIRS from "../components/FormIsiIRS";
 import KelasTable from "../components/KelasTable";
 
 import getKelasRencanaStudiDataList from "../services/getKelasRencanaStudiDataList";
@@ -32,7 +32,7 @@ const IsiUbahIRSPage = (props) => {
     );
 
     const idx = selectedClasses.findIndex((i) => i.id === item.id);
-	
+
     if (idx !== -1) {
       setSelectedClasses([
         ...selectedClasses.slice(0, idx),
@@ -76,10 +76,15 @@ const IsiUbahIRSPage = (props) => {
         </>
       }
     >
-      {/* <Layouts.FormContainerLayout singularName={"IRS"}>
-        <FormIsiIRS {...props} />
-      </Layouts.FormContainerLayout> */}
-      {kelasRencanaStudiDataList?.map((mk, idx) => {
+      <Layouts.FormContainerLayout singularName={"IRS"}>
+        <FormIsiIRS
+          kelasRencanaStudiDataList={kelasRencanaStudiDataList}
+          selectedClasses={selectedClasses}
+          handleChange={handleChange}
+          isLoading={isLoading.tableKelasRencanaStudi}
+        />
+      </Layouts.FormContainerLayout>
+      {/* {kelasRencanaStudiDataList?.map((mk, idx) => {
         return (
           <div key={idx} className="flex flex-col gap-4">
             <Layouts.ListContainerTableLayout
@@ -96,7 +101,7 @@ const IsiUbahIRSPage = (props) => {
             </Layouts.ListContainerTableLayout>
           </div>
         );
-      })}
+      })} */}
     </Layouts.ViewContainerLayout>
   );
 };
