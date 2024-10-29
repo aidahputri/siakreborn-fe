@@ -72,10 +72,6 @@ const IsiUbahIRSPage = (props) => {
     setTitle("Isi/Ubah IRS Page");
   }, []);
 
-  useEffect(() => {
-    console.log(selectedClasses);
-  }, [selectedClasses]);
-
   return (
     <Layouts.ViewContainerLayout
       buttons={

@@ -54,10 +54,6 @@ const LihatIRSPage = (props) => {
     fetchData();
   }, []);
 
-  useState(() => {
-    console.log(mataKuliahDipilihDataList);
-  }, [mataKuliahDipilihDataList]);
-
   useEffect(() => {
     setTitle("Lihat IRS Page");
   }, []);
