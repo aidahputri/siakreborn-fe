@@ -8,6 +8,7 @@ import homeRoutes from "@/home/routes";
 import kurikulumRoutes from "@/kurikulum/routes";
 import programStudiRoutes from "@/programStudi/routes";
 import kelasRoutes from "@/kelas/routes";
+import lihatIRSRoutes from "@/lihatIRS/routes";
 import semesterRoutes from "@/semester/routes";
 import isiUbahIRSRoutes from "@/isiUbahIRS/routes";
 import riwayatAkademisRoutes from "@/riwayatAkademis/routes";
@@ -29,8 +30,9 @@ const GlobalRoutes = () => {
     ...kurikulumRoutes,
     ...programStudiRoutes,
     ...kelasRoutes,
+    ...lihatIRSRoutes,
     ...semesterRoutes,
-	...isiUbahIRSRoutes, 
+    ...isiUbahIRSRoutes,
     ...riwayatAkademisRoutes,
     ...cPMKRoutes,
     ...subCPMKRoutes,

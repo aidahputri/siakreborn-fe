@@ -141,6 +141,12 @@ addMenu({
   subMenus: [],
 });
 
+addSubMenu('IRS', {
+	route: '/irs/ringkasan',
+	label: 'Lihat IRS',
+	permission: "ReadRencanaStudiMe"
+})
+
 addSubMenu("IRS", {
   route: "/irs/isi",
   label: "Isi/Ubah IRS",
