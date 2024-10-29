@@ -47,7 +47,9 @@ const FormIsiIRS = ({
     };
     // console.log(req)
     saveRencanaStudi(req)
-      .then(({ data: { data } }) => {})
+      .then(({ data: { data } }) => {
+        navigate('/irs/ringkasan')
+      })
       .catch((error) => {
         console.error(error);
         notifyError(error);
