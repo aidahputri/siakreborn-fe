@@ -30,9 +30,7 @@ const LihatIRSPage = (props) => {
     const fetchData = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, iRS: true }));
-        const { data: detailIRSDataList } = await getDetailIRSDataList({
-          invalid,
-        });
+        const { data: detailIRSDataList } = await getDetailIRSDataList({});
         setDetailIRSDataList(detailIRSDataList.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, iRS: false }));
@@ -56,17 +54,21 @@ const LihatIRSPage = (props) => {
     fetchData();
   }, []);
 
+  useState(() => {
+    console.log(mataKuliahDipilihDataList);
+  }, [mataKuliahDipilihDataList]);
+
   useEffect(() => {
     setTitle("Lihat IRS Page");
   }, []);
+
   return (
     <Layouts.ViewContainerLayout
       buttons={
         <>
           <Layouts.ViewContainerButtonLayout>
             <Link
-              to={`
-			  	`}
+              to={`/irs/isi`}
             >
               {" "}
               <Button className="p-2 w-full" variant="primary">
@@ -89,10 +91,12 @@ const LihatIRSPage = (props) => {
       <Layouts.ListContainerTableLayout
         title={"Table Mata Kuliah Dipilih"}
         singularName={"Mata"}
-        items={[mataKuliahDipilihDataList]}
+        items={[mataKuliahDipilihDataList?.kelas]}
         isLoading={isLoading.tableMataKuliahDipilih}
       >
-        <MataTable mataKuliahDipilihDataList={mataKuliahDipilihDataList} />
+        <MataTable
+          mataKuliahDipilihDataList={mataKuliahDipilihDataList?.kelas}
+        />
       </Layouts.ListContainerTableLayout>
     </Layouts.ViewContainerLayout>
   );

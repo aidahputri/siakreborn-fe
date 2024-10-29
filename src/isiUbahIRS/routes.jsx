@@ -3,17 +3,14 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.5.5
 */
-import React from 'react';
-import IsiUbahIRSPage from './containers/IsiUbahIRSPage'
+import React from "react";
+import IsiUbahIRSPage from "./containers/IsiUbahIRSPage";
 
 const isiUbahIRSRoutes = [
-{ 
-	path: "/irs/isi",
-	element: <IsiUbahIRSPage />,
-}
+  {
+    path: "/irs/isi",
+    element: <IsiUbahIRSPage />,
+  },
+];
 
-	
-
-]
-
-export default isiUbahIRSRoutes
+export default isiUbahIRSRoutes;
