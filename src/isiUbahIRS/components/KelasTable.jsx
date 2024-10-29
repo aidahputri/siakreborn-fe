@@ -63,6 +63,12 @@ const KelasTable = ({ kelasRencanaStudiDataList, handleChange, selectedClasses }
           label: "Semester",
           featureName: "semesterKode",
         },
+        {
+          id: "pengajar",
+          condition: "isHeading",
+          label: "Pengajar",
+          featureName: "dosen",
+        },
       ]}
       itemsEvents={(kelasItem) => [
         <Link to={`/kelas/${kelasItem.id}`}>

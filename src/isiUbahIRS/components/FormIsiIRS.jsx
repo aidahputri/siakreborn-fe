@@ -30,6 +30,7 @@ import * as Layouts from "@/commons/layouts";
 import KelasTable from "./KelasTable";
 
 const FormIsiIRS = ({
+  formTitle,
   kelasRencanaStudiDataList,
   selectedClasses,
   handleChange,
@@ -55,14 +56,14 @@ const FormIsiIRS = ({
 
   return (
     <Layouts.IRSFormComponentLayout
-      title="Isi/Ubah IRS"
+      title={formTitle}
       onSubmit={handleSubmit(simpan)}
       vas={[]}
       formFields={kelasRencanaStudiDataList?.map((mk, idx) => {
         return (
           <div key={idx} className="flex flex-col gap-4">
             <Layouts.ListContainerTableLayout
-              title={`[${mk.kode ?? "Undefined"}] ${mk.name ?? ""} (${mk.sks ?? "0"} SKS, Term ${mk.term ?? "0"}); Kurikulum ${mk.kurikulumName ?? "Undefined"}`}
+              title={mk.title}
               singularName={"Kelas"}
               items={[mk.kelas]}
               isLoading={isLoading}

@@ -25,6 +25,7 @@ const IsiUbahIRSPage = (props) => {
 
   const [kelasRencanaStudiDataList, setKelasRencanaStudiDataList] = useState();
   const [selectedClasses, setSelectedClasses] = useState([]);
+  const [formTitle, setFormTitle] = useState();
 
   const handleChange = (item) => {
     const mkIdx = selectedClasses.findIndex(
@@ -52,7 +53,8 @@ const IsiUbahIRSPage = (props) => {
         setIsLoading((prev) => ({ ...prev, tableKelasRencanaStudi: true }));
         const { data: kelasRencanaStudiDataList } =
           await getKelasRencanaStudiDataList({});
-        setKelasRencanaStudiDataList(kelasRencanaStudiDataList.data);
+        setKelasRencanaStudiDataList(kelasRencanaStudiDataList.data.mataKuliah);
+        setFormTitle(kelasRencanaStudiDataList.data.title);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableKelasRencanaStudi: false }));
       }
@@ -65,8 +67,8 @@ const IsiUbahIRSPage = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(selectedClasses);
-  }, [selectedClasses]);
+    console.log(kelasRencanaStudiDataList);
+  }, [kelasRencanaStudiDataList]);
 
   return (
     <Layouts.ViewContainerLayout
@@ -78,30 +80,13 @@ const IsiUbahIRSPage = (props) => {
     >
       <Layouts.FormContainerLayout singularName={"IRS"}>
         <FormIsiIRS
+          formTitle={formTitle}
           kelasRencanaStudiDataList={kelasRencanaStudiDataList}
           selectedClasses={selectedClasses}
           handleChange={handleChange}
           isLoading={isLoading.tableKelasRencanaStudi}
         />
       </Layouts.FormContainerLayout>
-      {/* {kelasRencanaStudiDataList?.map((mk, idx) => {
-        return (
-          <div key={idx} className="flex flex-col gap-4">
-            <Layouts.ListContainerTableLayout
-              title={`[${mk.kode ?? "Undefined"}] ${mk.name ?? ""} (${mk.sks ?? "0"} SKS, Term ${mk.term ?? "0"}); Kurikulum ${mk.kurikulumName ?? "Undefined"}`}
-              singularName={"Kelas"}
-              items={[mk.kelas]}
-              isLoading={isLoading.tableKelasRencanaStudi}
-            >
-              <KelasTable
-                handleChange={handleChange}
-                kelasRencanaStudiDataList={mk.kelas}
-                selectedClasses={selectedClasses}
-              />
-            </Layouts.ListContainerTableLayout>
-          </div>
-        );
-      })} */}
     </Layouts.ViewContainerLayout>
   );
 };
