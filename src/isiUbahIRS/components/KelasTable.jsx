@@ -40,6 +40,12 @@ const KelasTable = ({ kelasRencanaStudiDataList, handleChange, selectedClasses }
           featureName: "nama",
         },
         {
+          id: "periode",
+          condition: "isHeading",
+          label: "Periode",
+          featureName: "semesterTanggal",
+        },
+        {
           id: "kapasitas",
           condition: "isHeading",
           label: "Kapasitas",
@@ -56,12 +62,6 @@ const KelasTable = ({ kelasRencanaStudiDataList, handleChange, selectedClasses }
           condition: "isHeading",
           label: "Ruangan",
           featureName: "ruangan",
-        },
-        {
-          id: "semester",
-          condition: "isHeading",
-          label: "Semester",
-          featureName: "semesterKode",
         },
         {
           id: "pengajar",

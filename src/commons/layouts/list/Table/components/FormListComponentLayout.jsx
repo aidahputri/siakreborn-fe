@@ -17,7 +17,7 @@ const FormListComponentLayout = ({
   itemsEvents,
   itemsModals,
   selected,
-  handleChange
+  handleChange,
 }) => {
   const [viewItems, setViewItems] = useState([]);
 
@@ -53,8 +53,20 @@ const FormListComponentLayout = ({
   return (
     <div>
       <DataTable
+        customStyles={{
+          rows: {
+            style: {
+              whiteSpace: "pre",
+            },
+          },
+        }}
         columns={TableHeaderLayout({ itemsAttrs, itemsEvents, itemsModals })}
-        data={FormTableRowLayout({ viewItems, itemsAttrs, selected, handleChange })}
+        data={FormTableRowLayout({
+          viewItems,
+          itemsAttrs,
+          selected,
+          handleChange,
+        })}
         pagination
         subHeader
         subHeaderComponent={

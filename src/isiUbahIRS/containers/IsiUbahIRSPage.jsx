@@ -55,6 +55,12 @@ const IsiUbahIRSPage = (props) => {
           await getKelasRencanaStudiDataList({});
         setKelasRencanaStudiDataList(kelasRencanaStudiDataList.data.mataKuliah);
         setFormTitle(kelasRencanaStudiDataList.data.title);
+        setSelectedClasses(
+          kelasRencanaStudiDataList.data.mataKuliah
+            .flatMap((mk) => mk.kelas)
+            .filter((k) => k.selected === true)
+        );
+        
       } finally {
         setIsLoading((prev) => ({ ...prev, tableKelasRencanaStudi: false }));
       }
@@ -67,8 +73,8 @@ const IsiUbahIRSPage = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(kelasRencanaStudiDataList);
-  }, [kelasRencanaStudiDataList]);
+    console.log(selectedClasses);
+  }, [selectedClasses]);
 
   return (
     <Layouts.ViewContainerLayout
