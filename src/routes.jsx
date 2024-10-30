@@ -11,6 +11,7 @@ import kelasRoutes from "@/kelas/routes";
 import lihatIRSRoutes from "@/lihatIRS/routes";
 import semesterRoutes from "@/semester/routes";
 import isiUbahIRSRoutes from "@/isiUbahIRS/routes";
+import pengaturanPengisianIRSRoutes from "@/pengaturanPengisianIRS/routes";
 import riwayatAkademisRoutes from "@/riwayatAkademis/routes";
 import cPMKRoutes from "@/cPMK/routes";
 import subCPMKRoutes from "@/subCPMK/routes";
@@ -33,6 +34,7 @@ const GlobalRoutes = () => {
     ...lihatIRSRoutes,
     ...semesterRoutes,
     ...isiUbahIRSRoutes,
+    ...pengaturanPengisianIRSRoutes,
     ...riwayatAkademisRoutes,
     ...cPMKRoutes,
     ...subCPMKRoutes,

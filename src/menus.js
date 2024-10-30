@@ -153,6 +153,12 @@ addSubMenu("IRS", {
   permission: "CreateRencanaStudiMe",
 });
 
+addSubMenu("IRS", {
+  route: "/irs/pengaturan",
+  label: "Pengaturan Pengisian IRS",
+  permission: "UpdatePengisianRencanaStudi",
+});
+
 addMenu({
   route: "/penilaian-kelas",
   label: "Penilaian Kelas",
