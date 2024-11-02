@@ -85,14 +85,16 @@ const DetailMataKuliahPage = (props) => {
       >
         <DetailMataKuliah {...{ data: { ...mataKuliahDataDetail } }} />
       </Layouts.DetailContainerLayout>
-      <Layouts.ListContainerTableLayout
-        title={"Table CPMK"}
-        singularName={"CPMK"}
-        items={[cPMKDataList]}
-        isLoading={isLoading.tableCPMK}
-      >
-        <CPMKTable cPMKDataList={cPMKDataList} />
-      </Layouts.ListContainerTableLayout>
+      {isSelectedFeature("CPMK") && (
+        <Layouts.ListContainerTableLayout
+          title={"Table CPMK"}
+          singularName={"CPMK"}
+          items={[cPMKDataList]}
+          isLoading={isLoading.tableCPMK}
+        >
+          <CPMKTable cPMKDataList={cPMKDataList} />
+        </Layouts.ListContainerTableLayout>
+      )}
     </Layouts.ViewContainerLayout>
   );
 };
