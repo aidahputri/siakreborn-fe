@@ -40,7 +40,7 @@ const FormUbahMataKuliah = ({ mataKuliahUbah, kurikulum }) => {
       ...cleanData,
     })
       .then(({ data: { data } }) => {
-        navigate(`/matakuliah`);
+        navigate(`/matakuliah/${mataKuliahUbah.id}`);
       })
       .catch((error) => {
         console.error(error);

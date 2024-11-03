@@ -37,9 +37,6 @@ const PengaturanMasaPengisianIRSPage = (props) => {
     setTitle("Pengaturan Masa Pengisian IRS Page");
   }, []);
 
-//   useEffect(() => {
-//     console.log(periodePengisianIRS);
-//   }, [periodePengisianIRS]);
   return (
     <Layouts.ViewContainerLayout
       buttons={

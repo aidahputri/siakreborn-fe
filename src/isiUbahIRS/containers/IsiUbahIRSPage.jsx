@@ -4,7 +4,7 @@
 	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
-import { Button, Spinner } from "@/commons/components";
+import { Button, Detail, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
@@ -26,6 +26,7 @@ const IsiUbahIRSPage = (props) => {
   const [kelasRencanaStudiDataList, setKelasRencanaStudiDataList] = useState();
   const [selectedClasses, setSelectedClasses] = useState([]);
   const [formTitle, setFormTitle] = useState();
+  const [isIRSPeriod, setIsIRSPeriod] = useState(true);
 
   const handleChange = (item) => {
     const mkIdx = selectedClasses.findIndex(
@@ -60,13 +61,22 @@ const IsiUbahIRSPage = (props) => {
             .flatMap((mk) => mk.kelas)
             .filter((k) => k.selected === true)
         );
-        
+      } catch (error) {
+        console.log(error);
+        if (error.response.status === 400) {
+          setIsIRSPeriod(false);
+          console.log("halo");
+        }
       } finally {
         setIsLoading((prev) => ({ ...prev, tableKelasRencanaStudi: false }));
       }
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log(isIRSPeriod);
+  }, [isIRSPeriod]);
 
   useEffect(() => {
     setTitle("Isi/Ubah IRS Page");
@@ -80,15 +90,35 @@ const IsiUbahIRSPage = (props) => {
         </>
       }
     >
-      <Layouts.FormContainerLayout singularName={"IRS"}>
-        <FormIsiIRS
-          formTitle={formTitle}
-          kelasRencanaStudiDataList={kelasRencanaStudiDataList}
-          selectedClasses={selectedClasses}
-          handleChange={handleChange}
-          isLoading={isLoading.tableKelasRencanaStudi}
-        />
-      </Layouts.FormContainerLayout>
+      {isLoading.tableKelasRencanaStudi ? (
+        <div className="flex justify-center items-center h-full">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          {isIRSPeriod ? (
+            <Layouts.FormContainerLayout singularName={"IRS"}>
+              <FormIsiIRS
+                formTitle={formTitle}
+                kelasRencanaStudiDataList={kelasRencanaStudiDataList}
+                selectedClasses={selectedClasses}
+                handleChange={handleChange}
+                isLoading={isLoading.tableKelasRencanaStudi}
+              />
+            </Layouts.FormContainerLayout>
+          ) : (
+            <Layouts.ViewContainerLayout>
+              <Detail
+                children={
+                  <p className="w-full text-center">
+                    Masa pengisian belum mulai atau telah berakhir.
+                  </p>
+                }
+              />
+            </Layouts.ViewContainerLayout>
+          )}
+        </>
+      )}
     </Layouts.ViewContainerLayout>
   );
 };
