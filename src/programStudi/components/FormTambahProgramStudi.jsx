@@ -1,12 +1,11 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -15,6 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
+  RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -23,7 +23,6 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-
 import saveProgramStudi from "../services/saveProgramStudi";
 
 import { notifyError } from "@/commons/utils/toaster";
@@ -69,20 +68,6 @@ const FormTambahProgramStudi = ({}) => {
         />,
 
         <Controller
-          name="noSK"
-          control={control}
-          render={({ field, fieldState }) => (
-            <InputField
-              label="Nomor SK"
-              placeholder="Masukkan nomor sk"
-              fieldState={fieldState}
-              {...field}
-              isRequired={false}
-            />
-          )}
-        />,
-
-        <Controller
           name="nama"
           control={control}
           render={({ field, fieldState }) => (
@@ -97,12 +82,12 @@ const FormTambahProgramStudi = ({}) => {
         />,
 
         <Controller
-          name="kaprodi"
+          name="jenjang"
           control={control}
           render={({ field, fieldState }) => (
             <InputField
-              label="Kaprodi"
-              placeholder="Masukkan kaprodi"
+              label="Jenjang"
+              placeholder="Masukkan jenjang"
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -111,12 +96,26 @@ const FormTambahProgramStudi = ({}) => {
         />,
 
         <Controller
-          name="jenjang"
+          name="noSK"
           control={control}
           render={({ field, fieldState }) => (
             <InputField
-              label="Jenjang"
-              placeholder="Masukkan jenjang"
+              label="Nomor SK"
+              placeholder="Masukkan nomor sk"
+              fieldState={fieldState}
+              {...field}
+              isRequired={false}
+            />
+          )}
+        />,
+
+        <Controller
+          name="kaprodi"
+          control={control}
+          render={({ field, fieldState }) => (
+            <InputField
+              label="Kaprodi"
+              placeholder="Masukkan kaprodi"
               fieldState={fieldState}
               {...field}
               isRequired={false}

@@ -1,12 +1,11 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -15,6 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
+  RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -23,14 +23,15 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-
 import updateProgramStudi from "../services/updateProgramStudi";
 
 import { notifyError } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormUbahProgramStudi = ({ dataBinding }) => {
-  const { control, handleSubmit } = useForm({ defaultValues: dataBinding });
+const FormUbahProgramStudi = ({ programStudiData }) => {
+  const { control, handleSubmit } = useForm({
+    defaultValues: programStudiData,
+  });
 
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ const FormUbahProgramStudi = ({ dataBinding }) => {
       ...cleanData,
     })
       .then(({ data: { data } }) => {
-        navigate(`/programstudi`);
+        navigate(`/programstudi/${programStudiData.id}`);
       })
       .catch((error) => {
         console.error(error);
@@ -61,37 +62,7 @@ const FormUbahProgramStudi = ({ dataBinding }) => {
             <InputField
               label="Kode"
               placeholder="Masukkan kode"
-              defaultValue={dataBinding.kode}
-              fieldState={fieldState}
-              {...field}
-              isRequired={false}
-            />
-          )}
-        />,
-
-        <Controller
-          name="noSK"
-          control={control}
-          render={({ field, fieldState }) => (
-            <InputField
-              label="Nomor SK"
-              placeholder="Masukkan nomor sk"
-              defaultValue={dataBinding.noSK}
-              fieldState={fieldState}
-              {...field}
-              isRequired={false}
-            />
-          )}
-        />,
-
-        <Controller
-          name="jenjang"
-          control={control}
-          render={({ field, fieldState }) => (
-            <InputField
-              label="Jenjang"
-              placeholder="Masukkan jenjang"
-              defaultValue={dataBinding.jenjang}
+              defaultValue={programStudiData.kode}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -106,7 +77,37 @@ const FormUbahProgramStudi = ({ dataBinding }) => {
             <InputField
               label="Nama"
               placeholder="Masukkan nama"
-              defaultValue={dataBinding.nama}
+              defaultValue={programStudiData.nama}
+              fieldState={fieldState}
+              {...field}
+              isRequired={false}
+            />
+          )}
+        />,
+
+        <Controller
+          name="jenjang"
+          control={control}
+          render={({ field, fieldState }) => (
+            <InputField
+              label="Jenjang"
+              placeholder="Masukkan jenjang"
+              defaultValue={programStudiData.jenjang}
+              fieldState={fieldState}
+              {...field}
+              isRequired={false}
+            />
+          )}
+        />,
+
+        <Controller
+          name="noSK"
+          control={control}
+          render={({ field, fieldState }) => (
+            <InputField
+              label="Nomor SK"
+              placeholder="Masukkan nomor sk"
+              defaultValue={programStudiData.noSK}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -121,7 +122,7 @@ const FormUbahProgramStudi = ({ dataBinding }) => {
             <InputField
               label="Kaprodi"
               placeholder="Masukkan kaprodi"
-              defaultValue={dataBinding.kaprodi}
+              defaultValue={programStudiData.kaprodi}
               fieldState={fieldState}
               {...field}
               isRequired={false}

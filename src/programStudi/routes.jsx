@@ -1,25 +1,29 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
-import RequireAuth from '@/commons/auth/RequireAuth'
-
+import RequireAuth from "@/commons/auth/RequireAuth";
+import React from 'react';
 import DaftarProgramStudiPage from './containers/DaftarProgramStudiPage'
-import TambahProgramStudiPage from './containers/TambahProgramStudiPage'
 import DetailProgramStudiPage from './containers/DetailProgramStudiPage'
 import UbahProgramStudiPage from './containers/UbahProgramStudiPage'
+import TambahProgramStudiPage from './containers/TambahProgramStudiPage'
 
 const programStudiRoutes = [
 { 
-	path: "/programstudi/tambah",
-	element: <RequireAuth permissionNeeded="CreateProgramStudi" ><TambahProgramStudiPage/></RequireAuth>
-}	
-,
-{ 
 	path: "/programstudi/ubah",
 	element: <RequireAuth permissionNeeded="UpdateProgramStudi" ><UbahProgramStudiPage/></RequireAuth>
-}	
+}
+
+	
+,
+{ 
+	path: "/programstudi/tambah",
+	element: <RequireAuth permissionNeeded="CreateProgramStudi" ><TambahProgramStudiPage/></RequireAuth>
+}
+
+	
 ,
 { 
 	path: "/programstudi",
