@@ -129,8 +129,14 @@ addMenu({
   subMenus: [],
 });
 
+addSubMenu('Akademis', {
+	route: '/akademis/ringkasan',
+	label: 'Ringkasan',
+	permission: "ReadRencanaStudiMe"
+})
+
 addSubMenu("Akademis", {
-  route: "/riwayat-akademis",
+  route: "/akademis/riwayat",
   label: "Riwayat",
   permission: "ReadKelasMahasiswaMe",
 });

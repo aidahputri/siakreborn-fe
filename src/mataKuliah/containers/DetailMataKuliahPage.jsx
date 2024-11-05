@@ -87,7 +87,7 @@ const DetailMataKuliahPage = (props) => {
       </Layouts.DetailContainerLayout>
       {isSelectedFeature("CPMK") && (
         <Layouts.ListContainerTableLayout
-          title={"Table CPMK"}
+          title={"CPMK"}
           singularName={"CPMK"}
           items={[cPMKDataList]}
           isLoading={isLoading.tableCPMK}
