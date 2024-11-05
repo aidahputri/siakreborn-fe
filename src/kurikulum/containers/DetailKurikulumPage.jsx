@@ -1,14 +1,13 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/commons/auth";
 import DetailKurikulum from "../components/DetailKurikulum";
@@ -21,7 +20,7 @@ const DetailKurikulumPage = (props) => {
 
   const [isLoading, setIsLoading] = useState({
     detailKurikulum: false,
-    tableCPL: false,
+    daftarCPL: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
@@ -46,11 +45,11 @@ const DetailKurikulumPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading((prev) => ({ ...prev, tableCPL: true }));
-        const { data: cPLDataList } = await getCPLDataList({ kurikulumId: id });
+        setIsLoading((prev) => ({ ...prev, daftarCPL: true }));
+        const { data: cPLDataList } = await getCPLDataList({ kurikulumId:id });
         setCPLDataList(cPLDataList.data);
       } finally {
-        setIsLoading((prev) => ({ ...prev, tableCPL: false }));
+        setIsLoading((prev) => ({ ...prev, daftarCPL: false }));
       }
     };
     fetchData();
@@ -64,7 +63,10 @@ const DetailKurikulumPage = (props) => {
       buttons={
         <>
           <Layouts.ViewContainerBackButtonLayout>
-            <Link to={`/kurikulum`}>
+            <Link
+              to={`/kurikulum
+			  	`}
+            >
               {" "}
               <Button className="p-4 w-full" variant="secondary">
                 Kembali
@@ -84,10 +86,10 @@ const DetailKurikulumPage = (props) => {
         <DetailKurikulum {...{ data: { ...kurikulumDataDetail } }} />
       </Layouts.DetailContainerLayout>
       <Layouts.ListContainerTableLayout
-        title={"Table CPL"}
+        title={"Daftar CPL"}
         singularName={"CPL"}
         items={[cPLDataList]}
-        isLoading={isLoading.tableCPL}
+        isLoading={isLoading.daftarCPL}
       >
         <CPLTable cPLDataList={cPLDataList} />
       </Layouts.ListContainerTableLayout>

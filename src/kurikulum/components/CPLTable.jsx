@@ -1,14 +1,13 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { useAuth } from "@/commons/auth";
 import { Button, Modal } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { isMobile } from "@/commons/utils/responsive";
 
 import deleteKurikulum from "../services/deleteKurikulum";
@@ -53,7 +52,7 @@ const CPLTable = ({ cPLDataList }) => {
       ]}
       itemsEvents={(cPLItem) => [
         <Link to={`/cpl/${cPLItem.id}`}>
-          <Button variant="primary">Detail</Button>
+          <Button variant="secondary">Detail</Button>
         </Link>,
       ]}
       itemsModals={(cPLItem) => [

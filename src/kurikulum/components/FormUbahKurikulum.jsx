@@ -1,12 +1,11 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -15,6 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
+  RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -23,14 +23,13 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-
 import updateKurikulum from "../services/updateKurikulum";
 
 import { notifyError } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormUbahKurikulum = ({ kurikulumUbah, programStudi }) => {
-  const { control, handleSubmit } = useForm({ defaultValues: kurikulumUbah });
+const FormUbahKurikulum = ({ kurikulumData, programStudiSelectionField }) => {
+  const { control, handleSubmit } = useForm({ defaultValues: kurikulumData });
 
   const navigate = useNavigate();
 
@@ -40,7 +39,7 @@ const FormUbahKurikulum = ({ kurikulumUbah, programStudi }) => {
       ...cleanData,
     })
       .then(({ data: { data } }) => {
-        navigate(`/kurikulum`);
+        navigate(`/kurikulum/${kurikulumData.id}`);
       })
       .catch((error) => {
         console.error(error);
@@ -61,7 +60,7 @@ const FormUbahKurikulum = ({ kurikulumUbah, programStudi }) => {
             <InputField
               label="Kode"
               placeholder="Masukkan kode"
-              defaultValue={kurikulumUbah.kode}
+              defaultValue={kurikulumData.kode}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -76,7 +75,7 @@ const FormUbahKurikulum = ({ kurikulumUbah, programStudi }) => {
             <InputField
               label="Nomor SK"
               placeholder="Masukkan nomor sk"
-              defaultValue={kurikulumUbah.noSK}
+              defaultValue={kurikulumData.noSK}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -91,7 +90,7 @@ const FormUbahKurikulum = ({ kurikulumUbah, programStudi }) => {
             <InputField
               label="Status"
               placeholder="Masukkan status"
-              defaultValue={kurikulumUbah.status}
+              defaultValue={kurikulumData.status}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -106,7 +105,7 @@ const FormUbahKurikulum = ({ kurikulumUbah, programStudi }) => {
             <InputField
               label="Profil Lulusan"
               placeholder="Masukkan profil lulusan"
-              defaultValue={kurikulumUbah.profilLulusan}
+              defaultValue={kurikulumData.profilLulusan}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -120,10 +119,10 @@ const FormUbahKurikulum = ({ kurikulumUbah, programStudi }) => {
           render={({ field, fieldState }) => (
             <SelectionField
               label="Program Studi"
-              options={programStudi}
+              options={programStudiSelectionField}
               placeholder="Masukkan program studi"
               fieldState={fieldState}
-              defaultValue={kurikulumUbah.idProgramStudi}
+              defaultValue={kurikulumData.programStudiId}
               {...field}
               isRequired={false}
             />

@@ -9,46 +9,43 @@ import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
 import { useSearchParams } from "react-router-dom";
-import FormUbahKurikulum from "../components/FormUbahKurikulum";
+import FormTambahKurikulum from "../components/FormTambahKurikulum";
 
-import getKurikulumData from "../services/getKurikulumData";
 import getProgramStudiSelectionField from "../services/getProgramStudiSelectionField";
-const UbahKurikulumPage = (props) => {
+const TambahKurikulumPage = (props) => {
   const [isLoading, setIsLoading] = useState({
-    ubahKurikulum: false,
+    tambahKurikulum: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
-  const [searchParams] = useSearchParams();
-  const id = searchParams.get("id");
-  const [kurikulumData, setKurikulumData] = useState();
   const [programStudiSelectionField, setProgramStudiSelectionField] =
     useState();
 
   useEffect(() => {
     const fetch = async () => {
-      setIsLoading((prev) => ({ ...prev, ubahKurikulum: true }));
-      const { data: kurikulumDataResponse } = await getKurikulumData({ id });
+      setIsLoading((prev) => ({ ...prev, tambahKurikulum: true }));
       const { data: programStudiSelectionFieldResponse } =
-        await getProgramStudiSelectionField({ id });
+        await getProgramStudiSelectionField({});
 
-      setKurikulumData(kurikulumDataResponse.data);
       setProgramStudiSelectionField(programStudiSelectionFieldResponse.data);
 
-      setIsLoading((prev) => ({ ...prev, ubahKurikulum: false }));
+      setIsLoading((prev) => ({ ...prev, tambahKurikulum: false }));
     };
     fetch();
   }, []);
 
   useEffect(() => {
-    setTitle("Ubah Kurikulum Page");
+    setTitle("Tambah Kurikulum Page");
   }, []);
   return (
     <Layouts.ViewContainerLayout
       buttons={
         <>
           <Layouts.ViewContainerBackButtonLayout>
-            <Link to={`/kurikulum/${id}`}>
+            <Link
+              to={`/kurikulum
+			  	`}
+            >
               {" "}
               <Button className="p-4" variant="secondary">
                 Kembali
@@ -60,13 +57,12 @@ const UbahKurikulumPage = (props) => {
     >
       <Layouts.FormContainerLayout
         singularName={"Kurikulum"}
-        isLoading={isLoading.ubahKurikulum}
+        isLoading={isLoading.tambahKurikulum}
       >
-        {kurikulumData && programStudiSelectionField ? (
+        {programStudiSelectionField ? (
           <>
-            <FormUbahKurikulum
+            <FormTambahKurikulum
               {...{
-                kurikulumData,
                 programStudiSelectionField,
               }}
             />
@@ -78,4 +74,4 @@ const UbahKurikulumPage = (props) => {
     </Layouts.ViewContainerLayout>
   );
 };
-export default UbahKurikulumPage;
+export default TambahKurikulumPage;
