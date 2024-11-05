@@ -1,7 +1,7 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -27,7 +27,7 @@ const DetailMataKuliah = ({ data }) => {
     setShowModalKonfirmasiHapusMataKuliah,
   ] = React.useState(false);
 
-  const ubah = async () => {
+  const ubahMataKuliah = async () => {
     navigate("/matakuliah/ubah?" + `id=${data.id}`);
   };
 
@@ -83,7 +83,7 @@ const DetailMataKuliah = ({ data }) => {
           </Button>
         ),
         checkPermission("UpdateMataKuliah") && (
-          <Button variant="secondary" onClick={() => ubah()}>
+          <Button variant="secondary" onClick={() => ubahMataKuliah()}>
             Ubah
           </Button>
         ),

@@ -1,21 +1,22 @@
-import axios from "axios";
-import tokenManager from "@/commons/utils/token";
-import environment from "@/commons/utils/environment";
+import axios from 'axios'
+import tokenManager from '@/commons/utils/token'
+import environment from '@/commons/utils/environment'
+
 
 const saveMataKuliah = (data = {}) => {
-  let body = data;
+	let body = data;
 
-  const { getToken } = tokenManager();
-  const token = getToken();
+	const { getToken } = tokenManager();
+	const token = getToken();
+	
+	return axios.post(`${environment.rootApi}/call/matakuliah/save`, body,
+	{
+		params: { token },
+		
+		headers: {
+			'Authorization': token,
+			
+		}
+	})} 
 
-    return axios.post(`${environment.rootApi}/call/matakuliah/save`, body, {
-      params: { token },
-
-      headers: {
-        Authorization: token,
-      },
-    });
-//   console.log(body);
-};
-
-export default saveMataKuliah;
+export default saveMataKuliah

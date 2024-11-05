@@ -1,25 +1,24 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/commons/auth";
+import KuliahTable from "../components/KuliahTable";
 
 import getMataKuliahDataList from "../services/getMataKuliahDataList";
 import getKurikulumSelectionField from "../services/getKurikulumSelectionField";
-import KuliahTable from "../components/KuliahTable";
 const DaftarMataKuliahPage = (props) => {
   const { checkPermission } = useAuth();
 
   const [isLoading, setIsLoading] = useState({
-    tableMataKuliah: false,
+    mataKuliah: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
@@ -29,14 +28,14 @@ const DaftarMataKuliahPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading((prev) => ({ ...prev, tableMataKuliah: true }));
+        setIsLoading((prev) => ({ ...prev, mataKuliah: true }));
         const { data: mataKuliahDataList } = await getMataKuliahDataList({});
         const { data: kurikulumSelectionField } =
           await getKurikulumSelectionField({});
         setMataKuliahDataList(mataKuliahDataList.data);
         setKurikulumSelectionField(kurikulumSelectionField.data);
       } finally {
-        setIsLoading((prev) => ({ ...prev, tableMataKuliah: false }));
+        setIsLoading((prev) => ({ ...prev, mataKuliah: false }));
       }
     };
     fetchData();
@@ -49,24 +48,27 @@ const DaftarMataKuliahPage = (props) => {
     <Layouts.ViewContainerLayout
       buttons={
         <>
-          <Layouts.ViewContainerButtonLayout>
-            {checkPermission("CreateMataKuliah") && (
-              <Link to={`/matakuliah/tambah`}>
+          {checkPermission("CreateMataKuliah") && (
+            <Layouts.ViewContainerButtonLayout>
+              <Link
+                to={`/matakuliah/tambah
+			  	`}
+              >
                 {" "}
                 <Button className="p-2" variant="primary">
                   Tambah Mata Kuliah
                 </Button>
               </Link>
-            )}
-          </Layouts.ViewContainerButtonLayout>
+            </Layouts.ViewContainerButtonLayout>
+          )}
         </>
       }
     >
       <Layouts.ListContainerTableLayout
         title={"Mata Kuliah"}
-        singularName={"Mata"}
+        singularName={"Kuliah"}
         items={[mataKuliahDataList, kurikulumSelectionField]}
-        isLoading={isLoading.tableMataKuliah}
+        isLoading={isLoading.mataKuliah}
       >
         <KuliahTable
           mataKuliahDataList={mataKuliahDataList}

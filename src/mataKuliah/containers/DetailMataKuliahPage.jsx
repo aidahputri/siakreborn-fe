@@ -1,14 +1,13 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/commons/auth";
 import DetailMataKuliah from "../components/DetailMataKuliah";
@@ -21,7 +20,7 @@ const DetailMataKuliahPage = (props) => {
 
   const [isLoading, setIsLoading] = useState({
     detailMataKuliah: false,
-    tableCPMK: false,
+    daftarCPMK: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
@@ -46,13 +45,13 @@ const DetailMataKuliahPage = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading((prev) => ({ ...prev, tableCPMK: true }));
+        setIsLoading((prev) => ({ ...prev, daftarCPMK: true }));
         const { data: cPMKDataList } = await getCPMKDataList({
           mataKuliahId: id,
         });
         setCPMKDataList(cPMKDataList.data);
       } finally {
-        setIsLoading((prev) => ({ ...prev, tableCPMK: false }));
+        setIsLoading((prev) => ({ ...prev, daftarCPMK: false }));
       }
     };
     fetchData();
@@ -66,7 +65,10 @@ const DetailMataKuliahPage = (props) => {
       buttons={
         <>
           <Layouts.ViewContainerBackButtonLayout>
-            <Link to={`/matakuliah`}>
+            <Link
+              to={`/matakuliah
+			  	`}
+            >
               {" "}
               <Button className="p-4 w-full" variant="secondary">
                 Kembali
@@ -85,16 +87,14 @@ const DetailMataKuliahPage = (props) => {
       >
         <DetailMataKuliah {...{ data: { ...mataKuliahDataDetail } }} />
       </Layouts.DetailContainerLayout>
-      {isSelectedFeature("CPMK") && (
-        <Layouts.ListContainerTableLayout
-          title={"CPMK"}
-          singularName={"CPMK"}
-          items={[cPMKDataList]}
-          isLoading={isLoading.tableCPMK}
-        >
-          <CPMKTable cPMKDataList={cPMKDataList} />
-        </Layouts.ListContainerTableLayout>
-      )}
+      <Layouts.ListContainerTableLayout
+        title={"Daftar CPMK"}
+        singularName={"CPMK"}
+        items={[cPMKDataList]}
+        isLoading={isLoading.daftarCPMK}
+      >
+        <CPMKTable cPMKDataList={cPMKDataList} />
+      </Layouts.ListContainerTableLayout>
     </Layouts.ViewContainerLayout>
   );
 };

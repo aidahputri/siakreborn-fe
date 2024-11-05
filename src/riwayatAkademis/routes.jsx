@@ -11,7 +11,7 @@ import { SelectionProvider } from "@/laporanCPMK/context/SelectionField";
 
 const riwayatAkademisRoutes = [
   {
-    path: "/riwayat-akademis",
+    path: "/akademis/riwayat",
     element: (
       <RequireAuth permissionNeeded="ReadKelasMahasiswaMe">
         <SelectionProvider>
@@ -21,7 +21,7 @@ const riwayatAkademisRoutes = [
     ),
   },
   {
-    path: "/riwayat-akademis/:id",
+    path: "/akademis/riwayat/:id",
     element: <DetailPenilaianMahasiswaPage />,
   },
 ];

@@ -9,6 +9,7 @@ export { default as SelectionField } from "./Form/SelectionField";
 export { default as CheckBoxField } from "./Form/CheckBoxField";
 export { default as MultiSelectionField } from "./Form/MultiSelectionField";
 export { default as MultiSelectField } from "./Form/MultiSelectField";
+export { default as RichTextField } from "./Form/RichTextField";
 export { default as TextAreaField } from "./Form/TextAreaField";
 export { default as Header } from "./Header";
 export { default as HeaderContext } from "./Header/HeaderContext";
