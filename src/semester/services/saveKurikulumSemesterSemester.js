@@ -3,7 +3,7 @@ import tokenManager from '@/commons/utils/token'
 import environment from '@/commons/utils/environment'
 
 
-const saveSemester = (data = {}) => {
+const saveKurikulumSemesterSemester = (data = {}) => {
 	let body = data;
 
 	const { getToken } = tokenManager();
@@ -19,4 +19,4 @@ const saveSemester = (data = {}) => {
 		}
 	})} 
 
-export default saveSemester
+export default saveKurikulumSemesterSemester

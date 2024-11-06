@@ -1,12 +1,11 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -15,6 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
+  RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -23,14 +23,13 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-
 import updateSemester from "../services/updateSemester";
 
 import { notifyError } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormUbahSemester = ({ semesterUbah, kurikulum }) => {
-  const { control, handleSubmit } = useForm({ defaultValues: semesterUbah });
+const FormUbahSemester = ({ semesterData, kurikulum }) => {
+  const { control, handleSubmit } = useForm({ defaultValues: semesterData });
 
   const navigate = useNavigate();
 
@@ -61,7 +60,7 @@ const FormUbahSemester = ({ semesterUbah, kurikulum }) => {
             <InputField
               label="Kode"
               placeholder="Masukkan kode"
-              defaultValue={semesterUbah.kode}
+              defaultValue={semesterData.kode}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -76,7 +75,7 @@ const FormUbahSemester = ({ semesterUbah, kurikulum }) => {
             <InputField
               label="Status"
               placeholder="Masukkan status"
-              defaultValue={semesterUbah.status}
+              defaultValue={semesterData.status}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -91,7 +90,7 @@ const FormUbahSemester = ({ semesterUbah, kurikulum }) => {
             <InputField
               label="Tanggal Mulai"
               placeholder="Masukkan tanggal mulai"
-              defaultValue={semesterUbah.tanggalMulai}
+              defaultValue={semesterData.tanggalMulai}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -106,7 +105,7 @@ const FormUbahSemester = ({ semesterUbah, kurikulum }) => {
             <InputField
               label="Tanggal Selesai"
               placeholder="Masukkan tanggal selesai"
-              defaultValue={semesterUbah.tanggalSelesai}
+              defaultValue={semesterData.tanggalSelesai}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -115,22 +114,7 @@ const FormUbahSemester = ({ semesterUbah, kurikulum }) => {
         />,
 
         <Controller
-          name="deskripsi"
-          control={control}
-          render={({ field, fieldState }) => (
-            <InputField
-              label="Deskripsi"
-              placeholder="Masukkan deskripsi"
-              defaultValue={semesterUbah.deskripsi}
-              fieldState={fieldState}
-              {...field}
-              isRequired={false}
-            />
-          )}
-        />,
-
-        <Controller
-          name="id"
+          name="kurikulumId"
           control={control}
           render={({ field, fieldState }) => (
             <SelectionField
@@ -138,7 +122,7 @@ const FormUbahSemester = ({ semesterUbah, kurikulum }) => {
               options={kurikulum}
               placeholder="Masukkan kurikulum"
               fieldState={fieldState}
-              defaultValue={semesterUbah.idKurikulum}
+              defaultValue={semesterData.kurikulumId}
               {...field}
               isRequired={false}
             />

@@ -1,18 +1,17 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { useSearchParams } from "react-router-dom";
 import FormUbahSemester from "../components/FormUbahSemester";
 
-import getSemesterUbah from "../services/getSemesterUbah";
+import getSemesterData from "../services/getSemesterData";
 import getKurikulum from "../services/getKurikulum";
 const UbahSemesterPage = (props) => {
   const [isLoading, setIsLoading] = useState({
@@ -22,16 +21,18 @@ const UbahSemesterPage = (props) => {
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const [semesterUbah, setSemesterUbah] = useState();
+  const [semesterData, setSemesterData] = useState();
   const [kurikulum, setKurikulum] = useState();
 
   useEffect(() => {
     const fetch = async () => {
       setIsLoading((prev) => ({ ...prev, ubahSemester: true }));
-      const { data: semesterUbahResponse } = await getSemesterUbah({ id });
-      const { data: kurikulumResponse } = await getKurikulum({ id });
+      const { data: semesterDataResponse } = await getSemesterData({
+        id
+      });
+      const { data: kurikulumResponse } = await getKurikulum({ });
 
-      setSemesterUbah(semesterUbahResponse.data);
+      setSemesterData(semesterDataResponse.data);
       setKurikulum(kurikulumResponse.data);
 
       setIsLoading((prev) => ({ ...prev, ubahSemester: false }));
@@ -42,17 +43,15 @@ const UbahSemesterPage = (props) => {
   useEffect(() => {
     setTitle("Ubah Semester Page");
   }, []);
-
-  useEffect(() => {
-	console.log(kurikulum)
-  }, [kurikulum])
-
   return (
     <Layouts.ViewContainerLayout
       buttons={
         <>
           <Layouts.ViewContainerBackButtonLayout>
-            <Link to={`/semester`}>
+            <Link
+              to={`/semester
+			  	`}
+            >
               {" "}
               <Button className="p-4" variant="secondary">
                 Kembali
@@ -66,11 +65,11 @@ const UbahSemesterPage = (props) => {
         singularName={"Semester"}
         isLoading={isLoading.ubahSemester}
       >
-        {semesterUbah && kurikulum ? (
+        {semesterData && kurikulum ? (
           <>
             <FormUbahSemester
               {...{
-                semesterUbah,
+                semesterData,
                 kurikulum,
               }}
             />

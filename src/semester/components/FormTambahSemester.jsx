@@ -1,12 +1,11 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -15,6 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
+  RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -23,8 +23,7 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-
-import saveSemester from "../services/saveSemester";
+import saveKurikulumSemesterSemester from "../services/saveKurikulumSemesterSemester";
 
 import { notifyError } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
@@ -36,9 +35,9 @@ const FormTambahSemester = ({ kurikulum }) => {
 
   const tambah = (data) => {
     const cleanData = cleanFormData(data);
-    saveSemester({
+    saveKurikulumSemesterSemester({
       ...cleanData,
-      kurikulumId: cleanData.id,
+      kurikulumIds: [cleanData.kurikulumId],
     })
       .then(({ data: { data } }) => {
         navigate(`/semester`);
@@ -112,21 +111,7 @@ const FormTambahSemester = ({ kurikulum }) => {
         />,
 
         <Controller
-          name="deskripsi"
-          control={control}
-          render={({ field, fieldState }) => (
-            <InputField
-              label="Deskripsi"
-              placeholder="Masukkan deskripsi"
-              fieldState={fieldState}
-              {...field}
-              isRequired={false}
-            />
-          )}
-        />,
-
-        <Controller
-          name="id"
+          name="kurikulumId"
           control={control}
           render={({ field, fieldState }) => (
             <SelectionField
