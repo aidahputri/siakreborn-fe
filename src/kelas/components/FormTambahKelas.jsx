@@ -1,12 +1,11 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -15,6 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
+  RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -23,7 +23,6 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-
 import saveKelas from "../services/saveKelas";
 
 import { notifyError } from "@/commons/utils/toaster";
@@ -75,6 +74,7 @@ const FormTambahKelas = ({ mataKuliah, semester }) => {
             <InputField
               label="Kapasitas"
               placeholder="Masukkan kapasitas"
+              type="number"
               fieldState={fieldState}
               {...field}
               isRequired={false}

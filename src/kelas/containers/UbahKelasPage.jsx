@@ -1,18 +1,17 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { useSearchParams } from "react-router-dom";
 import FormUbahKelas from "../components/FormUbahKelas";
 
-import getKelasUbah from "../services/getKelasUbah";
+import getKelasData from "../services/getKelasData";
 import getMataKuliah from "../services/getMataKuliah";
 import getSemester from "../services/getSemester";
 const UbahKelasPage = (props) => {
@@ -23,18 +22,18 @@ const UbahKelasPage = (props) => {
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const [kelasUbah, setKelasUbah] = useState();
+  const [kelasData, setKelasData] = useState();
   const [mataKuliah, setMataKuliah] = useState();
   const [semester, setSemester] = useState();
 
   useEffect(() => {
     const fetch = async () => {
       setIsLoading((prev) => ({ ...prev, ubahKelas: true }));
-      const { data: kelasUbahResponse } = await getKelasUbah({ id });
-      const { data: mataKuliahResponse } = await getMataKuliah({ id });
-      const { data: semesterResponse } = await getSemester({ id });
+      const { data: kelasDataResponse } = await getKelasData({ kelasId:id });
+      const { data: mataKuliahResponse } = await getMataKuliah({ kelasId:id });
+      const { data: semesterResponse } = await getSemester({ kelasId:id });
 
-      setKelasUbah(kelasUbahResponse.data);
+      setKelasData(kelasDataResponse.data);
       setMataKuliah(mataKuliahResponse.data);
       setSemester(semesterResponse.data);
 
@@ -65,11 +64,11 @@ const UbahKelasPage = (props) => {
         singularName={"Kelas"}
         isLoading={isLoading.ubahKelas}
       >
-        {kelasUbah && mataKuliah && semester ? (
+        {kelasData && mataKuliah && semester ? (
           <>
             <FormUbahKelas
               {...{
-                kelasUbah,
+                kelasData,
                 mataKuliah,
                 semester,
               }}

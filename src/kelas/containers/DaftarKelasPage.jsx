@@ -1,37 +1,36 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/commons/auth";
 import KelasTable from "../components/KelasTable";
 
-import getDataBinding from "../services/getDataBinding";
+import getKelasDataList from "../services/getKelasDataList";
 const DaftarKelasPage = (props) => {
   const { checkPermission } = useAuth();
 
   const [isLoading, setIsLoading] = useState({
-    tableKelas: false,
+    daftarKelas: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
-  const [dataBinding, setDataBinding] = useState();
+  const [kelasDataList, setKelasDataList] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading((prev) => ({ ...prev, tableKelas: true }));
-        const { data: dataBinding } = await getDataBinding({});
-        setDataBinding(dataBinding.data);
+        setIsLoading((prev) => ({ ...prev, daftarKelas: true }));
+        const { data: kelasDataList } = await getKelasDataList();
+        setKelasDataList(kelasDataList.data);
       } finally {
-        setIsLoading((prev) => ({ ...prev, tableKelas: false }));
+        setIsLoading((prev) => ({ ...prev, daftarKelas: false }));
       }
     };
     fetchData();
@@ -40,7 +39,6 @@ const DaftarKelasPage = (props) => {
   useEffect(() => {
     setTitle("Daftar Kelas Page");
   }, []);
-
   return (
     <Layouts.ViewContainerLayout
       buttons={
@@ -64,15 +62,15 @@ const DaftarKelasPage = (props) => {
         </div>
       ) : (
         <>
-          {dataBinding?.map((mataKuliah, idx) => (
+          {kelasDataList?.map((mk, idx) => (
             <div key={idx}>
               <Layouts.ListContainerTableLayout
-                title={mataKuliah.nama}
+                title={mk.nama}
                 singularName={"Kelas"}
-                items={[mataKuliah.kelas]}
-                isLoading={isLoading.tableKelas}
+                items={[mk.kelas]}
+                isLoading={isLoading.daftarKelas}
               >
-                <KelasTable dataBinding={mataKuliah.kelas} />
+                <KelasTable kelasDataList={mk.kelas} />
               </Layouts.ListContainerTableLayout>
             </div>
           ))}

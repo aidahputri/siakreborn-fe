@@ -1,7 +1,7 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -24,7 +24,7 @@ const DetailKelas = ({ data }) => {
   const navigate = useNavigate();
   const [showModalKonfirmasiHapusKelas, setShowModalKonfirmasiHapusKelas] =
     React.useState(false);
-  const ubah = async () => {
+  const ubahKelas = async () => {
     navigate("/kelas/ubah?" + `id=${data.id}`);
   };
 
@@ -84,7 +84,7 @@ const DetailKelas = ({ data }) => {
       ]}
       itemsEvents={[
         checkPermission("UpdateKelas") && (
-          <Button variant="secondary" onClick={() => ubah()}>
+          <Button variant="secondary" onClick={() => ubahKelas()}>
             Ubah Kelas
           </Button>
         ),
@@ -93,29 +93,27 @@ const DetailKelas = ({ data }) => {
             variant="tertiary"
             onClick={() => setShowModalKonfirmasiHapusKelas(true)}
           >
-            Hapus Kelas
+            Hapus
           </Button>
         ),
       ]}
       itemsModals={[
-        checkPermission("DeleteKelas") && (
-          <Modal
-            isShow={showModalKonfirmasiHapusKelas}
-            title={"Konfirmasi Hapus Kelas"}
-          >
-            <Link to="">
-              <Button
-                variant="tertiary"
-                onClick={() => setShowModalKonfirmasiHapusKelas(false)}
-              >
-                Batal
-              </Button>
-            </Link>
-            <Button variant="danger" onClick={() => hapus()}>
-              Hapus
+        <Modal
+          isShow={showModalKonfirmasiHapusKelas}
+          title={"Konfirmasi Hapus Kelas"}
+        >
+          <Link to="">
+            <Button
+              variant="tertiary"
+              onClick={() => setShowModalKonfirmasiHapusKelas(false)}
+            >
+              Batal
             </Button>
-          </Modal>
-        ),
+          </Link>
+          <Button variant="danger" onClick={() => hapus()}>
+            Hapus
+          </Button>
+        </Modal>,
       ]}
     />
   );

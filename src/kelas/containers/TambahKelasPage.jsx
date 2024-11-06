@@ -1,19 +1,18 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Spinner } from "@/commons/components";
 import * as Layouts from "@/commons/layouts";
 import { Link, useParams } from "react-router-dom";
 import { HeaderContext } from "@/commons/components";
-import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 import { useSearchParams } from "react-router-dom";
 import FormTambahKelas from "../components/FormTambahKelas";
 
 import getMataKuliah from "../services/getMataKuliah";
-import getSemester from "../services/getSemester";
+import getSemester from '../services/getSemester'
 const TambahKelasPage = (props) => {
   const [isLoading, setIsLoading] = useState({
     tambahKelas: false,
@@ -45,7 +44,10 @@ const TambahKelasPage = (props) => {
       buttons={
         <>
           <Layouts.ViewContainerBackButtonLayout>
-            <Link to={`/kelas`}>
+            <Link
+              to={`/kelas
+			  	`}
+            >
               {" "}
               <Button className="p-4" variant="secondary">
                 Kembali

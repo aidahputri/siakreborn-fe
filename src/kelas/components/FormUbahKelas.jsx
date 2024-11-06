@@ -1,12 +1,11 @@
 /*
-	Generated on 13/06/2024 by UI Generator PRICES-IDE
+	Generated on 22/10/2024 by UI Generator PRICES-IDE
 	https://amanah.cs.ui.ac.id/research/ifml-regen
-	version 3.4.0
+	version 3.5.5
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import toast from "react-hot-toast";
 import {
   Button,
   Form,
@@ -15,6 +14,7 @@ import {
   InputField,
   MultiSelectField,
   TextAreaField,
+  RichTextField,
   VisualizationAttr,
   Spinner,
 } from "@/commons/components";
@@ -23,14 +23,13 @@ import {
   findAllowedPermission,
 } from "@/commons/constants/allowedPermission";
 import cleanFormData from "@/commons/utils/cleanFormData";
-
 import updateKelas from "../services/updateKelas";
 
 import { notifyError } from "@/commons/utils/toaster";
 import * as Layouts from "@/commons/layouts";
 
-const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
-  const { control, handleSubmit } = useForm({ defaultValues: kelasUbah });
+const FormUbahKelas = ({ kelasData, mataKuliah, semester }) => {
+  const { control, handleSubmit } = useForm({ defaultValues: kelasData });
 
   const navigate = useNavigate();
 
@@ -40,7 +39,7 @@ const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
       ...cleanData,
     })
       .then(({ data: { data } }) => {
-        navigate(`/kelas/${kelasUbah.id}`);
+        navigate(`/kelas/${kelasData.id}`);
       })
       .catch((error) => {
         console.error(error);
@@ -61,7 +60,7 @@ const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
             <InputField
               label="Nama"
               placeholder="Masukkan nama"
-              defaultValue={kelasUbah.nama}
+              defaultValue={kelasData.nama}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -76,7 +75,8 @@ const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
             <InputField
               label="Kapasitas"
               placeholder="Masukkan kapasitas"
-              defaultValue={kelasUbah.kapasitas}
+              type="number"
+              defaultValue={kelasData.kapasitas}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -91,7 +91,7 @@ const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
             <InputField
               label="Ruangan"
               placeholder="Masukkan ruangan"
-              defaultValue={kelasUbah.ruangan}
+              defaultValue={kelasData.ruangan}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -106,7 +106,7 @@ const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
             <InputField
               label="Jadwal"
               placeholder="Masukkan jadwal"
-              defaultValue={kelasUbah.jadwal}
+              defaultValue={kelasData.jadwal}
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -123,7 +123,7 @@ const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
               options={mataKuliah}
               placeholder="Masukkan mata kuliah"
               fieldState={fieldState}
-              defaultValue={kelasUbah.mataKuliahId}
+              defaultValue={kelasData.mataKuliahId}
               {...field}
               isRequired={false}
             />
@@ -139,7 +139,7 @@ const FormUbahKelas = ({ kelasUbah, mataKuliah, semester }) => {
               options={semester}
               placeholder="Masukkan semester"
               fieldState={fieldState}
-              defaultValue={kelasUbah.semesterId}
+              defaultValue={kelasData.semesterId}
               {...field}
               isRequired={false}
             />
