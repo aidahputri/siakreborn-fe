@@ -3,29 +3,28 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "@/commons/components"
-import * as Layouts from '@/commons/layouts';
-import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "@/commons/components"
-import isSelectedFeature from '@/commons/utils/isSelectedFeature'
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/commons/auth';
-import NilaiTable from '../components/NilaiTable'
+import React, { useEffect, useState, useContext } from "react";
+import { Button, Spinner } from "@/commons/components";
+import * as Layouts from "@/commons/layouts";
+import { Link, useParams } from "react-router-dom";
+import { HeaderContext } from "@/commons/components";
+import isSelectedFeature from "@/commons/utils/isSelectedFeature";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/commons/auth";
+import NilaiTable from "../components/NilaiTable";
 
-import getNilaiMahasiswaDataList from '../services/getNilaiMahasiswaDataList'
-import DetailTable from '../components/DetailTable'
+import getNilaiMahasiswaDataList from "../services/getNilaiMahasiswaDataList";
+import DetailTable from "../components/DetailTable";
 
-import getDetailNilaiAkhirMahasiswaDataList from '../services/getDetailNilaiAkhirMahasiswaDataList'
-const DetailNilaiMahasiswaPage = props => {
-const { checkPermission } = useAuth()
+import getDetailNilaiAkhirMahasiswaDataList from "../services/getDetailNilaiAkhirMahasiswaDataList";
+const DetailNilaiMahasiswaPage = (props) => {
+  const { checkPermission } = useAuth();
 
-	const [isLoading, setIsLoading] = useState({
-	tableNilaiMahasiswa: false,
-	reportDetailNilaiAkhirMahasiswa: false,
-
-	});
-	const { setTitle } = useContext(HeaderContext);
+  const [isLoading, setIsLoading] = useState({
+    tableNilaiMahasiswa: false,
+    reportDetailNilaiAkhirMahasiswa: false,
+  });
+  const { setTitle } = useContext(HeaderContext);
 
   const [nilaiMahasiswaDataList, setNilaiMahasiswaDataList] = useState();
   const { id, mahasiswaId } = useParams();
@@ -33,9 +32,8 @@ const { checkPermission } = useAuth()
     const fetchData = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, tableNilaiMahasiswa: true }));
-        const {
-          data: nilaiMahasiswaDataList,
-        } = await getNilaiMahasiswaDataList({ kelasId: id, mahasiswaId });
+        const { data: nilaiMahasiswaDataList } =
+          await getNilaiMahasiswaDataList({ kelasId: id, mahasiswaId });
         setNilaiMahasiswaDataList(nilaiMahasiswaDataList.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableNilaiMahasiswa: false }));
@@ -56,9 +54,11 @@ const { checkPermission } = useAuth()
           ...prev,
           reportDetailNilaiAkhirMahasiswa: true,
         }));
-        const {
-          data: detailNilaiAkhirMahasiswaDataList,
-        } = await getDetailNilaiAkhirMahasiswaDataList({ kelasId: id, mahasiswaId });
+        const { data: detailNilaiAkhirMahasiswaDataList } =
+          await getDetailNilaiAkhirMahasiswaDataList({
+            kelasId: id,
+            mahasiswaId,
+          });
         setDetailNilaiAkhirMahasiswaDataList(
           detailNilaiAkhirMahasiswaDataList.data
         );
@@ -75,7 +75,7 @@ const { checkPermission } = useAuth()
   useEffect(() => {
     setTitle("Detail Nilai Mahasiswa Page");
   }, []);
-  
+
   return (
     <Layouts.ViewContainerLayout
       buttons={
