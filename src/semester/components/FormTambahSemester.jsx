@@ -35,9 +35,10 @@ const FormTambahSemester = ({ kurikulum }) => {
 
   const tambah = (data) => {
     const cleanData = cleanFormData(data);
+    const kurikulumIds = cleanData.kurikulumIds.split(",");
     saveKurikulumSemesterSemester({
       ...cleanData,
-      kurikulumIds: [cleanData.kurikulumId],
+      kurikulumIds,
     })
       .then(({ data: { data } }) => {
         navigate(`/semester`);
@@ -111,10 +112,10 @@ const FormTambahSemester = ({ kurikulum }) => {
         />,
 
         <Controller
-          name="kurikulumId"
+          name="kurikulumIds"
           control={control}
           render={({ field, fieldState }) => (
-            <SelectionField
+            <MultiSelectionField
               label="Kurikulum"
               options={kurikulum}
               placeholder="Masukkan kurikulum"

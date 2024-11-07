@@ -35,8 +35,10 @@ const FormUbahSemester = ({ semesterData, kurikulum }) => {
 
   const simpan = (data) => {
     const cleanData = cleanFormData(data);
+    const kurikulumIds = cleanData.kurikulumIds.split(",");
     updateSemester({
       ...cleanData,
+      kurikulumIds
     })
       .then(({ data: { data } }) => {
         navigate(`/semester`);
@@ -117,7 +119,7 @@ const FormUbahSemester = ({ semesterData, kurikulum }) => {
           name="kurikulumId"
           control={control}
           render={({ field, fieldState }) => (
-            <SelectionField
+            <MultiSelectionField
               label="Kurikulum"
               options={kurikulum}
               placeholder="Masukkan kurikulum"
