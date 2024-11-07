@@ -16,15 +16,15 @@ const NilaiTable = ({ laporanNilaiCPLDataList, kurikulumSelectionField }) => {
 
   return (
     <Layouts.ListComponentTableLayout
-      items={[laporanNilaiCPLDataList, kurikulumSelectionField]}
+      items={[laporanNilaiCPLDataList]}
       isSearchable
-      filterFields={[
-        {
-          label: "Kurikulum",
-          featureName: "kurikulumName",
-          options: kurikulumSelectionField,
-        },
-      ]}
+      // filterFields={[
+      //   {
+      //     label: "Kurikulum",
+      //     featureName: "kurikulumName",
+      //     options: kurikulumSelectionField,
+      //   },
+      // ]}
       itemsAttrs={[
         {
           id: "kodeCPL",
@@ -32,18 +32,18 @@ const NilaiTable = ({ laporanNilaiCPLDataList, kurikulumSelectionField }) => {
           label: "Kode CPL",
           featureName: "kode",
         },
-        {
-          id: "kurikulum",
-          condition: "isHeading",
-          label: "Kurikulum",
-          featureName: "kurikulumName",
-        },
-        {
-          id: "deskripsi",
-          condition: "isHeading",
-          label: "Deskripsi",
-          featureName: "deskripsi",
-        },
+        // {
+        //   id: "kurikulum",
+        //   condition: "isHeading",
+        //   label: "Kurikulum",
+        //   featureName: "kurikulumName",
+        // },
+        // {
+        //   id: "deskripsi",
+        //   condition: "isHeading",
+        //   label: "Deskripsi",
+        //   featureName: "deskripsi",
+        // },
         {
           id: "nilai",
           condition: "isHeading",

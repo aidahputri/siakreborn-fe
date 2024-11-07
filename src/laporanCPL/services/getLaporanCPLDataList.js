@@ -4,18 +4,20 @@ import environment from "@/commons/utils/environment";
 import { notifyError } from "@/commons/utils/toaster";
 
 const getLaporanCPLDataList = (params = {}) => {
-	const { getToken } = tokenManager();
-	const token = getToken();
-	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/cpl/laporan-mahasiswa/list`, {
-		params: paramsGet,		
-		headers: {
-			'Authorization': token,
-		}
-	}).catch((error) => {
-		console.error(error);
-		notifyError(error);
-	})
-} 
+  const { getToken } = tokenManager();
+  const token = getToken();
+  let paramsGet = Object.assign(params, { token });
+  return axios
+    .get(`${environment.rootApi}/call/v2/cpl/laporan/list`, {
+      params: paramsGet,
+      headers: {
+        Authorization: token,
+      },
+    })
+    .catch((error) => {
+      console.error(error);
+      notifyError(error);
+    });
+};
 
-export default getLaporanCPLDataList
+export default getLaporanCPLDataList;

@@ -46,7 +46,11 @@ const FormPengaturanMasaPengisianIRS = ({ periodeData }) => {
           formFields={[
             <Controller
               name="mulai"
-              defaultValue={toLocalISOString(periodeData?.mulai)}
+              defaultValue={
+                periodeData?.mulai === undefined
+                  ? ""
+                  : new Date(periodeData?.mulai).toISOString().slice(0, -1)
+              }
               control={control}
               render={({ field }) => (
                 <InputField
@@ -60,7 +64,11 @@ const FormPengaturanMasaPengisianIRS = ({ periodeData }) => {
             />,
             <Controller
               name="akhir"
-              defaultValue={toLocalISOString(periodeData?.akhir)}
+              defaultValue={
+                periodeData?.akhir === undefined
+                  ? ""
+                  : new Date(periodeData?.akhir).toISOString().slice(0, -1)
+              }
               control={control}
               render={({ field }) => (
                 <InputField
