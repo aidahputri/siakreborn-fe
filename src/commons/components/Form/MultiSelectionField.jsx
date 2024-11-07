@@ -20,7 +20,7 @@ const MultiSelectionField = forwardRef((props, ref) => {
       tempDefaultValue = defaultValue.split(",");
       let tempAllChecked = options.map((item) => {
         for (let i = 0; i < tempDefaultValue.length; i++) {
-          if (item.id === parseInt(tempDefaultValue[i])) {
+          if (item.id === tempDefaultValue[i]) {
             return true;
           }
         }

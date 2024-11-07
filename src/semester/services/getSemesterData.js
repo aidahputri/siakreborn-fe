@@ -7,7 +7,7 @@ const getSemesterData = (params = {}) => {
 	const { getToken } = tokenManager();
 	const token = getToken();
 	let paramsGet = Object.assign(params, {token});
-	return axios.get(`${environment.rootApi}/call/semester/detail`, {
+	return axios.get(`${environment.rootApi}/call/kurikulumsemester/semester/detail`, {
 		params: paramsGet,		
 		headers: {
 			'Authorization': token,

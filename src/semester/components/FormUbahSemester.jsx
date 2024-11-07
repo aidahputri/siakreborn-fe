@@ -124,7 +124,7 @@ const FormUbahSemester = ({ semesterData, kurikulum }) => {
               options={kurikulum}
               placeholder="Masukkan kurikulum"
               fieldState={fieldState}
-              defaultValue={semesterData.kurikulumId}
+              defaultValue={semesterData.kurikulumIds}
               {...field}
               isRequired={false}
             />
