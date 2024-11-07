@@ -7,16 +7,13 @@ import RequireAuth from "@/commons/auth/RequireAuth";
 
 import DaftarRiwayatAkademisPage from "./containers/DaftarRiwayatAkademisPage";
 import DetailPenilaianMahasiswaPage from "./containers/DetailPenilaianMahasiswaPage";
-import { SelectionProvider } from "@/laporanCPMK/context/SelectionField";
 
 const riwayatAkademisRoutes = [
   {
     path: "/akademis/riwayat",
     element: (
       <RequireAuth permissionNeeded="ReadKelasMahasiswaMe">
-        <SelectionProvider>
-          <DaftarRiwayatAkademisPage />
-        </SelectionProvider>
+        <DaftarRiwayatAkademisPage />
       </RequireAuth>
     ),
   },

@@ -17,7 +17,6 @@ import getTermRiwayatAkademisDataList from "../services/getTermRiwayatAkademisDa
 import MKTable from "../components/MKTable";
 
 import getMKRiwayatAkademisDataList from "../services/getMKRiwayatAkademisDataList";
-import { useSelectionContext } from "@/laporanCPMK/context/SelectionField";
 import SelectionFieldReport from "@/commons/components/Form/SelectionFieldReport";
 
 const DaftarRiwayatAkademisPage = (props) => {
@@ -29,7 +28,7 @@ const DaftarRiwayatAkademisPage = (props) => {
   });
 
   const { setTitle } = useContext(HeaderContext);
-  const { selectedValue, setSelectedValue } = useSelectionContext();
+  const [selectedValue, setSelectedValue] = useState();
 
   const riwayatOptions = [
     { id: "Berdasarkan Term", name: "Berdasarkan Term" },
@@ -98,6 +97,8 @@ const DaftarRiwayatAkademisPage = (props) => {
           options={riwayatOptions}
           placeholder="Masukkan pilihan tampilan riwayat akademis"
           isRequired={true}
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
         />
       </div>
 

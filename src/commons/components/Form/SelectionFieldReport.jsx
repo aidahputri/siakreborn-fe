@@ -1,7 +1,6 @@
 import React, { forwardRef } from "react";
 import { INPUT_CLASSNAMES } from "./variants";
 import useAppearance from "@/commons/appearance/useAppearance";
-import { useSelectionContext } from "@/laporanCPMK/context/SelectionField";
 
 const SelectionFieldReport = forwardRef((props, ref) => {
   const {
@@ -12,12 +11,12 @@ const SelectionFieldReport = forwardRef((props, ref) => {
     className,
     fieldState,
     kit,
+    selectedValue,
+    setSelectedValue,
   } = props;
   const interfaceKit = useAppearance();
   const inputStyle = (kit ?? interfaceKit).input;
   const inputVariant = INPUT_CLASSNAMES[inputStyle];
-
-  const { selectedValue, setSelectedValue } = useSelectionContext();
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -36,15 +35,16 @@ const SelectionFieldReport = forwardRef((props, ref) => {
         </label>
       )}
       <select
-        className={`select ${inputVariant} w-full whitespace-normal ${fieldState?.error &&
-          "select-error"} ${className}`}
+        className={`select ${inputVariant} w-full whitespace-normal ${
+          fieldState?.error && "select-error"
+        } ${className}`}
         ref={ref}
         onChange={handleChange}
         {...props}
         {...variant}
       >
         <option disabled selected hidden>
-          {selectedValue?? placeholder}
+          {selectedValue ?? placeholder}
         </option>
         {options &&
           options.map((option) => (

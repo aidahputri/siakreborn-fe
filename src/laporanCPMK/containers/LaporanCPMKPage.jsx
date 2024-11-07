@@ -14,7 +14,6 @@ import { useAuth } from '@/commons/auth';
 import LaporanTable from "../components/LaporanTable";
 import getMataKuliahDataList from '../services/getMataKuliahDataList';
 import getKelasSelectionField from "../services/getKelasSelectionField";
-import { useSelectionContext } from '../context/SelectionField';
 
 import getLaporanCPMKDataList from "../services/getLaporanCPMKDataList";
 import getAverageCPMKDataList from "../services/getAverageCPMKDataList";
@@ -33,7 +32,7 @@ const LaporanCPMKPage = (props) => {
     barChart: false,
   });
   const { setTitle } = useContext(HeaderContext);
-  const { selectedValue } = useSelectionContext();
+  const [selectedValue, setSelectedValue] = useState()
 
   const [laporanCPMKDataList, setLaporanCPMKDataList] = useState();
   const [kelasSelectionField, setKelasSelectionField] = useState();
@@ -118,6 +117,8 @@ const LaporanCPMKPage = (props) => {
           options={listMataKuliah}
           placeholder="Masukkan pilihan mata kuliah"
           isRequired={true}
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
         />
       </div>
       {isLoadingChart.barChart ? (

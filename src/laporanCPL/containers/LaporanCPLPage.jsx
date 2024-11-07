@@ -3,19 +3,18 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import React, { useEffect, useState, useContext} from 'react'
-import { Button, Spinner } from "@/commons/components"
-import * as Layouts from '@/commons/layouts';
-import { Link, useParams } from 'react-router-dom'
-import { HeaderContext } from "@/commons/components"
-import isSelectedFeature from '@/commons/utils/isSelectedFeature'
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/commons/auth';
+import React, { useEffect, useState, useContext } from "react";
+import { Button, Spinner } from "@/commons/components";
+import * as Layouts from "@/commons/layouts";
+import { Link, useParams } from "react-router-dom";
+import { HeaderContext } from "@/commons/components";
+import isSelectedFeature from "@/commons/utils/isSelectedFeature";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/commons/auth";
 import LaporanCPLTable from "../components/LaporanTable";
 import { BarChart } from "@/commons/Chart/BarChart";
 
 import getLaporanCPLDataList from "../services/getLaporanCPLDataList";
-import { useSelectionContext } from '@/laporanCPMK/context/SelectionField';
 import getKurikulumDataList from "@/laporanCPL/services/getKurikulumDataList";
 import getAverageCPLDataList from "@/laporanCPL/services/getAverageCPLDataList";
 import SelectionFieldReport from "@/commons/components/Form/SelectionFieldReport";
@@ -29,7 +28,7 @@ const LaporanCPLPage = (props) => {
     barChart: false,
   });
   const { setTitle } = useContext(HeaderContext);
-  const { selectedValue } = useSelectionContext();
+  const [selectedValue, setSelectedValue] = useState();
 
   const [laporanCPLDataList, setLaporanCPLDataList] = useState();
   const [kurikulumDataList, setKurikulumDataList] = useState([]);
@@ -96,6 +95,8 @@ const LaporanCPLPage = (props) => {
           options={kurikulumDataList}
           placeholder="Masukkan pilihan kurikulum"
           isRequired={true}
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
         />
       </div>
       {isLoading.barChart ? (
@@ -121,19 +122,20 @@ const LaporanCPLPage = (props) => {
         </div>
       ) : (
         <>
-          {laporanCPLDataList && laporanCPLDataList.mataKuliahList.length > 0 && (
-            <Layouts.ListContainerTableLayout
-              title={"Table Laporan CPL"}
-              singularName={"Laporan"}
-              items={[laporanCPLDataList?.mataKuliahList ?? []]}
-              isLoading={isLoading.tableLaporanCPL}
-            >
-              <LaporanCPLTable
-                laporanCPLDataList={laporanCPLDataList?.mataKuliahList ?? []}
-                cplList={laporanCPLDataList?.cplList ?? []}
-              />
-            </Layouts.ListContainerTableLayout>
-          )}
+          {laporanCPLDataList &&
+            laporanCPLDataList.mataKuliahList.length > 0 && (
+              <Layouts.ListContainerTableLayout
+                title={"Table Laporan CPL"}
+                singularName={"Laporan"}
+                items={[laporanCPLDataList?.mataKuliahList ?? []]}
+                isLoading={isLoading.tableLaporanCPL}
+              >
+                <LaporanCPLTable
+                  laporanCPLDataList={laporanCPLDataList?.mataKuliahList ?? []}
+                  cplList={laporanCPLDataList?.cplList ?? []}
+                />
+              </Layouts.ListContainerTableLayout>
+            )}
         </>
       )}
     </Layouts.ViewContainerLayout>

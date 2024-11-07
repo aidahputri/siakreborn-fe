@@ -3,19 +3,16 @@
 	https://amanah.cs.ui.ac.id/research/ifml-regen
 	version 3.4.0
 */
-import RequireAuth from '@/commons/auth/RequireAuth'
+import RequireAuth from "@/commons/auth/RequireAuth";
 
 import LaporanCPMKPage from "./containers/LaporanCPMKPage";
-import { SelectionProvider } from "./context/SelectionField";
 
 const laporanCPMKRoutes = [
   {
     path: "/cpmk/laporan",
     element: (
       <RequireAuth permissionNeeded="ReadLaporanCPMK">
-        <SelectionProvider>
-          <LaporanCPMKPage />
-        </SelectionProvider>
+        <LaporanCPMKPage />
       </RequireAuth>
     ),
   },
