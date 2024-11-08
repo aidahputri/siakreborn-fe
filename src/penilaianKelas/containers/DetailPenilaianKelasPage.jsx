@@ -88,7 +88,7 @@ const DetailPenilaianKelasPage = (props) => {
       }
     >
       <Layouts.ListContainerTableLayout
-        title={"Tabel Komponen Penilaian"}
+        title={"Daftar Komponen Penilaian"}
         singularName={"Komponen"}
         items={[komponenPenilaianDataList]}
         isLoading={isLoading.tabelKomponenPenilaian}
@@ -96,7 +96,7 @@ const DetailPenilaianKelasPage = (props) => {
         <KomponenTable komponenPenilaianDataList={komponenPenilaianDataList} />
       </Layouts.ListContainerTableLayout>
       <Layouts.ListContainerTableLayout
-        title={"Table Daftar Mahasiswa"}
+        title={"Daftar Mahasiswa"}
         singularName={"Daftar"}
         items={[mahasiswaDataList]}
         isLoading={isLoading.tableDaftarMahasiswa}

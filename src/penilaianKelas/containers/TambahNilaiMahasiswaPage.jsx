@@ -41,7 +41,7 @@ const TambahNilaiMahasiswaPage = (props) => {
   }, []);
 
   useEffect(() => {
-    setTitle("Tambah Nilai Mahasiswa Page");
+    setTitle("Tambah/Ubah Nilai Mahasiswa Page");
   }, []);
   
   return (

@@ -86,7 +86,7 @@ const DetailNilaiMahasiswaPage = (props) => {
             <Link to={`/penilaian-kelas/${id}/nilai/${mahasiswaId}/tambah`}>
               {" "}
               <Button className="p-2" variant="primary">
-                Tambah/Edit Nilai
+                Tambah/Ubah Nilai
               </Button>
             </Link>
           </Layouts.ViewContainerButtonLayout>

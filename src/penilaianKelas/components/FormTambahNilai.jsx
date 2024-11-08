@@ -65,7 +65,7 @@ const FormTambahNilai = ({ komponenPenilaianDataList }) => {
             <InputField
               label="Nilai"
               placeholder="Masukkan nilai"
-              defaultValue={0}
+              type="number"
               fieldState={fieldState}
               {...field}
               isRequired={false}
@@ -78,9 +78,9 @@ const FormTambahNilai = ({ komponenPenilaianDataList }) => {
           control={control}
           render={({ field, fieldState }) => (
             <SelectionField
-              label="Selection Field"
+              label="Komponen Penilaian"
               options={komponenPenilaianDataList}
-              placeholder="Masukkan selection field"
+              placeholder="Masukkan komponen penilaian"
               fieldState={fieldState}
               //   defaultValue={komponenPenilaianDataList.id}
               {...field}
