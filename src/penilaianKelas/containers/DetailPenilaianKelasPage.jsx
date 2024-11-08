@@ -17,14 +17,17 @@ import getKomponenPenilaianDataList from "../services/getKomponenPenilaianDataLi
 import DaftarTable from "../components/DaftarTable";
 
 import getMahasiswaDataList from "../services/getMahasiswaDataList";
+import PemetaanTable from "../components/PemetaanTable";
+import getCapaianDataList from "../services/getCapaianDataList";
 const DetailPenilaianKelasPage = (props) => {
   const { checkPermission } = useAuth();
 
-  const {id} = useParams()
+  const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState({
     tabelKomponenPenilaian: false,
     tableDaftarMahasiswa: false,
+    daftarPemetaanCapaian: false,
   });
   const { setTitle } = useContext(HeaderContext);
 
@@ -43,6 +46,7 @@ const DetailPenilaianKelasPage = (props) => {
     };
     fetchData();
   }, []);
+
   const [mahasiswaDataList, setMahasiswaDataList] = useState();
 
   useEffect(() => {
@@ -55,6 +59,23 @@ const DetailPenilaianKelasPage = (props) => {
         setMahasiswaDataList(mahasiswaDataList.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, tableDaftarMahasiswa: false }));
+      }
+    };
+    fetchData();
+  }, []);
+
+  const [capaianDataList, setCapaianDataList] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading((prev) => ({ ...prev, daftarPemetaanCapaian: true }));
+        const { data: capaianDataList } = await getCapaianDataList({
+          kelasId: id,
+        });
+        setCapaianDataList(capaianDataList.data);
+      } finally {
+        setIsLoading((prev) => ({ ...prev, daftarPemetaanCapaian: false }));
       }
     };
     fetchData();
@@ -95,6 +116,29 @@ const DetailPenilaianKelasPage = (props) => {
       >
         <KomponenTable komponenPenilaianDataList={komponenPenilaianDataList} />
       </Layouts.ListContainerTableLayout>
+
+      {isLoading.daftarPemetaanCapaian ? (
+        <div className="flex justify-center items-center h-full">
+          <Spinner />
+        </div>
+      ) : (
+        <>
+          {capaianDataList && capaianDataList.komponen.length > 1 && (
+            <Layouts.ListContainerTableLayout
+              title={"Daftar Pemetaan Capaian"}
+              singularName={"Pemetaan"}
+              items={[capaianDataList?.komponen ?? []]}
+              isLoading={isLoading.daftarPemetaanCapaian}
+            >
+              <PemetaanTable
+                capaianDataList={capaianDataList?.komponen ?? []}
+                capaianList={capaianDataList?.capaian ?? []}
+              />
+            </Layouts.ListContainerTableLayout>
+          )}
+        </>
+      )}
+
       <Layouts.ListContainerTableLayout
         title={"Daftar Mahasiswa"}
         singularName={"Daftar"}
