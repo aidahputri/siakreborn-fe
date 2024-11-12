@@ -65,7 +65,6 @@ const BerdasarkanTerm = (props) => {
           </div>
         );
       })}
-	  {/* <span>hallo</span> */}
     </Layouts.ViewContainerLayout>
   );
 };

@@ -61,7 +61,6 @@ const BerdasarkanMataKuliah = (props) => {
           </div>
         );
       })}
-	  {/* <span>a</span> */}
     </Layouts.ViewContainerLayout>
   );
 };
