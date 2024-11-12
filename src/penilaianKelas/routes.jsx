@@ -11,6 +11,7 @@ import TambahKomponenPenilaianPage from "./containers/TambahKomponenPenilaianPag
 import UbahKomponenPenilaianPage from "./containers/UbahKomponenPenilaianPage";
 import DetailNilaiMahasiswaPage from "./containers/DetailNilaiMahasiswaPage";
 import TambahNilaiMahasiswaPage from "./containers/TambahNilaiMahasiswaPage";
+import TambahPemetaanCapaian from "./containers/TambahPemetaanCapaian";
 
 const penilaianKelasRoutes = [
   {
@@ -28,6 +29,14 @@ const penilaianKelasRoutes = [
   {
     path: "/penilaian-kelas/:id/nilai/:mahasiswaId/tambah",
     element: <TambahNilaiMahasiswaPage />,
+  },
+  {
+    path: "/penilaian-kelas/:id/pemetaan-capaian/tambah",
+    element: (
+      <RequireAuth permissionNeeded="CreateBobotKomponenPenilaian">
+        <TambahPemetaanCapaian />
+      </RequireAuth>
+    ),
   },
   {
     path: "/penilaian-kelas",

@@ -83,12 +83,14 @@ const DetailNilaiMahasiswaPage = (props) => {
           </Layouts.ViewContainerBackButtonLayout>
 
           <Layouts.ViewContainerButtonLayout>
-            <Link to={`/penilaian-kelas/${id}/nilai/${mahasiswaId}/tambah`}>
-              {" "}
-              <Button className="p-2" variant="primary">
-                Tambah/Ubah Nilai
-              </Button>
-            </Link>
+            {checkPermission("CreatePenilaian") && (
+              <Link to={`/penilaian-kelas/${id}/nilai/${mahasiswaId}/tambah`}>
+                {" "}
+                <Button className="p-2" variant="primary">
+                  Tambah/Ubah Nilai
+                </Button>
+              </Link>
+            )}
           </Layouts.ViewContainerButtonLayout>
         </>
       }

@@ -98,12 +98,26 @@ const DetailPenilaianKelasPage = (props) => {
           </Layouts.ViewContainerBackButtonLayout>
 
           <Layouts.ViewContainerButtonLayout>
-            <Link to={`/penilaian-kelas/${id}/komponen/tambah`}>
-              {" "}
-              <Button className="p-2" variant="primary">
-                Tambah Komponen Penilaian
-              </Button>
-            </Link>
+            {checkPermission("CreateKomponenPenilaian") && (
+              <Link
+                to={`/penilaian-kelas/${id}/komponen/tambah`}
+              >
+                <Button className="p-2" variant="primary">
+                  Tambah Komponen Penilaian
+                </Button>
+              </Link>
+            )}
+
+            {checkPermission("CreateBobotKomponenPenilaian") && (
+              <Link
+                to={`/penilaian-kelas/${id}/pemetaan-capaian/tambah
+			  	  `}
+              >
+                <Button className="p-2" variant="primary">
+                  Tambah/Ubah Pemetaan Capaian
+                </Button>
+              </Link>
+            )}
           </Layouts.ViewContainerButtonLayout>
         </>
       }
