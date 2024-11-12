@@ -144,6 +144,7 @@ addSubMenu("Akademis", {
 addMenu({
   route: "#",
   label: "IRS",
+  permission: "ReadRencanaStudiMe",
   subMenus: [],
 });
 

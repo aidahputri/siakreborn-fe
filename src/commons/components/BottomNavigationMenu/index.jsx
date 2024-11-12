@@ -8,7 +8,7 @@ import Icon from '../Icon'
 import Modal from '../Modal'
 
 const BottomNavigationMenu = (props) => {
-	const { isAuth, logout, checkPermission } = useAuth();
+	const { isAuthenticated, logout, checkPermission } = useAuth();
 	const { colorTheme } = useAppearanceStore()
 
 	const handleLogout = () => {
@@ -19,7 +19,7 @@ const BottomNavigationMenu = (props) => {
 	const [isShowModal, setIsShowModal] = React.useState(false)
 	return <div data-theme={colorTheme} className="fixed bottom-0 bg-primary left-0 
 	right-0 p-4 pt-3 pb-3 flex justify-around max-w-md mx-auto">
-	{isAuth ?
+	{isAuthenticated ?
 	<Link className='no-underline flex flex-col items-center' onClick={() => setIsShowModal(true)}>
 		<MdLogout className="w-8 h-8 mb-1" color='white' />
 		<span className="text-white text-xs">Keluar</span>

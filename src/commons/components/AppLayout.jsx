@@ -1,142 +1,66 @@
-import React, { useEffect, useState,createContext } from 'react'
-
-import axios from 'axios'
-import useAppearanceStore from '@/commons/appearance/store'
-import environment from '@/commons/utils/environment'
-
-import { Toaster } from 'react-hot-toast'
-import { FiLogOut } from 'react-icons/fi'
-import { ImSpinner } from 'react-icons/im'
-import { Link, useNavigate } from 'react-router-dom'
-
-import Brand from './Brand'
-import SidebarMenu from './Navigation/Sidebar'
-
-import menus, { settingsMenu } from '@/menus'
-import { INTERFACE_KITS } from '@/commons/constants/interface'
-import useTypography from './Typography'
-
-import { useAuth } from '../auth'
-import Footer from './Footer'
-import HeaderContext from './Header/HeaderContext'
-import Header from './Header'
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import axios from "axios";
+import useAppearanceStore from "@/commons/appearance/store";
+import environment from "@/commons/utils/environment";
+import { Toaster } from "react-hot-toast";
+import { ImSpinner } from "react-icons/im";
+import { INTERFACE_KITS } from "@/commons/constants/interface";
+import useTypography from "./Typography";
+import Footer from "./Footer";
+import HeaderContext from "./Header/HeaderContext";
+import Header from "./Header";
+import Sidebar from "./Navigation/Sidebar";
 
 const AppLayout = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const { interfaceKit, colorTheme, setAppearance } = useAppearanceStore()
-  const typography = useTypography()
+  const [isLoading, setIsLoading] = useState(false);
+  const { interfaceKit, colorTheme, setAppearance } = useAppearanceStore();
+  const typography = useTypography();
   const [title, setTitle] = useState("Home");
-
-  const navigate = useNavigate();
-  const { isAuth, logout, checkPermission } = useAuth();
-  const logoutUser = () => {
-    logout()
-    navigate('/')
-  }
 
   useEffect(() => {
     if (!colorTheme) {
-      setIsLoading(true)
+      setIsLoading(true);
       axios
         .get(`${environment.staticServerApi}/appearance`)
-        .then(res => setAppearance(res.data))
-        .catch(error => console.error(error))
-        .finally(() => setIsLoading(false))
+        .then((res) => setAppearance(res.data))
+        .catch((error) => console.error(error))
+        .finally(() => setIsLoading(false));
     }
-  }, [])
+  }, []);
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
-  const isRounded = INTERFACE_KITS[interfaceKit]?.rounded ?? true
+  const isRounded = INTERFACE_KITS[interfaceKit]?.rounded ?? true;
 
   if (isLoading)
     return (
       <div className="w-screen h-screen grid place-items-center">
         <ImSpinner className="w-12 h-12 animate-spin" />
       </div>
-    )
+    );
 
   return (
-    <div>
-      <div
+    <div
       data-theme={colorTheme}
-      className={`drawer flex ${typography} ${
-        isRounded ? 'rounded-true' : 'rounded-false'
+      className={`flex relative ${typography} ${
+        isRounded ? "rounded-true" : "rounded-false"
       }`}
     >
-      <input
-        type="checkbox"
-        checked={isSidebarOpen}
-        onChange={setIsSidebarOpen}
-        id="drawer-toggle"
-        className="drawer-toggle"
-      />
-      <div className="drawer-side flex-none">
-        <div className="overflow-y-auto flex flex-col relative h-screen w-80 bg-base-100">
-          <div
-            onClick={toggleSidebar}
-            className="pt-4 px-4 pb-3 border-b sticky top-0 bg-base-100 z-[1]"
-          >
-            <Brand onClick={() => setTitle("Home")}/>
-          </div>
-          <ul className="menu flex-1 p-4">
-            {menus.map(menu => (
-              <SidebarMenu
-                key={menu.label}
-                menu={menu}
-                onClick={toggleSidebar}
-              />
-            ))}
-            {checkPermission("administrator") &&
-              settingsMenu.map((menu) => (
-                <SidebarMenu
-                  key={menu.label}
-                  menu={menu}
-                  onClick={toggleSidebar}
-                  isFirstLevel
-                />
-              ))}
-          </ul>
-          {isAuth ? (
-            <div className="p-4 sticky bottom-0 bg-base-100">
-              <button
-                className="btn btn-error btn-outline items-center w-full gap-2 text-primary-content normal-case"
-                onClick={logoutUser}
-              >
-                <FiLogOut className="w-5 h-5" />
-                Keluar
-              </button>
-            </div>
-          ) : (
-            <div className="sticky bg-base-100 bottom-0 p-4">
-              <Link
-                to="/login"
-                onClick={toggleSidebar}
-                className="btn btn-primary w-full"
-              >
-                <label htmlFor="drawer-toggle">Login</label>
-              </Link>
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="drawer-content flex-auto">
-        <div className="min-h-screen flex flex-col">
-        <HeaderContext.Provider value={{title,setTitle}}>
+      <Sidebar />
+      <div className="min-h-screen w-screen flex flex-col pl-80">
+        <HeaderContext.Provider value={{ title, setTitle }}>
           <Header />
-          <div className="flex-1 bg-base-200">
-            {children}
-          </div>
+          <div className="flex-1 bg-base-200">{children}</div>
+          <Footer />
         </HeaderContext.Provider>
-        </div>
       </div>
 
       <Toaster />
     </div>
-    <Footer />
-    </div>
+  );
+};
 
-  )
-}
+AppLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-export default AppLayout
+export default AppLayout;

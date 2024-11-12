@@ -3,16 +3,16 @@ import { useAuth } from ".";
 import { Navigate, useLocation } from "react-router-dom";
 
 function RequireAuth({ permissionNeeded, children }) {
-  const { permissions, isAuth } = useAuth();
+  const { permissions, isAuthenticated } = useAuth();
   const location = useLocation();
 
   // user is not logged in
-  if (!isAuth) {
+  if (!isAuthenticated) {
     return <Navigate to="/login" state={{ from: location.pathname }} />;
   }
 
   // user doesn't have any permission
-  if (isAuth && !permissions) {
+  if (isAuthenticated && !permissions) {
     return <Navigate to="/unauthorized" />;
   }
 

@@ -1,24 +1,24 @@
-import { useAuth } from '@/commons/auth'
-import { Button, InputField } from '@/commons/components'
-import React, { useContext, useEffect } from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom'
-import HeaderContext from '@/commons/components/Header/HeaderContext'
+import { useAuth } from "@/commons/auth";
+import { Button, InputField } from "@/commons/components";
+import React, { useContext, useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
+import HeaderContext from "@/commons/components/Header/HeaderContext";
 
 const RegisterPage = () => {
-  const { loginGoogle, isAuth, registerPassword } = useAuth()
-  const { control, handleSubmit } = useForm()
-  const { state } = useLocation()
-  const navigate = useNavigate()
-  const { setTitle } = useContext(HeaderContext)
+  const { loginGoogle, isAuthenticated, registerPassword } = useAuth();
+  const { control, handleSubmit } = useForm();
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const { setTitle } = useContext(HeaderContext);
 
-  const registerWithPassword = data => {
-    registerPassword(data)
-    navigate(state)
-  }
+  const registerWithPassword = (data) => {
+    registerPassword(data);
+    navigate(state);
+  };
   useEffect(() => setTitle("Register Page"));
-  if (isAuth) {
-    return <Navigate to="/" />
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
   }
 
   return (
@@ -69,7 +69,7 @@ const RegisterPage = () => {
               Daftar
             </Button>
             <div className="text-center text-sm text-neutral/70 mt-1">
-              Sudah punya akun?{' '}
+              Sudah punya akun?{" "}
               <Link to="/login" className="btn-link normal-case">
                 Log in
               </Link>
@@ -80,7 +80,7 @@ const RegisterPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;

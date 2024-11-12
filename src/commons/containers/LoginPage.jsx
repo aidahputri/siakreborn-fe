@@ -1,24 +1,24 @@
-import React, { useEffect,useContext } from 'react'
-import { Link, Navigate, useNavigate, useLocation } from 'react-router-dom'
-import { Button, InputField } from '@/commons/components'
-import { useAuth } from '@/commons/auth'
-import { Controller, useForm } from 'react-hook-form'
-import HeaderContext from '@/commons/components/Header/HeaderContext'
+import React, { useEffect, useContext } from "react";
+import { Link, Navigate, useNavigate, useLocation } from "react-router-dom";
+import { Button, InputField } from "@/commons/components";
+import { useAuth } from "@/commons/auth";
+import { Controller, useForm } from "react-hook-form";
+import HeaderContext from "@/commons/components/Header/HeaderContext";
 
 const LoginPage = () => {
-  const { setTitle } = useContext(HeaderContext)
-  const { control, handleSubmit } = useForm()
-  const { isAuth, loginGoogle, loginPassword } = useAuth()
-  const { state } = useLocation()
-  const navigate = useNavigate()
+  const { setTitle } = useContext(HeaderContext);
+  const { control, handleSubmit } = useForm();
+  const { isAuthenticated, loginGoogle, loginPassword } = useAuth();
+  const { state } = useLocation();
+  const navigate = useNavigate();
 
-  const loginWithPassword = data => {
-    loginPassword(data)
-    navigate(state)
-  }
+  const loginWithPassword = (data) => {
+    loginPassword(data);
+    navigate(state);
+  };
   useEffect(() => setTitle("Login Page"));
-  if (isAuth) {
-    return <Navigate to="/" />
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
   }
 
   return (
@@ -66,7 +66,7 @@ const LoginPage = () => {
               Masuk
             </Button>
             <div className="text-center text-sm text-neutral/70 mt-1">
-              Belum punya akun?{' '}
+              Belum punya akun?{" "}
               <Link to="/register" className="btn-link normal-case">
                 Daftar
               </Link>
@@ -77,7 +77,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

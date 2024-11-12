@@ -46,10 +46,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const [permissions, setPermissions] = React.useState(getPermissions);
-  const [isAuth, setIsAuth] = React.useState(isKeepLogin);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(isKeepLogin);
 
   const checkPermission = (permissionNeeded) => {
-    if (permissions && isAuth) {
+    if (permissions && isAuthenticated) {
       if (permissionNeeded instanceof Array) {
         return permissions.some((r) => permissionNeeded.indexOf(r) >= 0);
       } else if (permissions.includes(permissionNeeded) || permissions.includes("administrator")) {
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  useEffect(() => {}, [isAuth]);
+  useEffect(() => {}, [isAuthenticated]);
 
   useEffect(() => {}, [permissions]);
 
@@ -213,7 +213,7 @@ export const AuthProvider = ({ children }) => {
     if (tokenKeepLogin) {
       setTokenKeepLogin(tokenKeepLogin);
     }
-    setIsAuth(true);
+    setIsAuthenticated(true);
     if (callback) {
       callback();
     }
@@ -226,7 +226,7 @@ export const AuthProvider = ({ children }) => {
     logoutGoogle();
     loadGoogle();
     // end
-    setIsAuth(false);
+    setIsAuthenticated(false);
     setPermissions(null);
   };
 
@@ -238,12 +238,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const getAuthValue = () => {
-    return isAuth;
+    return isAuthenticated;
   };
 
   const value = {
     permissions,
-    isAuth,
+    isAuthenticated,
     login,
     loginGoogle,
     loginPassword,
