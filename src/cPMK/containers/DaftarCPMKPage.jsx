@@ -69,7 +69,7 @@ return (
 		}
 	>
 <Layouts.ListContainerTableLayout
-	title={"Table CPMK"}
+	title={"Daftar CPMK"}
 	singularName={"CPMK"}
 	items={[cPMKDataList, cPLSelectionField, mataKuliahSelectionField]}
 	isLoading={isLoading.tableCPMK}

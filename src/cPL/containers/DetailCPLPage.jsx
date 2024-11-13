@@ -83,7 +83,7 @@ const DetailCPLPage = (props) => {
         <DetailCPL {...{ data: { ...cPLDataDetail } }} />
       </Layouts.DetailContainerLayout>
       <Layouts.ListContainerTableLayout
-        title={"Table Data CPMK"}
+        title={"Daftar CPMK"}
         singularName={"Data"}
         items={[bobot]}
         isLoading={isLoading.tableDataCPMK}

@@ -146,7 +146,7 @@ const LaporanCPMKPage = (props) => {
         <>
           {laporanCPMKDataList && laporanCPMKDataList.mahasiswaList.length > 1 && (
             <Layouts.ListContainerTableLayout
-              title={"Table Laporan CPMK"}
+              title={"Data Laporan CPMK"}
               singularName={"Laporan"}
               items={[
                 laporanCPMKDataList?.mahasiswaList ?? [],

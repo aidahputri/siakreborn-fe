@@ -85,7 +85,7 @@ const LihatIRSPage = (props) => {
         <IRS {...{ data: { ...detailIRSDataList } }} />
       </Layouts.DetailContainerLayout>
       <Layouts.ListContainerTableLayout
-        title={"Table Mata Kuliah Dipilih"}
+        title={"Daftar Mata Kuliah Dipilih"}
         singularName={"Mata"}
         items={[mataKuliahDipilihDataList?.kelas]}
         isLoading={isLoading.tableMataKuliahDipilih}

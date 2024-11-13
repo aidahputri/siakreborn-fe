@@ -57,7 +57,7 @@ const DaftarSubCPMKPage = (props) => {
       }
     >
       <Layouts.ListContainerTableLayout
-        title={"Table SubCPMK"}
+        title={"Daftar SubCPMK"}
         singularName={"SubCPMK"}
         items={[subCPMKDataList]}
         isLoading={isLoading.tableSubCPMK}

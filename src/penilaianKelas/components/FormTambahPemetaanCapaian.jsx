@@ -5,7 +5,7 @@
 */
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import {
   Button,
   Form,
@@ -34,6 +34,7 @@ const FormTambahPemetaanCapaian = ({ komponenPenilaian, capaian }) => {
   });
 
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const simpan = (data) => {
     const cleanData = cleanFormData(data);
@@ -41,7 +42,7 @@ const FormTambahPemetaanCapaian = ({ komponenPenilaian, capaian }) => {
       ...cleanData,
     })
       .then(({ data: { data } }) => {
-        navigate(`/penilaian-kelas/${komponenPenilaian.kelasId}`);
+        navigate(`/penilaian-kelas/${id}`);
       })
       .catch((error) => {
         console.error(error);

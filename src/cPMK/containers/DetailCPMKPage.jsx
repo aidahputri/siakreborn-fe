@@ -84,7 +84,7 @@ const DetailCPMKPage = (props) => {
         <DetailCPMK {...{ data: { ...cPMKDataDetail } }} />
       </Layouts.DetailContainerLayout>
       <Layouts.ListContainerTableLayout
-        title={"Table Data Sub CPMK"}
+        title={"Daftar Sub CPMK"}
         singularName={"Data"}
         items={[dataSubCPMK]}
         isLoading={isLoading.tableDataSubCPMK}

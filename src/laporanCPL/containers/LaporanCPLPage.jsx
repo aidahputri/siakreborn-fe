@@ -125,7 +125,7 @@ const LaporanCPLPage = (props) => {
           {laporanCPLDataList &&
             laporanCPLDataList.mataKuliahList.length > 0 && (
               <Layouts.ListContainerTableLayout
-                title={"Table Laporan CPL"}
+                title={"Data Laporan CPL"}
                 singularName={"Laporan"}
                 items={[laporanCPLDataList?.mataKuliahList ?? []]}
                 isLoading={isLoading.tableLaporanCPL}

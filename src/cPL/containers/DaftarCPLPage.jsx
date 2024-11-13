@@ -65,7 +65,7 @@ return (
 		}
 	>
 <Layouts.ListContainerTableLayout
-	title={"Table CPL"}
+	title={"Daftar CPL"}
 	singularName={"CPL"}
 	items={[cPLDataList, kurikulumSelectionField]}
 	isLoading={isLoading.tableCPL}
