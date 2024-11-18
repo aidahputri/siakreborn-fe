@@ -15,6 +15,8 @@ import getDetailIRSDataList from "../services/getDetailIRSDataList";
 import MataTable from "../components/MataTable";
 
 import getMataKuliahDipilihDataList from "../services/getMataKuliahDipilihDataList";
+import savePembayaran from "../services/savePembayaran";
+import { notifyError, notifySuccess } from "@/commons/utils/toaster";
 const LihatIRSPage = (props) => {
   const { checkPermission } = useAuth();
 
@@ -63,14 +65,27 @@ const LihatIRSPage = (props) => {
       buttons={
         <>
           <Layouts.ViewContainerButtonLayout>
-            <Link
-              to={`/irs/isi`}
-            >
+            <Link to={`/irs/isi`}>
               {" "}
-              <Button className="p-2 w-full" variant="primary">
+              <Button className="p-2" variant="primary">
                 Isi/Ubah IRS
               </Button>
             </Link>
+            <Button
+              onClick={() => {
+                savePembayaran({})
+                  .then(({ data: { data } }) => {
+                    notifySuccess('Pembayaran berhasil dilakukan!');
+                  })
+                  .catch((error) => {
+                    notifyError(error.response.data.data.message)
+                  });
+              }}
+              className="p-2"
+              variant="secondary"
+            >
+              Pembayaran
+            </Button>
           </Layouts.ViewContainerButtonLayout>
         </>
       }

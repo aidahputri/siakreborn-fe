@@ -27,6 +27,7 @@ const IsiUbahIRSPage = (props) => {
   const [selectedClasses, setSelectedClasses] = useState([]);
   const [formTitle, setFormTitle] = useState();
   const [isIRSPeriod, setIsIRSPeriod] = useState(true);
+  const [fallback, setFallback] = useState('')
 
   const handleChange = (item) => {
     const mkIdx = selectedClasses.findIndex(
@@ -65,7 +66,7 @@ const IsiUbahIRSPage = (props) => {
         console.log(error);
         if (error.response.status === 400) {
           setIsIRSPeriod(false);
-          console.log("halo");
+          setFallback(error.response.data.data.message)
         }
       } finally {
         setIsLoading((prev) => ({ ...prev, tableKelasRencanaStudi: false }));
@@ -111,7 +112,7 @@ const IsiUbahIRSPage = (props) => {
               <Detail
                 children={
                   <p className="w-full text-center">
-                    Masa pengisian belum mulai atau telah berakhir.
+                    {fallback}
                   </p>
                 }
               />
