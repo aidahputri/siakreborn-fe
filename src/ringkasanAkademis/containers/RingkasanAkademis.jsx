@@ -19,6 +19,7 @@ import NilaiTable from "../components/NilaiTable";
 
 import getLaporanNilaiCPLDataList from "../services/getLaporanNilaiCPLDataList";
 import getKurikulumSelectionField from "../services/getKurikulumSelectionField";
+import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 const RingkasanAkademis = (props) => {
   const { checkPermission } = useAuth();
 
@@ -105,17 +106,19 @@ const RingkasanAkademis = (props) => {
       >
         <SemesterTable ringkasanSemesterDataList={ringkasanSemesterDataList} />
       </Layouts.ListContainerTableLayout>
-      <Layouts.ListContainerTableLayout
-        title={"Laporan Nilai CPL"}
-        singularName={"Nilai"}
-        items={[laporanNilaiCPLDataList, kurikulumSelectionField]}
-        isLoading={isLoading.laporanNilaiCPL}
-      >
-        <NilaiTable
-          laporanNilaiCPLDataList={laporanNilaiCPLDataList}
-          kurikulumSelectionField={kurikulumSelectionField}
-        />
-      </Layouts.ListContainerTableLayout>
+      {isSelectedFeature("CPL") && (
+        <Layouts.ListContainerTableLayout
+          title={"Laporan Nilai CPL"}
+          singularName={"Nilai"}
+          items={[laporanNilaiCPLDataList, kurikulumSelectionField]}
+          isLoading={isLoading.laporanNilaiCPL}
+        >
+          <NilaiTable
+            laporanNilaiCPLDataList={laporanNilaiCPLDataList}
+            kurikulumSelectionField={kurikulumSelectionField}
+          />
+        </Layouts.ListContainerTableLayout>
+      )}
     </Layouts.ViewContainerLayout>
   );
 };

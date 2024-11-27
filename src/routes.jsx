@@ -21,6 +21,7 @@ import mataKuliahRoutes from "@/mataKuliah/routes";
 import programStudiRoutes from "@/programStudi/routes";
 import ringkasanAkademisRoutes from "@/ringkasanAkademis/routes";
 import riwayatAkademisRoutes from "@/riwayatAkademis/routes";
+import pembayaranRoutes from "./pembayaran/routes";
 
 const GlobalRoutes = () => {
   const router = useRoutes([
@@ -45,6 +46,7 @@ const GlobalRoutes = () => {
     ...programStudiRoutes,
     ...ringkasanAkademisRoutes,
     ...riwayatAkademisRoutes,
+    ...pembayaranRoutes,
   ]);
   return router;
 };

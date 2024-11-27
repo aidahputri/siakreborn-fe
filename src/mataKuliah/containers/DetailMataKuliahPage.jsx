@@ -15,6 +15,7 @@ import getMataKuliahDataDetail from "../services/getMataKuliahDataDetail";
 import CPMKTable from "../components/CPMKTable";
 
 import getCPMKDataList from "../services/getCPMKDataList";
+import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 const DetailMataKuliahPage = (props) => {
   const { checkPermission } = useAuth();
 
@@ -87,14 +88,16 @@ const DetailMataKuliahPage = (props) => {
       >
         <DetailMataKuliah {...{ data: { ...mataKuliahDataDetail } }} />
       </Layouts.DetailContainerLayout>
-      <Layouts.ListContainerTableLayout
-        title={"Daftar CPMK"}
-        singularName={"CPMK"}
-        items={[cPMKDataList]}
-        isLoading={isLoading.daftarCPMK}
-      >
-        <CPMKTable cPMKDataList={cPMKDataList} />
-      </Layouts.ListContainerTableLayout>
+      {isSelectedFeature("CPMK") && (
+        <Layouts.ListContainerTableLayout
+          title={"Daftar CPMK"}
+          singularName={"CPMK"}
+          items={[cPMKDataList]}
+          isLoading={isLoading.daftarCPMK}
+        >
+          <CPMKTable cPMKDataList={cPMKDataList} />
+        </Layouts.ListContainerTableLayout>
+      )}
     </Layouts.ViewContainerLayout>
   );
 };

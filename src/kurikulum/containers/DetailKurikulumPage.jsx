@@ -15,6 +15,7 @@ import getKurikulumDataDetail from "../services/getKurikulumDataDetail";
 import CPLTable from "../components/CPLTable";
 
 import getCPLDataList from "../services/getCPLDataList";
+import isSelectedFeature from "@/commons/utils/isSelectedFeature";
 const DetailKurikulumPage = (props) => {
   const { checkPermission } = useAuth();
 
@@ -46,7 +47,7 @@ const DetailKurikulumPage = (props) => {
     const fetchData = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, daftarCPL: true }));
-        const { data: cPLDataList } = await getCPLDataList({ kurikulumId:id });
+        const { data: cPLDataList } = await getCPLDataList({ kurikulumId: id });
         setCPLDataList(cPLDataList.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, daftarCPL: false }));
@@ -85,14 +86,16 @@ const DetailKurikulumPage = (props) => {
       >
         <DetailKurikulum {...{ data: { ...kurikulumDataDetail } }} />
       </Layouts.DetailContainerLayout>
-      <Layouts.ListContainerTableLayout
-        title={"Daftar CPL"}
-        singularName={"CPL"}
-        items={[cPLDataList]}
-        isLoading={isLoading.daftarCPL}
-      >
-        <CPLTable cPLDataList={cPLDataList} />
-      </Layouts.ListContainerTableLayout>
+      {isSelectedFeature("CPL") && (
+        <Layouts.ListContainerTableLayout
+          title={"Daftar CPL"}
+          singularName={"CPL"}
+          items={[cPLDataList]}
+          isLoading={isLoading.daftarCPL}
+        >
+          <CPLTable cPLDataList={cPLDataList} />
+        </Layouts.ListContainerTableLayout>
+      )}
     </Layouts.ViewContainerLayout>
   );
 };

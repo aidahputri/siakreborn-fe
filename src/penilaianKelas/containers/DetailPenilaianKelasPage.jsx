@@ -99,25 +99,25 @@ const DetailPenilaianKelasPage = (props) => {
 
           <Layouts.ViewContainerButtonLayout>
             {checkPermission("CreateKomponenPenilaian") && (
-              <Link
-                to={`/penilaian-kelas/${id}/komponen/tambah`}
-              >
+              <Link to={`/penilaian-kelas/${id}/komponen/tambah`}>
                 <Button className="p-2" variant="primary">
                   Tambah Komponen Penilaian
                 </Button>
               </Link>
             )}
 
-            {checkPermission("CreateBobotKomponenPenilaian") && (
-              <Link
-                to={`/penilaian-kelas/${id}/pemetaan-capaian/tambah
+            {isSelectedFeature("CPMK") &&
+              isSelectedFeature("SubCPMK") &&
+              checkPermission("CreateBobotKomponenPenilaian") && (
+                <Link
+                  to={`/penilaian-kelas/${id}/pemetaan-capaian/tambah
 			  	  `}
-              >
-                <Button className="p-2" variant="primary">
-                  Tambah/Ubah Pemetaan Capaian
-                </Button>
-              </Link>
-            )}
+                >
+                  <Button className="p-2" variant="primary">
+                    Tambah/Ubah Pemetaan Capaian
+                  </Button>
+                </Link>
+              )}
           </Layouts.ViewContainerButtonLayout>
         </>
       }
@@ -131,24 +131,28 @@ const DetailPenilaianKelasPage = (props) => {
         <KomponenTable komponenPenilaianDataList={komponenPenilaianDataList} />
       </Layouts.ListContainerTableLayout>
 
-      {isLoading.daftarPemetaanCapaian ? (
-        <div className="flex justify-center items-center h-full">
-          <Spinner />
-        </div>
-      ) : (
+      {isSelectedFeature("CPMK") && isSelectedFeature("SubCPMK") && (
         <>
-          {capaianDataList && capaianDataList.komponen.length > 1 && (
-            <Layouts.ListContainerTableLayout
-              title={"Daftar Pemetaan Capaian"}
-              singularName={"Pemetaan"}
-              items={[capaianDataList?.komponen ?? []]}
-              isLoading={isLoading.daftarPemetaanCapaian}
-            >
-              <PemetaanTable
-                capaianDataList={capaianDataList?.komponen ?? []}
-                capaianList={capaianDataList?.capaian ?? []}
-              />
-            </Layouts.ListContainerTableLayout>
+          {isLoading.daftarPemetaanCapaian ? (
+            <div className="flex justify-center items-center h-full">
+              <Spinner />
+            </div>
+          ) : (
+            <>
+              {capaianDataList && capaianDataList.komponen.length > 1 && (
+                <Layouts.ListContainerTableLayout
+                  title={"Daftar Pemetaan Capaian"}
+                  singularName={"Pemetaan"}
+                  items={[capaianDataList?.komponen ?? []]}
+                  isLoading={isLoading.daftarPemetaanCapaian}
+                >
+                  <PemetaanTable
+                    capaianDataList={capaianDataList?.komponen ?? []}
+                    capaianList={capaianDataList?.capaian ?? []}
+                  />
+                </Layouts.ListContainerTableLayout>
+              )}
+            </>
           )}
         </>
       )}
