@@ -17,7 +17,7 @@ const TermTable = ({ termRiwayatAkademisDataList }) => {
   const { checkPermission } = useAuth();
   const navigate = useNavigate();
   const detail = async (termItem) => {
-    isMobile() && navigate(`/riwayat-akademis/${termItem.id}`);
+    isMobile() && navigate(`/kelas/${termItem.id}`);
   };
 
   return (
@@ -64,7 +64,7 @@ const TermTable = ({ termRiwayatAkademisDataList }) => {
         },
       ]}
       itemsEvents={(termItem) => [
-        <Link to={`/riwayat-akademis/${termItem.id}`}>
+        <Link to={`/kelas/${termItem.id}`}>
           <Button variant="primary">Detail</Button>
         </Link>,
       ]}
