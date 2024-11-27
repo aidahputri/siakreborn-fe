@@ -4,8 +4,8 @@ import { persist } from "zustand/middleware";
 const useAppearanceStore = create(
   persist(
     (set, get) => ({
-      interfaceKit: "",
-      colorTheme: "",
+      interfaceKit: "donor",
+      colorTheme: "pacific",
       setAppearance: (appearance) => set(appearance),
       setInterfaceKit: (kit) => set({ ...get(), interfaceKit: kit }),
       setColorTheme: (theme) => set({ ...get(), colorTheme: theme }),
