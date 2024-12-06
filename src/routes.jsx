@@ -7,14 +7,9 @@ import staticPageRoutes from "@/staticPage/routes";
 import homeRoutes from "@/home/routes";
 import semesterRoutes from "@/semester/routes";
 import kelasRoutes from "@/kelas/routes";
-import cPMKRoutes from "@/cPMK/routes";
-import subCPMKRoutes from "@/subCPMK/routes";
-import laporanCPMKRoutes from "@/laporanCPMK/routes";
 import lihatIRSRoutes from "@/lihatIRS/routes";
 import isiUbahIRSRoutes from "@/isiUbahIRS/routes";
 import pengaturanPengisianIRSRoutes from "@/pengaturanPengisianIRS/routes";
-import cPLRoutes from "@/cPL/routes";
-import laporanCPLRoutes from "@/laporanCPL/routes";
 import penilaianKelasRoutes from "@/penilaianKelas/routes";
 import kurikulumRoutes from "@/kurikulum/routes";
 import mataKuliahRoutes from "@/mataKuliah/routes";
@@ -32,14 +27,9 @@ const GlobalRoutes = () => {
     ...homeRoutes,
     ...semesterRoutes,
     ...kelasRoutes,
-    ...cPMKRoutes,
-    ...subCPMKRoutes,
-    ...laporanCPMKRoutes,
     ...lihatIRSRoutes,
     ...isiUbahIRSRoutes,
     ...pengaturanPengisianIRSRoutes,
-    ...cPLRoutes,
-    ...laporanCPLRoutes,
     ...penilaianKelasRoutes,
     ...kurikulumRoutes,
     ...mataKuliahRoutes,

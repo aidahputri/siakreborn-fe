@@ -29,9 +29,9 @@ const TambahPemetaanCapaian = (props) => {
     const fetch = async () => {
       setIsLoading((prev) => ({ ...prev, tambahPemetaanCapaian: true }));
       const { data: komponenPenilaianResponse } = await getKomponenPenilaian({
-        kelasId: id,
+        kelasId:id,
       });
-      const { data: capaianResponse } = await getCapaian({ kelasId: id });
+      const { data: capaianResponse } = await getCapaian({ kelasId:id });
 
       setKomponenPenilaian(komponenPenilaianResponse.data);
       setCapaian(capaianResponse.data);
@@ -50,7 +50,7 @@ const TambahPemetaanCapaian = (props) => {
         <>
           <Layouts.ViewContainerBackButtonLayout>
             <Link
-              to={`/penilaian-kelas/${id}
+              to={`/penilaian-kelas/:id
 			  	`}
             >
               <Button className="p-4" variant="secondary">

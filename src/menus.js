@@ -80,50 +80,6 @@ addMenu({
 
 addMenu({
   route: "#",
-  label: "CPL",
-  permission: "ReadCPL",
-  subMenus: [],
-});
-
-addSubMenu("CPL", {
-  route: "/cpl",
-  label: "CPL",
-  permission: "ReadCPL",
-});
-
-addSubMenu("CPL", {
-  route: "/cpl/laporan",
-  label: "Laporan CPL",
-  permission: "ReadLaporanCPL",
-});
-
-addMenu({
-  route: "#",
-  label: "CPMK",
-  permission: "ReadCPMK",
-  subMenus: [],
-});
-
-addSubMenu("CPMK", {
-  route: "/cpmk",
-  label: "CPMK",
-  permission: "ReadCPMK",
-});
-
-addSubMenu("CPMK", {
-  route: "/subcpmk",
-  label: "Sub-CPMK",
-  permission: "ReadSubCPMK",
-});
-
-addSubMenu("CPMK", {
-  route: "/cpmk/laporan",
-  label: "Laporan CPMK",
-  permission: "ReadLaporanCPMK",
-});
-
-addMenu({
-  route: "#",
   label: "Akademis",
   permission: "ReadKelasMahasiswaMe",
   subMenus: [],
