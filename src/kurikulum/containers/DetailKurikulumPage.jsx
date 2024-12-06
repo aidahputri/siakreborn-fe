@@ -53,7 +53,7 @@ const DetailKurikulumPage = (props) => {
         setIsLoading((prev) => ({ ...prev, daftarCPL: false }));
       }
     };
-    fetchData();
+    isSelectedFeature("CPL") && fetchData();
   }, []);
 
   useEffect(() => {

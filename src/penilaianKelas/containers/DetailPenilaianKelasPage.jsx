@@ -78,7 +78,8 @@ const DetailPenilaianKelasPage = (props) => {
         setIsLoading((prev) => ({ ...prev, daftarPemetaanCapaian: false }));
       }
     };
-    fetchData();
+
+    isSelectedFeature("CPMK") && isSelectedFeature("SubCPMK") && fetchData();
   }, []);
 
   useEffect(() => {

@@ -60,21 +60,33 @@ const RingkasanAkademis = (props) => {
     fetchData();
   }, []);
   const [laporanNilaiCPLDataList, setLaporanNilaiCPLDataList] = useState();
-  const [kurikulumSelectionField, setKurikulumSelectionField] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading((prev) => ({ ...prev, laporanNilaiCPL: true }));
         const { data: laporanNilaiCPLDataList } =
           await getLaporanNilaiCPLDataList({ id });
+        setLaporanNilaiCPLDataList(laporanNilaiCPLDataList.data);
+      } finally {
+        setIsLoading((prev) => ({ ...prev, laporanNilaiCPL: false }));
+      }
+    };
+    isSelectedFeature("CPL") && fetchData();
+  }, []);
+
+  const [kurikulumSelectionField, setKurikulumSelectionField] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading((prev) => ({ ...prev, laporanNilaiCPL: true }));
         const { data: kurikulumSelectionField } =
           await getKurikulumSelectionField({ id });
-        setLaporanNilaiCPLDataList(laporanNilaiCPLDataList.data);
         setKurikulumSelectionField(kurikulumSelectionField.data);
       } finally {
         setIsLoading((prev) => ({ ...prev, laporanNilaiCPL: false }));
       }
     };
+
     fetchData();
   }, []);
 

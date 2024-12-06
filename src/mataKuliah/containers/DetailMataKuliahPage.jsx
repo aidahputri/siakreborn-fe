@@ -55,7 +55,7 @@ const DetailMataKuliahPage = (props) => {
         setIsLoading((prev) => ({ ...prev, daftarCPMK: false }));
       }
     };
-    fetchData();
+    isSelectedFeature("CPL") && fetchData();
   }, []);
 
   useEffect(() => {
