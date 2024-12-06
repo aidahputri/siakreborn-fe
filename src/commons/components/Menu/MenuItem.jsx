@@ -7,24 +7,20 @@ const MenuItem = ({ route, label, subMenus, isCollapsed }) => {
   const { checkPermission } = useAuth();
   if (subMenus?.length > 0) {
     return (
-      <>
-        {subMenus.some((subMenu) => checkPermission(subMenu.permission)) && (
-          <li>
-            <details open={!isCollapsed}>
-              <summary className="text-base">{label}</summary>
-              <ul>
-                {subMenus.map((menu) => (
-                  <>
-                    {checkPermission(menu.permission) && (
-                      <MenuItem {...menu} key={menu.label} />
-                    )}
-                  </>
-                ))}
-              </ul>
-            </details>
-          </li>
-        )}
-      </>
+      <li>
+        <details open={!isCollapsed}>
+          <summary className="text-base">{label}</summary>
+          <ul>
+            {subMenus.map((menu) => (
+              <>
+                {checkPermission(menu.permission) && (
+                  <MenuItem {...menu} key={menu.label} />
+                )}
+              </>
+            ))}
+          </ul>
+        </details>
+      </li>
     );
   }
 

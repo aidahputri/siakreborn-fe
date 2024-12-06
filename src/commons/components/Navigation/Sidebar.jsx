@@ -21,7 +21,9 @@ const Sidebar = () => {
           <Menu>
             {navbarMenus.map((menu) => (
               <>
-                {checkPermission(menu.permission) && (
+                {(menu.subMenus && menu.subMenus.length > 0
+                  ? menu.subMenus.some((s) => checkPermission(s.permission))
+                  : checkPermission(menu.permission)) && (
                   <MenuItem
                     key={menu.label}
                     {...menu}
