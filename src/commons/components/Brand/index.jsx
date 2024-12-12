@@ -10,7 +10,7 @@ const Brand = ({ onCLick, isMobileFirst }) => {
       onClick={onCLick}
       className={className}
     >
-      Universitas Argentum
+      Universitas Rhenium
     </Link>
   )
 }
