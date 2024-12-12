@@ -8,7 +8,7 @@ const Form = props => {
       <h2 className="h2">{title}</h2>
       <form className="bg-white card shadow-xl max-w-full" id={id_name} {...props}>
         <div className="card-body">
-          <fieldset className="space-y-4 grid grid-cols-2 gap-2">{children}</fieldset>
+          <div className="space-y-4 flex flex-col gap-2">{children}</div>
         </div>
       </form>
     </div>

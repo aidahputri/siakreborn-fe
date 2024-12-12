@@ -59,21 +59,6 @@ const FormTambahNilai = ({ komponenPenilaianDataList }) => {
       vas={[]}
       formFields={[
         <Controller
-          name="nilai"
-          control={control}
-          render={({ field, fieldState }) => (
-            <InputField
-              label="Nilai"
-              placeholder="Masukkan nilai"
-              type="number"
-              fieldState={fieldState}
-              {...field}
-              isRequired={false}
-            />
-          )}
-        />,
-
-        <Controller
           name="komponenPenilaianId"
           control={control}
           render={({ field, fieldState }) => (
@@ -83,6 +68,20 @@ const FormTambahNilai = ({ komponenPenilaianDataList }) => {
               placeholder="Masukkan komponen penilaian"
               fieldState={fieldState}
               //   defaultValue={komponenPenilaianDataList.id}
+              {...field}
+              isRequired={false}
+            />
+          )}
+        />,
+        <Controller
+          name="nilai"
+          control={control}
+          render={({ field, fieldState }) => (
+            <InputField
+              label="Nilai"
+              placeholder="Masukkan nilai"
+              type="number"
+              fieldState={fieldState}
               {...field}
               isRequired={false}
             />
