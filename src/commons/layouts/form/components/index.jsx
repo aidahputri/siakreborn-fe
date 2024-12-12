@@ -11,7 +11,11 @@ const FormComponentLayout = ({
   return (
     <Form title={title} onSubmit={onSubmit}>
       {vas}
-      {formFields}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+        {formFields.map((field, index) => (
+          <div key={index}>{field}</div>
+        ))}
+      </div>
       <div className="card-actions col-end-3 justify-end">{itemsEvents}</div>
     </Form>
   );
