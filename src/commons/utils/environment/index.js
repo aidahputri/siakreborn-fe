@@ -1,5 +1,5 @@
 export default {
   production: import.meta.env.MODE === "production",
-  rootApi: `/api`,
+  rootApi: ``,
   staticServerApi: `/static`,
 };
